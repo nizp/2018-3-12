@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+</head>
+<body>
+   
+    <button id="btn">运行代码</button>
+    <textarea name="" cols="30" rows="10" id="txt"></textarea>
+<script>
+
+    btn.onclick = function(){
+        let val = txt.value;
+
+        /*
+            文档输入流
+                当使用新窗口中使用了document.write的时候就开启了文档输入流
+
+                当大量代码通过document.write写入之后，就要关闭
+
+                因为不关闭，它认为还有内容需要写入，这个时候js会运行失败
+
+
+        */
+        let newW = window.open();
+        newW.document.write(val);
+        
+        // newW.document.close();  //关闭输入流
+        
+    }
+
+
+</script>
+</body>
+</html>

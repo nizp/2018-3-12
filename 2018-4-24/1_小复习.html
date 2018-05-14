@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <ul id="ul">
+        <li>0</li>
+    </ul>
+<script>
+/*
+    1.静态动态类数组
+    2.递归
+    3.history
+    4.hash
+    5.last,first
+        lastElementChild   最后一个子元素  
+        firstElementChild  第一个子元素
+
+
+        firstChild  最后一个子节点  （高版本下）（低版本就是元素节点）
+        lastChild   第一个子节点   （高版本下）（低版本就是元素节点）
+
+*/
+
+    //[1,2,3,4]
+    let lis = document.getElementsByTagName('li');//动态的
+    //[]
+    // let lis = document.querySelectorAll('li');//静态的
+
+    for(let i=0;i<lis.length;i++){
+        lis[i].onclick = function(){
+            alert(i);
+        }
+    }
+
+    // console.log(lis);
+    
+    let num = 0;
+    btn.onclick = function(){
+        let li = document.createElement('li');
+        li.innerHTML = ++num;
+        ul.appendChild(li);
+
+        // for(let i=0;i<lis.length;i++){
+        //     lis[i].onclick = function(){
+        //         alert(i);
+        //     }
+        // }
+        // console.log(lis.length);
+        console.log(num);
+    };
+
+    console.log(num); //只会执行一次
+   
+
+
+
+
+
+
+</script>
+</body>
+</html>

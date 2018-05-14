@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    height:100px;
+    background: red;
+} 
+</style>
+</head>
+<body>
+    <div index="1" id="box" style="width:100px"></div>
+<script>
+    /*
+        行间样式，只有系统自带的才可以通过
+            元素.xxx的方式获取（id、style、className）
+        不然都是undefined（index，num=0）
+
+
+        getAttribute('行间属性名')   -> 获取行间属性
+        setAttribute('行间属性名','行间属性值') -> 设置行间属性
+        removeAttribute('行间属性名') -> 删除
+
+
+        给元素添加属性的时候，如果添加就如何获取：
+            用setAttribute设置的就要getAttribute获取
+            用obj.attr = 0 设置的就要obj.attr获取
+    */
+    // const box = document.getElementById('box');
+    // console.log(box.index); //undefined  行间属性
+    // console.log(box.getAttribute('index'));
+
+    // box.setAttribute('index2','2');
+
+    // console.log(box.index2);
+
+    // box.index = 2; //这种定义是放在一个存储空间中
+    // console.log(box.index);
+
+    box.setAttribute('style','width:200px');
+
+    // console.log(box1);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+body,html{
+    overflow-y:hidden;
+}
+*{
+    margin: 0;
+    padding:0;
+    list-style: none;
+}
+ul{
+    transition: 1s;
+}
+
+
+</style>
+</head>
+<body>
+    <ul id="ul"></ul>
+<script>
+    let arr = ['yellow','red','skyblue','green','pink'];
+    let html = '';
+    let iW = window.innerWidth;
+    let iH = window.innerHeight;
+    arr.forEach(e=>html+=`<li style="width:${iW}px;height:${iH}px;background:${e}"></li>`)
+    ul.innerHTML = html;
+
+    window.onresize = function(){
+        html = '';
+        iW = window.innerWidth;
+        iH = window.innerHeight;
+        console.log(iH);
+        arr.forEach(e=>html+=`<li style="width:${iW}px;height:${iH}px;background:${e}"></li>`)
+        ul.innerHTML = html;
+        ul.style.transition = 'none';
+        ul.style.transform = 'translateY('+ -num*iH +'px)';
+
+    }
+
+    let num = 0;
+    let onOff = true;
+    myScroll(ul,function(o){
+        if(!onOff)return;
+        onOff = false;
+        ul.style.transition = '1s';
+        if(o){//上
+            num --;
+            if(num < 0){
+                num = 0;
+            }
+        }else{
+            //下
+            num ++;
+            if(num > arr.length-1){
+                num = arr.length-1;
+            }
+        }
+        ul.style.transform = 'translateY('+ -num*iH +'px)';
+        setTimeout(()=>onOff = true,1050);
+    });
+
+
+    function myScroll(obj,cb){
+        let o = true; //目的:如果滚动的时候o为true说明向上滚,false向下滚
+        if(typeof obj.onmousewheel === 'object'){
+            obj.addEventListener('mousewheel',fn)
+            
+        }else{
+            window.addEventListener('DOMMouseScroll',fn);
+        }
+        function fn(ev){
+            //console.log(1);
+            if(ev.wheelDelta){ //IE||chrome
+                o = ev.wheelDelta>0?true:false;
+            }else{
+                o = ev.detail < 0?true:false;
+            }
+            cb(o);
+        }
+    }
+
+
+</script>
+</body>
+</html>

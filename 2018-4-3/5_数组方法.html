@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        数组方法:
+            find、push、some、join、concat、every、
+            pop、shift、unshift、filter、map、
+            sort、slice、reverse、Array.from、toString
+            forEach、splice、indexOf、includes、findIndex
+            isArray、fill
+
+
+        findIndex
+        map   
+        some
+        filter
+        forEach
+
+
+        sort
+        join
+        
+    */
+
+   let arr = [1,2,3,4];
+
+    // document.onclick = function(){
+    //     if(!arr.some(e=>e==5)){
+    //         arr.push(5);
+    //     }
+    //     console.log(arr);
+    // }
+
+    let arr3 = [
+        {
+            checked:false
+        },
+        {
+            checked:false
+        },
+        {
+            checked:true
+        }
+    ];
+
+
+    //点击document的时候删除checked等于true的数据（保留false的数据）
+    // document.onclick = function(){ 
+    //     arr3 = arr3.filter(e=>!e.checked);
+    //     console.log(arr3);
+    // }
+
+//    console.log(arr.findIndex((e,i,all)=>e==2));
+
+    // let arr2 = arr.map(e=>e);
+
+    // console.log(arr2);
+
+
+    //只有跳过（某个条件成立之后，return），没有跳出 
+    //  arr.forEach(function(e,i,all){
+    //     if(e==3) return;
+    //     alert(e);
+    //  },arr);
+
+    // document.onclick = function(){
+    //     arr.forEach((e,i,all)=>{
+    //         // console.log(e,i,all);
+    //         console.log(this);
+    //     });
+    // }
+   
+
+   let arr4 = [11,11,8,1,7,2,4,3,9];  //默认字符串asc码走的
+
+//    console.log(arr4.sort());
+
+    console.log(arr4.sort(function(a,b){
+        //***返回必须是数字类型***  相减的结果，正数就换位置，负数就不换位置
+        return a-b;
+    }));
+
+
+    /*
+        join('<span>'+ num +'</span>')  -> 用括号中的字符去拼接，把数组转成字符串
+    */
+
+   let arr5 = ['a','b'];
+
+   console.log(arr5.join('或'));
+
+
+
+    
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div>1232131231278798932312</div>
+    <div id="div">1232131231278798932312</div>
+<script>
+    /*
+        定时器套定时器
+
+        1.事件
+            onmousedown
+            onmousemove
+            onmouseup
+            onkeydown
+            onkeyup
+            oninput
+            onchange
+            onblur
+            onfocus
+            form.onsubmit
+            reset
+            select
+            onmouseenter
+            onmouseleave
+            oncontextmenu  右键菜单
+            ondblclick
+            onmousewheel
+            DOMMouseScroll
+
+            阻止默认行为:
+                return false
+                ev.preventDefault()
+
+        2.事件对象
+            ev
+            event 在chrome和IE中它在全局
+
+            ev || window.event
+
+            window.event || ev
+
+            event || ev
+
+            ev.keyCode
+            ev.altKey ....
+            
+        
+    */
+
+    // console.log(window.navigator.userAgent.toLocaleLowerCase());
+    function myScroll(obj,cb){
+        //    if(typeof obj.onmousewheel === 'object'){
+        if(window.navigator.userAgent.toLocaleLowerCase().includes('firefox')){
+            obj.addEventListener('DOMMouseScroll',fn);
+        }else{
+            obj.addEventListener('mousewheel',fn);
+        }
+        function fn(ev){
+            let o = true;
+            if(ev.wheelDelta){
+                o = ev.wheelDelta > 0?true:false;
+            }else{
+                o = ev.detail < 0?true:false;
+            }
+            cb(o);
+        }
+    }
+
+    // myScroll(document,function(o){
+    //     alert(o);
+    // });
+
+    // div.onmousedown = function(){
+    //     return false;
+    // }
+
+    //IE和chrome，都支持event
+    document.onmousedown = function(ev){
+        console.log(window.event || ev);
+    }
+
+    // console.log(event);
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt">
+    <button id="btn">添加</button>
+    <ul id="ul">
+       <!-- <li>1</li> -->
+    </ul>
+<script>
+    /*
+        把newElement放到oldElement之前
+
+        parentNode.insertBefore(newElement,oldElement)
+
+        parentNode.removeChild(li);
+
+        chrome中可以使用 
+             this.remove();
+
+    */
+    btn.onclick = function(){
+        let v = txt.value;
+        let li = document.createElement('li');
+        li.innerHTML = v;
+        
+        li.onclick = function(){
+            // ul.removeChild(this);
+            this.remove(); //chrome中可以使用
+        }
+
+        ul.insertBefore(li,ul.children[0]);
+        txt.value = '';
+    }
+</script>
+</body>
+</html>

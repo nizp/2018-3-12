@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0
+}
+#box{
+    width:408px;
+    height: 494px;
+    background: #555;
+    border: 1px solid #848484;
+    padding:10px;
+}
+ul {
+    width:428px;
+    list-style: none;
+}
+ul li{
+    width:56px;
+    height: 48px;
+    border: 1px solid #555;
+    float: left;
+    color: #fff;
+    line-height: 48px;
+    text-align: center;
+}
+ul li.active{
+    color:#555;
+    background: #fff;
+    border: 1px solid yellowgreen;
+}
+ul li.old{
+    color: #848484;
+}
+#time h5{
+    font-size: 48px;
+    color:floralwhite;
+    font-weight: 200;
+}
+#time p{
+    color:floralwhite;
+    letter-spacing: 2px;
+}
+#time{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #fff;
+    opacity: .8;
+}
+#time2{
+    margin-top:10px;
+    overflow: hidden;
+}
+#time2 p{
+    float: left;
+    color:floralwhite;
+    letter-spacing: 2px;
+    line-height: 25px;
+    
+}
+#downUp{
+    float: right;
+}
+#downUp a{
+    color:floralwhite;
+    font-size:20px;
+}
+#downUp a:last-child{
+    margin-left:20px;
+}
+
+
+
+</style>
+</head>
+<body>
+    <div id="box">
+        <div id="time">
+            <h5 id="h5">14:10:00</h5>
+            <p id="p">2018年4月11日</p>
+        </div>
+        <div id="time2">
+            <p id="p2">2018年4月</p>
+            <div id="downUp">
+                <a id="prev" href="javascript:;">↑</a>
+                <a id="next" href="javascript:;">↓</a>
+            </div>
+        </div>
+        <ul id="week"></ul>
+        <ul id="date"></ul>
+    </div>
+<script>
+    /*
+        1.数码时钟
+        2.年月日
+        3.年月
+        4.周几
+        5.日期
+    */
+
+    const h5 = document.getElementById('h5');
+    const p = document.getElementById('p');
+    const p2 = document.getElementById('p2');
+    const week = document.getElementById('week');
+    const dateTwo = document.getElementById('date');
+    const next = document.getElementById('next');
+    const prev = document.getElementById('prev');
+    let num = 0; //当前日期
+
+    next.onclick = function(){
+        num ++;
+        setTime();
+    }
+    prev.onclick = function(){
+        num --;
+        setTime();
+    }
+
+    setTime();
+    function setTime(){
+        setInterval(time,1000);
+        time();
+        function time(){
+            let d = new Date;
+            d.setMonth(d.getMonth()+num);
+            let h = d.getHours();
+            let m = d.getMinutes();
+            let s = d.getSeconds();
+            let Y = d.getFullYear();
+            let M = d.getMonth() + 1;
+            let date = d.getDate();
+            h5.innerHTML = toDou(h)+':'+toDou(m) + ':' + toDou(s);
+            p.innerHTML = Y +'年'+toDou(M) + '月' + toDou(date) + '日';
+        }
+
+        /*
+            p2的时间
+        */
+        let d = new Date;
+        d.setMonth(d.getMonth()+num);
+
+        p2.innerHTML = d.getFullYear()+'年'+ toDou(d.getMonth()+1) + '月';
+    
+        /*
+            星期
+        */
+    let arr = ['一','二','三','四','五','六','日'];
+    let html = '';
+    arr.forEach(e=>html += `<li>${e}</li>`);
+    week.innerHTML = html;
+
+
+    /*
+            提前生成空白格子
+                1.查看这个月的一号是周几
+                2.然后填充前面的格子
+
+            d3 为了知道1号放在哪个位置
+            d4 拿到上个月的时间
+    */
+        
+        let d3 = new Date;
+        d3.setMonth(d3.getMonth()+num);
+        
+        let d4 = new Date; //求上个月最后一天
+        d4.setMonth(d4.getMonth()+num);
+        d4.setDate(0);
+        let n3 = d4.getDate(); //上个月最后一天
+       
+       
+        d3.setDate(1);
+        let n2 = d3.getDay(); //一号是周几
+        if(n2 == 0)n2=7;
+        let kongbai = '';
+
+        for(let i=n2-1;i>0;i--){
+            kongbai = `<li class="old">${n3--}</li>` + kongbai;
+        }
+        dateTwo.innerHTML = kongbai;
+
+
+    /*
+            日期
+                1.当前月份有多少天
+                    （1）设置下个月
+                        d.setMonth(当前月)
+                    （2）设置上个月的最后一天
+                        d.setDate(0)
+                    （3）获取多少天
+                        d.getDate()
+                    
+                2.通过多少天去循环多少次并且创建li
+
+                3.把当前时间显示出来
+    */
+        let d2 = new Date;
+        d2.setMonth(d2.getMonth()+num);
+        
+        let d5 = new Date; //为了找到当月的最后一天
+        d5.setMonth(d2.getMonth()+1);
+        d5.setDate(0);
+        let n = d5.getDate();
+        
+        let dateTwoLi = '';
+        for(let i=1;i<=n;i++){
+            if(i == d2.getDate()){
+                dateTwoLi += `<li class="active">${i}</li>`;
+            }else{
+                dateTwoLi += `<li>${i}</li>`;
+            }
+        }
+        dateTwo.innerHTML += dateTwoLi;
+    }
+
+    // console.log(n);
+    
+    
+   
+
+   
+   
+    
+    
+
+    
+
+    function toDou(n){
+        return n<10?'0'+n:''+n;
+    }
+    
+   
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

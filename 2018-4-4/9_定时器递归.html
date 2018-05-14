@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    
+    */
+
+    // for(var i=0;i<10;i++){
+    //     setTimeout(function(){
+    //         console.log(i);//0-9   undefined 不知道 9 0  10 10个9
+    //     },0);
+    // };
+
+    // for(var i=0;i<10;i++){
+    //    (function(i){
+    //         setTimeout(function(){
+    //             console.log(i);//0-9   undefined 不知道 9 0  10 10个9
+    //         },0);
+    //    })(i);
+    // };
+
+    let num = 10;
+    function fn(num){
+        if(num < 0)return;
+        setTimeout(function(){
+            console.log(num)
+            fn(--num);
+        },0);
+    }
+    fn(num);
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        BOM (browser object model) 浏览器对象模型,
+
+            BOM为我们提供对浏览器信息获取及操作的方法。
+                比如:
+                    可视区窗口
+                    滚动条
+                    浏览器内核
+                    浏览器的地址栏信息
+                    历史记录管理（前端路由原理）
+                    本地存储（前端数据库）
+
+            每个浏览器厂商的提供的操作浏览器的接口（规则）有些不兼容
+
+        window
+            name : ""
+
+            函数名 + () -> window
+            定时器中 -> window
+
+        window 对象在js中有两个作用。即是BOM的顶层对象，也是 ECMAScript 中的全局作用域(Global 对象), 声明在全局的的变量、函数都会变成window对象
+        
+    */
+
+    // let name = '真瘦';
+    // let obj = {
+    //     name:'真胖',
+    //     fn(){
+    //         alert(this.name);
+    //     }
+    // }
+    // obj.fn();
+
+    // setTimeout(obj.fn,1000);
+
+    // console.dir(window);
+
+    // alert(1);
+    //A:undefined  B:报错 C:document D:window
+    // document.onclick = fn();  //window ,还没调用就执行
+
+    // document.onclick = fn;  //document
+
+    // document.onclick = function(){
+    //     fn(); //window
+    // }
+    // function fn(){
+    //     alert(this);
+    // }
+
+    /*
+        对象身上才能加属性和方法
+
+        简单类型身上能加，但是都为undefined并且这个属性运算结果为undefined;
+
+    */
+    window.a = 10;
+    window.a ++;
+
+    let str = 'a';
+    // str.a = 10;
+    // let aa = str.a;
+    // ++ aa;
+    // alert(aa);  //A:11  B:报错 C:NaN D:undefined
+
+    // alert(window.a);
+
+</script>
+</body>
+</html>

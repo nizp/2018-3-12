@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div>
+        <button>按钮</button>
+        <ul>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul>
+            <li></li>
+            <li></li>
+        </ul>
+    </div> -->
+    <ul>
+        <li>
+            <a href="javascript:;">1点击隐藏</a>
+        </li>
+        <li>
+            <a href="javascript:;">2点击隐藏</a>
+        </li>
+        <li>
+            <a href="javascript:;">3点击隐藏</a>
+        </li>
+
+    </ul>
+<script>
+    /*
+        层级关系
+
+            父子级关系  
+                div和ul的关系
+
+            祖孙级关系
+                div和li
+
+            兄弟级关系
+                li和li
+
+
+            从上往下
+                子孙级节点
+
+            从下往上
+                祖先级节点
+
+        parentNode  父级节点
+
+            a.parentNode
+
+            如果要查找一个父级的父级...
+                parentNode.parentNode...去查找即可
+            
+            document为根
+    */
+
+    const a = Array.from(document.getElementsByTagName('a'));
+    const li = document.getElementsByTagName('li');
+    // a.forEach((e,i)=>{
+    //     e.onclick = function(){
+    //         li[i].style.display = 'none';
+    //     }
+    // });
+
+     a.forEach((e,i)=>{
+        e.onclick = function(){
+            // console.log(this.parentNode.tagName);
+            this.parentNode.style.display = 'none';
+
+            // console.log(this.parentNode.parentNode)
+
+            alert(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode);
+        }
+    });
+
+   
+
+
+
+</script>
+</body>
+</html>

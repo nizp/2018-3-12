@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button>引爆</button>
+    <button>拆弹专家</button>
+<script>
+    /*
+        炸一次(在指定时间之后，执行一次函数)
+            setTimeout(callback,time)
+                time为毫秒
+            返回值为一个数字（编号）
+
+            编号主要为了关闭定时器
+                clearTimeout
+
+            setTimeout会改变js的线程
+
+
+        连续炸：
+
+    */
+
+
+    const btns = document.querySelectorAll('button');
+
+    let timer = null;
+    // let timer2 = null;
+
+    btns[0].onclick = function(){
+        timer = setTimeout(function(){
+            alert('王炸');
+        },5000);
+    }
+
+
+    btns[1].onclick = function(){
+        clearTimeout(timer);
+    }
+
+
+    // let a = 10;
+
+    // setTimeout(function(){
+    //     a = 20;
+    // },0);
+
+    // alert(a);
+
+
+
+
+    // function fn(){
+    //     alert('爆炸啦!');
+    // }
+    // let timer = setTimeout(fn,5000);
+    // timer = setTimeout(function(){},1000);
+
+    // console.log(timer)
+
+
+
+
+</script>
+</body>
+</html>

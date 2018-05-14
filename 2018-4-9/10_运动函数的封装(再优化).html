@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:100px;
+    top:0;
+    border-radius: 50%;
+}
+#box2{
+    width:100px;
+    height: 100px;
+    background: green;
+    position: absolute;
+    left:100px;
+    top:150px;
+    border-radius: 50%;
+    font-size:12px;
+    line-height: 100px;
+    text-align:center;
+    color:#fff;
+    opacity:.8;
+}
+</style>
+</head>
+<body>
+    <button id="btn">停止</button>
+    <div id="box"></div>
+    <div id="box2">呵呵</div>
+<script src="tween.js"></script>
+<script>
+    
+    /*
+        有配置走配置，没配置走默认
+
+        {
+            left:200
+        }
+    */
+
+    box2.onclick = function(){
+        move({
+            el:this,
+            attr:{
+                left:300,
+                opacity:.3
+            },
+            d:500,
+            sportName:'elasticOut',
+            callback:function(){
+                /*
+                    fn() -> window
+                    obj.fn() -> obj
+                */
+                console.log(this);
+                move({
+                    el:this,
+                    attr:{
+                        left:100,
+                        opacity:1
+                    },
+                    d:500,
+                    sportName:'elasticOut'
+                });
+            }
+        });
+    }
+
+    function move(opt){
+        // opt.attr = opt.attr || {};
+        // opt.d = opt.d || 1000;
+        // opt.el = opt.el || null;
+        // opt.sportName = opt.sportName || 'linear';
+        // opt.callback = typeof opt.callback === 'function' && opt.callback || function(){}
+        //默认的配置
+        let obj = {
+            attr:{},
+            d:1000,
+            el:null,
+            sportName:'linear',
+            callback:function(){}
+        }
+
+        opt = Object.assign(obj,opt);
+        
+        let oldTime = Date.now();
+        let j = {};
+
+        for(let i in opt.attr){
+            let b = parseFloat(getComputedStyle(opt.el)[i])
+            j[i] = {
+                b,
+                c:opt.attr[i] - b
+            }
+        }
+
+        ;(function animate(){
+            
+            opt.el.timer = requestAnimationFrame(animate);
+            let t = Date.now() - oldTime;
+            if(t >= opt.d){
+                t = opt.d;
+            }
+            for(let attr in j){
+                let v = Tween[opt.sportName](t, j[attr].b, j[attr].c, opt.d);
+                if(attr === 'opacity'){
+                    opt.el.style.opacity = v;
+                }else{
+                    opt.el.style[attr] = v + 'px';
+                }
+            }
+            if(t === opt.d){
+                cancelAnimationFrame(opt.el.timer);
+                opt.callback.call(opt.el);
+            }
+
+        })();
+    }
+
+
+</script>
+</body>
+</html>

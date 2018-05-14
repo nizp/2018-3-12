@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1" id="tb">
+        <thead> 
+            <tr>
+                <th>第一个</th>
+                <th>第二个</th>
+                <th>第三个</th>
+            </tr>
+        </thead>
+      
+        <tbody>
+            <tr>
+                <td>中间一个</td>
+                <td>中间二个</td>
+                <td>中间三个</td>
+            </tr>
+        </tbody>
+        <tbody>
+                <tr>
+                    <td>中间一个</td>
+                    <td>中间二个</td>
+                    <td>中间三个</td>
+                </tr>
+            </tbody>
+        <tfoot>
+            <tr>
+                <td>最后一个</td>
+                <td>最后二个</td>
+                <td>最后三个</td>
+            </tr>
+        </tfoot>
+    </table>
+<script>
+    /*
+        tb.tBodies[0]  获取tbody的1个
+        rows[0]   一行
+        cells     一个单元格
+    */
+    let tb = document.getElementById('tb');
+    let tBody = tb.tBodies[0];
+
+    tBody.rows[0].style.background = 'green';
+    tBody.rows[0].cells[0].style.color = '#fff';
+    // console.log(tBody.rows[0]);
+
+
+    
+    // console.log(tb.tBodies[0])
+
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="b1">href</button>
+    <button id="b2">hash</button>
+    <button id="b3">search</button>
+<script>
+    // console.dir(location);
+
+    /*
+        location:
+            主要获取浏览器地址栏的信息
+
+            href : 读写地址栏的信息（会刷新页面的）
+
+            hash（哈希）: 锚信息（不刷新页面的）
+                从#号开始的信息
+
+                onhashchange  当hash值改变的时候就会触发
+
+            search（查询信息） ?312321（会刷新页面的）
+                从?到#之间的信息
+
+        正常格式为，问号在井号前面，如果？号在#之后那么，全部会认为是锚信息
+        http://www.baidu.com?search=miaov#page=3
+
+        在一开始70%左右的都还会说，自己不会用hash，觉得hash好难
+                
+    */
+
+//    console.log(location.href);
+
+//    location.href = 'http://www.miaov.com';
+
+
+    b1.onclick = function(){
+        document.documentElement.style.background = 'red';
+        location.href = 'file:///D:/class/2018-3-12/2018-4-12/8_location%20.html';
+    }
+    b2.onclick = function(){
+        document.documentElement.style.background = 'green';
+        location.href = 'file:///D:/class/2018-3-12/2018-4-12/8_location%20.html#123';
+    }
+    b3.onclick = function(){
+        document.documentElement.style.background = 'yellowGreen';
+        location.href = 'file:///D:/class/2018-3-12/2018-4-12/8_location%20.html?a=b';
+    }
+
+
+</script>
+</body>
+</html>

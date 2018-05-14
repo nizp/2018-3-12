@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    list-style:none;
+}
+#box{
+    width:448px;
+    height: 245px;
+    border: 1px solid #000;
+    position: relative;
+    overflow: hidden;
+}
+ul{
+    position: absolute;
+}
+li{
+    width:448px;
+    height: 245px;
+    float: left;
+}
+a{
+    width:224px;
+    height:245px;
+    position: absolute;
+    text-align: center;
+    line-height: 245px;
+    color: #fff;
+    /* background:rgba(255,255,255,.3); */
+}
+img{
+    width:448px;
+}
+#prev{
+    left:0;
+}
+#next{
+    right:0;
+}
+
+</style>
+</head>
+<body>
+    <div id="box">
+        <ul id="ul">
+            <li>
+                <img src="img/1.jpg" alt="">
+            </li>
+            <li>
+                    <img src="img/2.jpg" alt="">
+            </li>
+            <li>
+                    <img src="img/3.jpg" alt="">
+            </li>
+            <li>
+                    <img src="img/4.jpg" alt="">
+            </li>
+        </ul>
+        <a href="javascript:;" id="prev">上一个</a>
+        <a href="javascript:;" id="next">下一个</a>
+    </div>
+<script src="tween.js"></script>
+<script>
+    const ul = document.getElementById('ul');
+    const lis = ul.getElementsByTagName('li');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let num = 0;
+    let w = 448;
+    ul.innerHTML += ul.innerHTML;
+    let len = lis.length;
+
+    ul.style.width = w * len + 'px';
+
+    next.onclick = function(){
+        num ++;
+        if(num == len){
+            ul.style.left = - (len/2 -1)  * w + 'px';
+            num = len/2;
+        }
+        move({
+            el:ul,
+            attr:{
+                left: - num * w
+            },
+            d:500
+        })
+    }
+    prev.onclick = function(){
+        num --;
+        if(num < 0){
+            ul.style.left = - len/2 * w +'px';
+            num = len/2 - 1;
+        }
+        move({
+            el:ul,
+            attr:{
+                left: - num * w
+            },
+            d:500
+        })
+    }
+
+   
+
+
+</script>
+</body>
+</html>

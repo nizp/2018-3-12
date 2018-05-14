@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+html {
+	height: 100%;
+}
+body {
+	margin: 0;
+	height: 100%;
+}
+.wrap {
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+}
+.list {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.list li {
+	font: 16px/30px "宋体";
+	border-bottom: 1px solid #000;
+}	
+</style>
+</head>
+<body>
+<div class="wrap">
+	<ul class="list">
+		
+	</ul>
+</div>	
+<script type="text/javascript">
+/* 生成元素 */
+(function(){
+	var list = document.querySelector('.list');
+	var inner = "";
+	for(var i = 0 ; i < 100; i++){
+		inner += '<li>这是第'+i+'个li</li>'
+	}
+	list.innerHTML = inner;
+})();	
+/* 添加滑动 */
+function css(el,attr,val){
+	if(val === undefined){
+		return parseFloat(getComputedStyle(el)[attr]);
+	}
+	if(attr == "opacity"){
+		el.style[attr] = val;
+	} else {
+		el.style[attr] = val + "px";
+	}
+}
+(function(){
+	var wrap = document.querySelector('.wrap');
+	var list = document.querySelector('.list');
+	var startPointY = 0;
+	var startListY = 0;
+	var maxT = css(wrap,"height") - css(list,"height")
+	wrap.addEventListener('touchstart', function(e) {
+		startPointY = e.changedTouches[0].pageY;
+		startListY = css(list,"top");
+	});
+	wrap.addEventListener('touchmove', function(e) {
+		var nowPointY = e.changedTouches[0].pageY;
+		//console.log(nowPointY - startPointY +startListY );
+		var t = nowPointY - startPointY +startListY ;
+		t = t > 0?0:t;
+		t = t < maxT?maxT:t;
+		console.log(t);
+		css(list,"top",t);
+	});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,div{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        body,html{
+            width: 100%;
+            height: 100%;
+        }
+        #box{
+            width: 447px;
+            height: 245px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            position: relative;
+        }
+        #imgBox{
+            width: 447px;
+            height: 245px;
+            overflow: hidden;
+            position: relative;
+        }
+        #prev, #next{
+            width: 50px;
+            height: 80px;
+            display: block;
+            font-size: 60px;
+            line-height: 80px;
+            text-align: center;
+            color: #FFF;
+            position: absolute;
+            top: 35%;
+            z-index: 11;
+        }
+        #prev{
+            left: 3%;
+        }
+        #next{
+            right: 3%;
+        }
+        #prev:hover, #next:hover{
+            color: #5F9EA0;
+        }
+        #box img{
+            width: 447px;
+            height: 245px;
+            /* position: absolute; */
+            float: left;
+        }
+        #wrap{
+            width:894px;
+            position: absolute;
+            top:0;
+            left:0;
+            transition:600ms;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <a id="prev" href="javascript:;"><</a>
+        <div id="imgBox">
+            <div id="wrap">
+                <img src="./img/1.jpg">
+                <img src="./img/1.jpg">
+            </div>
+        </div>
+        <a id="next" href="javascript:;">></a>
+    </div>
+<script>
+    /*
+        next
+    */
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const imgs = wrap.children;
+    let num = 1;
+    let o = true;
+
+    document.onmousedown = imgs[0].onmousedown = imgs[1].onmousedown = function(){
+        return false;
+    }
+
+    next.onclick = function(){
+        if(!o)return;
+        num++;
+        move('left');
+    }
+
+    prev.onclick = function(){
+        if(!o)return;
+        num--;
+        move('left',true);
+    }
+
+    document.onkeydown = function(ev){
+        if(!o)return;
+        switch(ev.keyCode){
+            case 37 :
+                num --;
+                move('left',true);
+                break;
+            case 38 :
+                num --;
+                move('top',true);
+                break;
+            case 39 :
+                num ++;
+                move('left');
+                break;
+            case 40 :
+                num ++;
+                move('top');
+                break;
+        }
+    }
+
+    
+    wrap.onmousedown = function(ev){
+        if(!o)return;
+        let l = 0;
+        let t = 0;
+        let disX = ev.pageX;
+        let disY = ev.pageY;
+        document.onmousemove = function(ev){
+            l = ev.pageX - disX;
+            t = ev.pageY - disY;
+        }
+        document.onmouseup = function(ev){
+           
+            if(Math.abs(l) > Math.abs(t)){
+                if(l < -10){
+                    //right
+                    num ++;
+                    move('left');
+                }else if(l > 10){
+                    //left
+                    num --;
+                    move('left',true);
+                }
+            }else{
+                if(t < -10 && t < l){
+                    //right
+                    num ++;
+                    move('top');
+                }else if(t > 10 && t > l){
+                    //left
+                    num --;
+                    move('top',true);
+                }
+            }
+            document.onmousemove = document.onmouseup = null;
+        }
+        return false;
+    }
+
+    
+
+    function move(attr,onOff){
+        o = false;
+        num%=5;
+        //当num%=5 num=0的时候并且为num++的状态时
+        if(num==0 && !onOff) num=1;
+        //num--的时候会小于1，就等于最后一张
+        if(num < 1)num = 4;
+        
+        if(attr === 'top'){
+            wrap.style.float = 'none';
+            wrap.style.width = 447 +'px';
+            imgs[0].style.display = imgs[1].style.display = 'block';
+        }
+        if(attr === 'left'){
+            wrap.style.float = 'left';
+            wrap.style.width = 894 +'px';
+            imgs[0].style.display = imgs[1].style.display = 'inline';
+        }
+
+        //如果要--，那么提前要把left值拽到左边
+        if(onOff){
+            wrap.style.transition = 'none';
+            wrap.style[attr] = (attr=='top'?-245:-447)+'px';
+        }
+        setTimeout(function(){
+            imgs[(onOff?0:1)].src = './img/'+num+'.jpg';
+            wrap.style.transition = '600ms';
+            wrap.style[attr] = (onOff?0:(attr=='top'?-245:-447))+'px';
+            setTimeout(function(){
+                imgs[(onOff?1:0)].src = './img/'+num+'.jpg';
+                wrap.style.transition = 'none';
+                wrap.style[attr] = 0;
+                o = true;
+            },650);
+        },50);
+    };
+
+
+
+</script>
+</body>
+</html>

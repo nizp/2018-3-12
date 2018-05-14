@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			html{
+				height: 100%;
+				overflow: hidden;
+			}
+			body{
+				margin: 0;
+				background: url(bg.png) no-repeat;
+				background-size: cover;
+			}
+			.clear:after{
+				content: "";
+				display: block;
+				clear: both;
+			}
+			#content{
+				width: 850px;
+				/*height: 500px;*/
+				padding: 28px;
+				background-color: rgba(115,103,195,0.8);
+				border-radius: 10px;
+				margin: 150px auto;
+				position: relative;
+			}
+			#left,#right{
+				width: 340px;
+				height: 390px;
+				box-sizing: border-box;
+				border: 1px solid #402196;
+				background-color: #eef8fa;
+				border-radius: 4px;
+				font: 14px/32px "微软雅黑";
+				color: #402196;
+				overflow: auto;
+				padding: 12px 23px;
+				resize: none;
+				word-break: break-all;
+			}
+			#left{
+				float: left;
+			}
+			#right{
+				float: right;
+			}
+			#centerBox{
+				width: 100px;
+				text-align: center;
+				color: #fff;
+				position: absolute;
+				left: 50%;
+				top: 167px;
+				margin-left: -50px;
+			}
+			#btn{
+				background-color: #7ee4fd;
+				border-radius: 5px;
+				padding-bottom: 18px;
+			}
+			#btn strong{
+				font-size: 50px;
+				line-height: 47px;
+				display: block;
+			}
+			#text{
+				line-height: 54px;
+				color: #7ee4fd;
+			}
+			::-webkit-scrollbar {
+				  width: 10px;
+				  margin-right: 10px;
+			} /* 这是针对缺省样式 (必须的) */
+			::-webkit-scrollbar-track {
+				  background-color: #cbcde6;
+				  border-radius: 10px;
+			} /* 滚动条的滑轨背景颜色 */
+			::-webkit-scrollbar-thumb {
+				  background-color: #9378dd; 
+				  border-radius: 10px;
+			} /* 滑块颜色 */
+			::-webkit-scrollbar-button {
+				  background-color: transparent;
+			} /* 滑轨两头的监听按钮颜色 */
+			::-webkit-scrollbar-corner {
+				  background-color: black;
+			} /* 横向滚动条和纵向滚动条相交处尖角的颜色 */
+		</style>
+	</head>
+	<body onselectstart="return false">
+		<div id="content" class="clear">
+			<textarea id="left">妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一种全新的快乐学习方法！目前主要针对的是javascript培训，同时还提供了css教程、javascript视频、js特效等，最新推出了外地学员们喜欢的javascript网络课程服务，同时还为处于javascript入门阶段的朋友录制了大量javascript视频，其中涉及了大量javascript基础知识，希望妙味课堂推出的javascript网络培训课程能带给大家更多惊喜。
+		妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一种全新的快乐学习方法！目前主要针对的是javascript培训，同时还提供了css教程、javascript视频、js特效等，最新推出了外地学员们喜欢的javascript网络课程服务，同时还为处于javascript入门阶段的朋友录制了大量javascript视频，其中涉及了大量javascript基础知识，希望妙味课堂推出的javascript网络培训课程能带给大家更多惊喜。
+			</textarea>
+			<div id="centerBox">
+				<div id="btn">
+					<strong>&rarr;</strong>
+					<span>把文字右移</span>
+				</div>
+				<div id="text">0/0</div>
+			</div>
+			<div id="right"></div>
+		</div>
+<script>
+	const txt = document.getElementById('left');
+	const btn = document.getElementById('btn');
+	const num = document.getElementById('text');
+	const txt2 = document.getElementById('right');
+	let timer = null;
+	let num2 = 0;
+	btn.onclick = function(){
+		let v = txt.value;
+		if(!v){
+			alert('请添加内容');
+			return;
+		};
+		
+		num.innerText = '0/'+v.length;
+
+		/*
+			妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教
+		*/
+		timer = setInterval(function(){
+			txt2.innerText += txt.value[0];
+			txt.value = txt.value.substring(1);
+			if(txt.value.length <= 0){
+				clearInterval(timer);
+			}
+			num2 ++;
+			console.log(1);
+			num.innerText = num2 +'/'+v.length;
+		},16.7);
+	}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    top:0;
+    left:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        事件应用:
+            拖拽三大事件
+                onmousedown
+                onmousemove
+                onmouseup
+    */
+    const box = document.getElementById('box');
+    let DdisX = 0;
+    let DdisY = 0;
+    box.onmousedown = function(ev){
+        DdisX = ev.pageX; //down时候的坐标
+        DdisY = ev.pageY;
+        box.onmousemove = function(ev){
+            //ev.pageX move时候的坐标
+            box.style.left = ev.pageX - DdisX + 'px';
+            box.style.top =  ev.pageY - DdisY + 'px';
+        }
+        box.onmouseup = function(){
+            box.onmousemove = null;
+        }
+    }
+    
+
+
+    
+
+
+</script>
+</body>
+</html>

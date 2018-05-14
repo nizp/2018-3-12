@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 200px;
+    height: 200px;
+    background: salmon
+}
+#box2{
+    width: 50px;
+    height: 50px;
+    background:blue;
+}
+</style>
+</head>
+<body>
+    <div id="box">
+        <div id="box2"></div>
+    </div>
+    <form action="http://www.miaov.com" method="POST" id="form">
+        用户名：<input type="text" id="user" name="user"/>
+        密码：<input type="password"  id="pass" name="pass"/>
+        <input type="submit" value="登录">
+    </form>
+<script>
+    /*
+        
+    事件
+        onmousedown
+        onmousemove
+        onmouseup
+
+        onkeydown
+        onkeyup
+
+        oninput
+        onfocus
+        onblur
+
+        select
+        reset()  form表单重置
+        oncontextmenu
+
+    没有冒泡:
+
+        onmouseenter  移入
+        onmouseleave  移出
+
+    表单:
+        method:get -> url传输  给大家看的（新闻接口）
+
+               post -> 服务器传输  不给大家看的（用户信息、上传）
+
+        在form上可以加上onsubmit
+        触发提交form.submit()
+
+    
+    坐标:
+        ev.clientX/ev.clientY  
+
+        ev.pageX/ev.pageY
+
+    键值:
+        ev.keyCode
+        ev.shiftKey
+        ev.altKey
+        ev.ctrlKey
+        ev.button:{0:左键,1:中键,2:右键}
+
+    阻止默认行为:
+        return false
+        ev.preventDefault()
+
+    防止某段代码报错（因为报错下面的代码就不执行了）    
+        try{
+            可能会报错的代码
+        }catch(e){
+            为什么报错
+        }
+
+
+
+    */
+    // box.onmouseover = function(){
+    //     alert('大的div进入');
+    // }
+    // box.onmouseenter = function(){
+    //     alert('大的div进入');
+    // }
+    // box.onmouseleave = function(){
+    //     alert('大的div移出');
+    // }
+    // box2.onmouseenter = function(ev){
+    //     // ev.stopPropagation();
+    //     alert('小的div进入');
+    // }
+
+    let sql = [
+        {
+            name:'肾肾',
+            pass:123456
+        },
+        {
+            name:'张辉',
+            pass:4321
+        }
+    ];
+    form.onsubmit = function(){
+        // user.value
+        // pass.value
+        //担心下面的代码会报错，所以加了一个try
+        try {
+            //查看数据库中有没有这个人
+            //obj2为undefined的时候说明没有这个人，如果返回一个对象，说明有这个人
+            let obj2 = sql.find(e=>e.name==user.value);
+            
+            if(obj2){
+                //如果有这个人，还要去判断密码是否正确
+                if(obj2.pass == pass.value){
+                    alert('过');
+                    //当用户名或密码正确的时候进行提交操作
+                    form.submit();
+                }else{
+                    alert('用户名或密码错误');
+                }
+            }else{
+                alert('没有介个银!');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        return false;
+    }
+
+
+</script>
+</body>
+</html>

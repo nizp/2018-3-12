@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <img src="img/0.png" alt="" id="img">
+    <button id="btn1">前进2个</button>
+    <button id="btn2">后退2个</button>
+    <button id="btn3">上一个</button>
+    <button id="btn4">下一个</button>
+
+<script>
+    /*
+        每次操作浏览器需要传输的数据
+            history.pushState(对象,'name',url)
+
+            为什么要传输数据？
+
+                就是为了当操作浏览器的历史记录的时候，能获得之前push进去的数据，从而根据历史记录去使用数据
+
+            onpopstate
+                每次操作历史记录的时候触发
+                    ev.state -> 之前存储数据
+    */
+    let num = 0;
+
+    btn1.onclick = function(){
+        history.go(2);
+    }
+    btn2.onclick = function(){
+        history.go(-2);
+    }
+     
+
+    btn4.onclick = function(){
+        num ++;
+        num %= 10;
+        history.pushState({name:`img/${num}.png`},'切换','http://localhost:88/2018-4-17/'+num);
+        img.src = 'img/'+num+'.png';
+    }
+    btn3.onclick = function(){
+        --num;
+        if(num<0)num=9;
+        history.pushState({name:`img/${num}.png`},'切换','http://localhost:88/2018-4-17/'+num);
+        img.src = 'img/'+num+'.png';
+    }
+
+    window.onpopstate = function(ev){
+        img.src = ev.state?ev.state.name:'img/0.png';
+    }
+
+    
+
+</script>
+</body>
+</html>

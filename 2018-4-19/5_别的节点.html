@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+<script>
+    /*
+        第一个子节点
+            firstElementChild
+        
+        最后一个子节点
+            lastElementChild
+
+        上一个兄弟节点
+            previousElementSibling  
+
+        下一个兄弟节点
+            nextElementSibling
+    */
+
+    const ul = document.getElementById('ul');
+    
+
+    // console.log(ul.children[0]);
+
+    // console.log(ul.firstElementChild);
+
+    // console.log(ul.lastElementChild);
+
+    let last = ul.lastElementChild;
+    let lastPrev = last.previousElementSibling;
+
+    lastPrev.style.background='red';
+
+    lastPrev.nextElementSibling.style.background = 'skyblue';
+
+</script>
+</body>
+</html>

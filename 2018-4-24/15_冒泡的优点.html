@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+ul{
+    width:100%;
+    overflow: hidden;
+    border: 2px solid #000;
+}
+li{
+    list-style:none;
+    width: 100px;
+    height: 100px;
+    background: #000;
+    float: left;
+    margin: 5px;
+}
+</style>
+</head>
+<body>
+    <input type="text">
+    <button>按钮</button>
+    <ul id="ul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+<script>
+    /*
+        通过冒泡，我们可以给ul添加事件函数，在事件对象
+        中可以找到触发的目标元素（li），从而实现我们的目的，
+        通过绑定父级，监听子孙级，可以节省性能。
+
+        ev.target   目标元素
+
+        事件监听（事件委托，事件代理）
+    */
+
+    let lis = document.getElementsByTagName('li');
+
+    // for(let i=0;i<lis.length;i++){
+    //     lis[i].onclick = function(){
+    //         this.style.background = 'red';
+    //     }
+    // }
+
+    ul.onclick = function(ev){
+        if( ev.target.tagName === 'LI' ){
+            ev.target.style.background = 'red';
+        }
+        console.log(ev.target);
+    }
+</script>
+</body>
+</html>

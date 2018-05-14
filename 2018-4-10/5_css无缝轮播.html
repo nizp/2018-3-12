@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    list-style:none;
+}
+#box{
+    width:448px;
+    height: 245px;
+    border: 1px solid #000;
+    position: relative;
+    left:500px;
+    overflow: hidden;
+}
+ul{
+    width:896px;
+    position: absolute;
+    transition: 1s;
+}
+li{
+    width:448px;
+    height: 245px;
+    float: left;
+}
+a{
+    width:224px;
+    height:245px;
+    position: absolute;
+    text-align: center;
+    line-height: 245px;
+    color: #fff;
+    /* background:rgba(255,255,255,.3); */
+}
+img{
+    width:448px;
+}
+#prev{
+    left:0;
+}
+#next{
+    right:0;
+}
+
+</style>
+</head>
+<body>
+    <div id="box">
+        <ul id="ul">
+            <li>
+                <img src="img/1.jpg" alt="">
+            </li>
+            <li>
+                    <img src="img/2.jpg" alt="">
+            </li>
+        </ul>
+        <a href="javascript:;" id="prev">上一个</a>
+        <a href="javascript:;" id="next">下一个</a>
+    </div>
+<script src="tween.js"></script>
+<script>
+    const ul = document.getElementById('ul');
+    const imgs = ul.getElementsByTagName('img');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let num = 0;
+    let arr = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg'];
+    let onOff = true;
+
+    next.onclick = function(){
+        if(!onOff)return;
+        onOff = false;
+        ul.style.transition = '1s';
+        //点击运动
+        ul.style.transform = 'translateX(-448px)';
+        //增加num值为了切换图片
+        num ++;
+        //当运动完之后
+        setTimeout(function(){
+            //把第一张图片换成第二张图片，再拽0的位置
+            imgs[0].src = arr[num%=arr.length];
+            //清除transition
+            ul.style.transition = 'none';
+            ul.style.transform = 'translateX(0)';
+            // if(num + 1 >= arr.length){
+            //     imgs[1].src = arr[0]; 
+            // }else{
+            //     imgs[1].src = arr[num + 1];
+            // }
+
+            imgs[1].src = arr[(num + 1 >= arr.length)?0:(num + 1)];   
+            onOff = true;
+        },1008);
+    }
+
+
+   
+
+
+</script>
+</body>
+</html>

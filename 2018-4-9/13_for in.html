@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        for in
+
+            有配置走配置，没配置走默认
+
+        浅拷贝：从右往左赋值
+           let obj3 = Object.assign({},obj,obj2)
+    */
+
+    //默认项
+    let obj = {
+        name:'王圣玉',
+        job:'超级前端开发工程大师'
+    }
+    //替换项
+    let obj2 = {
+        name:'玉玉',
+        kongfu:'胸口碎大石'
+    }
+
+    // for(let attr in obj2){
+    //     obj[attr] = obj2[attr];
+    // }
+
+    let obj3 = Object.assign({},obj,obj2);
+
+    console.log(obj3);
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

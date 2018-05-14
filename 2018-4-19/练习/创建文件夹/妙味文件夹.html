@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<style>
+		body{
+			margin: 0;
+		}
+		#warp {
+			width: 700px;
+			height: 500px;
+			margin: 30px auto;
+			background: url(img/warp.png) no-repeat;
+			position: relative;
+			/*text-align: center;*/
+		}	
+		#files {
+			position: absolute;
+			left: 148px;
+			width:420px;
+			top: 200px;
+			overflow: auto;
+		}
+		.add {
+			width: 132px;
+			height: 47px;
+			display: inline-block;
+			text-decoration: none;
+			background: url(img/addberfor.png) no-repeat;
+			background-size: cover;
+			position: absolute;
+			left: 290px;
+			bottom: 102px;
+		}
+		.del{
+			width: 132px;
+			height: 48px;
+			display: inline-block;
+			text-decoration: none;
+			background: url(img/add.png) no-repeat;
+			position: absolute;
+			left: 295px;
+			bottom: 50px;
+		}
+		.file{
+			width: 116px;
+			height: 118px;
+			border: 2px solid rgba(0,0,0,0);
+			position: relative;
+			border-radius: 10%;
+			float: left;
+			margin-right: 10px;
+			
+		}
+		.fileActive{
+			border-color:#b5a3c2 ;
+			background:#6f5872 ;
+		}
+		.file .ico{
+			margin: 20px auto 0;
+			width:70px;
+			height: 57px;
+			background: url(img/wenjian.png) no-repeat;
+			background-size: cover;
+		}
+		.file .check{
+			position: absolute;
+			left: 0;
+			top: 0;
+			display: none;
+		}
+		.fileActive .check{
+			display: block;
+		}
+		.file span{
+			display: block;
+			font: 16px/34px "微软雅黑";
+			text-align: center;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			color: #fff;
+			
+		}
+		.file .text{
+			position: absolute;
+			left: 12px;
+			top: 82px;
+			height: 20px;
+			padding: 1px;
+			display: none;
+			width: 80px;
+			font: 16px/34px "微软雅黑";
+		}
+	</style>
+</head>
+<body>
+	<section id="warp">
+		<div id="files">
+			<!--<div class="file">
+				<div class="ico"></div>
+				<input type="checkbox" class="check">
+				<span>新建文件夹</span>
+				<input type="text" class="text" style="display: none;">
+			</div>
+			<div class="file">
+				<div class="ico"></div>
+				<input type="checkbox" class="check">
+				<span>新建文件夹</span>
+				<input type="text" class="text" style="display: none;">
+			</div>
+			<div class="file"
+				<div class="ico"></div>
+				<input type="checkbox" class="check">
+				<span>新建文件夹</span>
+				<input type="text" class="text" style="display: none;">
+			</div>-->
+		</div>
+		<a href="javascript:;" class="add"></a>
+		<a href="javascript:;" class="del"></a>
+	</section>
+	<script>
+		var data=[
+				{
+					id:0,
+					name:"新建文件夹"
+				},
+				{
+					id:1,
+					name:"新建文件夹"
+				},
+				{
+					id:2,
+					name:"新建文件夹"
+				}
+			];
+	</script>
+</body>
+</html>

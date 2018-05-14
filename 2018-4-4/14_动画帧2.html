@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        requestAnimationFrame（动画帧）
+            根据刷新频率16.7毫秒每次来做动画
+
+            1.经过浏览器优化，动画更流畅
+
+	        2.窗口没激活时，动画将停止，省计算资源
+
+	        3.更省电，尤其是对移动终端
+
+        跟setTimeout类似，默认只会执行一次
+
+        window.requestAnimationFrame(callback)
+
+        返回值:
+            number类型   编号 为了停止
+
+        停止动画
+            cancelAnimationFrame(编号)
+
+
+    */
+    const box = document.getElementById('box');
+    let num = 0;//有过程
+    let timer;
+
+    document.onclick = function(){
+        let oldTime = Date.now();
+        (function move(){
+            if(timer === null)return;
+            // console.log(123);
+            timer = requestAnimationFrame(move);
+            if(num >= 600){
+                cancelAnimationFrame(timer);
+                timer = null;
+                // return; //为了阻止递归
+            }else{
+                let now =  Date.now() - oldTime;
+                // console.log(now);
+                oldTime = Date.now();
+                num += 10;
+                box.style.left = num + 'px';
+            }
+        })()
+    }
+    
+
+    
+
+</script>
+</body>
+</html>

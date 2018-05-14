@@ -1,0 +1,147 @@
+
+body, h1, h2, h3, p, ul, ol, li
+{
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%；
+    font: 12px/1.5 "Microsoft YaHei", arial, SimSun, 宋体;
+}
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+em, var, i{ font-style: normal; }
+
+/** 重置列表元素 **/
+ul, ol { list-style: none; }
+
+/** 重置文本格式元素 **/
+a { text-decoration: none; color:#424e67;}
+a:hover { text-decoration: none; }
+/* 清除浮动 */
+.clear:after{
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+}
+.clear{
+    zoom: 1;
+    clear: both;
+}
+body{
+    background: #fff;
+}
+
+.wrap{
+    max-width: 1200px;
+    height: 700px;
+    margin:0 auto;
+    background: url(../images/bg.jpg) no-repeat;
+    position: relative;
+}
+.wrap-left{
+    position: absolute;
+    width: 400px;
+    left: 98px;
+    top: 237px;
+}
+.list{
+    position:relative;
+    width: 400px;
+    height: 300px;
+}
+.list li{
+    margin-bottom: 10px;
+    height: 52px;
+    width: 400px;
+    border-radius: 5px;
+    background: #ffffff;
+    overflow: hidden;
+}
+.list span{
+    float: left;
+    margin-left: 25px;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 17px;
+    font-weight: bold;
+}
+.list span:before{
+    content: '';
+    width: 3px;
+    height: 20px;
+    background: #fd8e9f;
+    float: left;
+    margin-right: 12px;
+}
+.list .btn{
+    width: 120px;
+    float: right;
+    margin-top: 12px;
+}
+.btn a{
+    width: 48px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 2px;
+    border:1px solid #fd8e9f;
+    float: left;
+    margin-right:10px;
+    color: #fd8e9f;
+}
+.btn a:hover{
+    background: #fd8e9f;
+    color: #fff;
+}
+
+
+.wrap-right{
+    box-sizing: border-box;
+    position: absolute;
+    width: 404px;
+    right: 103px;
+    top: 237px;
+    border:2px solid #fff;
+    border-radius: 5px;
+}
+.wrap-right .list{
+    width: 404px;
+}
+.wrap-right .list li{
+    height: 60px;
+    background: #ff798e;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    box-sizing: border-box;
+    margin-bottom:0;
+}
+.wrap-right .list span{
+    color: #fff;
+}
+.wrap-right .list span:before{
+    height: 0;
+}
+.wrap-right .list .btn{
+    margin-top: 15px;
+}
+.wrap-right .btn a{
+    border-color:#fff;
+}
+.wrap-right .btn a.up{
+    background: url(../images/up.png) no-repeat center center;
+}
+.wrap-right .btn a.down{
+    background: url(../images/down.png) no-repeat center center;
+}
+
+.wrap-right .list li:hover{
+    background: rgba(255,255,255,0.2);
+}
+
+.wrap-right .list li a.up:hover{
+    background:#fff url(../images/uphover.png) no-repeat center center;
+}
+.wrap-right .list li a.down:hover{
+    background:#fff url(../images/downhover.png) no-repeat center center;
+}

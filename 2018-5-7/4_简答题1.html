@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <ul id="ul">
+        <li class="li li1">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li class="li">4</li>
+    </ul>
+<script>
+    /* 
+        #id   #box
+        .class  .li -> li X 2
+        tagName li -> li X 4
+    */
+
+    function myQuery(){//# . tagName
+        // console.log(arguments[0])
+        let strOne = arguments[0][0];
+        let EleName = arguments[0].substring(1);
+        //找到所有的标签
+        let aEle = document.getElementsByTagName('*');
+        let result = [];
+        // console.log(aEle)
+        switch(strOne){
+            case '#':
+                return document.getElementById(EleName);
+                break;
+            case '.':
+                for(let i=0;i<aEle.length;i++){
+                    // if(aEle[i].className == EleName){
+                    //     result.push(aEle[i])
+                    // }
+                    let sClass = aEle[i].className.split(' ');
+                    if(sClass){
+                        for(let j=0;j<sClass.length;j++){
+                            if(sClass[j] === EleName){
+                                result.push(aEle[i]);
+                            }
+                        }
+                    }
+                    // console.log(sClass) 
+                }
+                return result;
+                break;
+            default:
+                return document.getElementsByTagName(arguments[0]);
+                break;
+        }
+    }
+
+    // let box = myQuery('#box');
+    // let li = myQuery('.li');
+    let li = myQuery('li');
+    
+    for(let i=0;i<li.length;i++){
+        li[i].style.background = 'red';
+    }
+
+
+
+
+</script>
+</body>
+</html>

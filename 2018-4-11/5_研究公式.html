@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        % 取余
+        a % b
+
+        当a大于b的时候取余数
+        当a小于b的时候取a
+
+        天	Math.floor(t/86400);
+            t%=86400;
+        小时	var h=Math.floor(t/3600);
+            t%=3600;
+        分钟	var m=Math.floor(t/60);
+
+        秒	t%=60;
+    */
+   //
+    // console.log(5%2); //1
+    let t = 173300; //500
+    console.log(Math.floor(t/86400)); //多少天
+    t%=86400; //t = 500
+    var h = Math.floor(t/3600); //小时
+    t%=3600; //t = 500
+    var m=Math.floor(t/60);
+    console.log(t%=60);
+
+</script>
+</body>
+</html>

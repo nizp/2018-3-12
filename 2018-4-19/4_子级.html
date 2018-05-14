@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+li{
+    width:50px;
+    height: 50px;
+    background: red;
+    margin: 5px;
+    transition:1s;
+}
+</style>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <ul id="ul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+<script>
+    /*
+        childNodes 和 children都复数，如果找某个要加下标
+    */
+    const btn = document.getElementById('btn');
+    const ul = document.getElementById('ul');
+    // const lis = ul.childNodes;  //亲儿子
+
+    const lis = ul.children; //不是标准（所有浏览器都支持）
+
+    // console.log(lis);
+
+
+    btn.onclick = function(){
+        // console.log(lis.length)
+        for(let i=0;i<lis.length;i++){
+            // if(lis[i].nodeType === 1){
+            //     lis[i].style.width = '300px';
+            // }
+            // if(lis[i].nodeType !== 3 && lis[i].nodeType !== 8){
+            //     lis[i].style.width = '300px';
+            // }
+            // if(lis[i].nodeName === 'LI'){
+            //     lis[i].style.width = '300px';
+            // }
+            // console.log(lis[i].nodeName)
+            // if(lis[i].nodeType === 3 || lis[i].nodeType === 8)continue
+            lis[i].style.width = '300px';
+        }
+    }   
+   
+
+</script>
+</body>
+</html>

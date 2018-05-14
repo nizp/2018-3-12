@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body {
+	margin: 0;
+}
+#tab {
+	position: relative;
+	width: 100vw;
+	height: 31.25vw;
+	overflow: hidden;
+}
+#picList {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 300vw;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#picList li {
+	float: left;
+	width: 100vw;
+}
+#picList img {
+	width: 100%;
+}
+#nav {
+	position: absolute;
+	left: 0;
+	bottom: 2vw;
+	width: 100%;
+	height: 10px;
+	text-align: center;
+}
+#nav span {
+	display: inline-block;
+	width: 2vw;
+	height: 10px;
+	background: rgba(255, 255, 255, .8);
+	vertical-align: top;
+}
+#nav .active {
+	width: 6vw;
+	background: #fff;
+}
+</style>
+</head>
+<body>
+<div id="page">
+	<div id="tab">
+		<ul id="picList">
+			<li>
+				<a href="#">
+					<img src="img/1 (1).jpg">
+				</a>
+			</li>	
+			<li>
+				<a href="#">
+					<img src="img/1 (2).jpg">
+				</a>
+			</li>	
+			<li>
+				<a href="#">
+					<img src="img/1 (3).jpg">
+				</a>
+			</li>	
+		</ul>
+		<nav id="nav">
+			<span class="active"></span>
+			<span></span>
+			<span></span>
+		</nav>
+	</div>
+</div>
+<script type="text/javascript">
+/*
+	读或者写：
+		传2个参数就是读
+		传3个参数就是写（val就是你要写的值）
+
+	总结:
+		1.为了无缝，先把li复制一份，设置ul的宽度
+		2.start:
+			(1)如果是第0张就要到第二组的第一张
+			(2)如果是最后一张就要到第一组的最后一张
+			(3)记录按下的手指位置和ul位置
+			(4)为了防止move的时候有冲突，ul的动画解除
+		3.move
+			通过手指滑动去控制UL的位置
+			
+		4.end
+			(1)往左还是往右
+			(2)添加动画
+			(3)改变nav
+*/
+function css(el,attr,val){
+	if(val === undefined){
+		return parseFloat(getComputedStyle(el)[attr]);
+	}
+	if(attr == "opacity"){
+		el.style[attr] = val;
+	} else {
+		el.style[attr] = val + "px";
+	}
+}
+
+(function(){
+	var tab = document.querySelector('#tab');
+	//ul
+	var picList = document.querySelector('#picList');
+	//li
+	var pics = picList.children;
+	//点点
+	var nav = document.querySelectorAll('#nav span');
+	//复制一份，为了有2组好做无缝轮播
+	picList.innerHTML += picList.innerHTML; 
+	//设置ul的宽度（为了一行显示）
+	picList.style.width = pics.length + "00vw"; //100VW = 1屏
+
+	//一屏的实际宽度
+	var imgW = tab.offsetWidth; 
+
+	/* 滑屏操作 */
+	var startPointX = 0;  //手指点击的坐标
+	var startPicX = 0; //UL的位置
+	var now = 0; //手指按下为第几屏（拿到当前为第几屏之后可以 * 一个屏个宽度 = ul在哪个位置）
+
+	picList.addEventListener('touchstart', function(e) {
+		/*
+			在手指按下的时候把picList的动画清除，防止在move的时候
+			move跟动画起冲突
+		*/
+		picList.style.transition = "none";
+		
+		/*
+			当now为第一张的时候，迅速切换到第二组的第一张
+		*/
+		if(now == 0){
+			/*
+				
+				因为nav.length-1为第一组的最后一张
+
+				nav.length = 3，就是第二组的第0张
+
+			*/
+			now = nav.length;//切换到第二组第0张
+		} else if(now == pics.length-1) {//最后一张会有拖出去的风险
+			now = nav.length-1;//切换到第一组最后一张	
+		}
+		//设置按下时ul的位置
+		css(picList,"left",-now*imgW);
+		
+		//手指按下的坐标
+		startPointX = e.changedTouches[0].pageX;
+		//当前UL的位置
+		startPicX = css(picList,"left");
+	});
+	picList.addEventListener('touchmove', function(e) {
+		var nowPointX = e.changedTouches[0].pageX;
+		/*
+			起始的位置 + 移动的位置 = 当前的位置
+			startPicX + （nowPointX - startPointX）
+		*/
+		var nowL = nowPointX - startPointX + startPicX;
+		css(picList,"left",nowL);
+	});
+	picList.addEventListener('touchend',function(e){
+		var nowPointX = e.changedTouches[0].pageX;
+		// 手指从按下到抬起之间移动的距离
+		var disL = nowPointX - startPointX; //按下到的抬起的距离
+		//如果移动的坐标大于80说明真的在滑动
+		if(Math.abs(disL)>80){
+			/*
+				能够得到到底是往左移还是往右移
+
+				比如:移动了80，手往右划
+
+				-80/80 = -1
+
+				如果当前在3的位置
+
+				now += -1  = 2 回退一个
+
+			*/
+			now += -disL/Math.abs(disL);
+		}
+		//运动一下好看点
+		picList.style.transition = ".3s";
+		css(picList,"left",-now*imgW);
+		for(var i = 0; i < nav.length; i++){
+			nav[i].className = "";
+		}
+		nav[now%nav.length].className = "active";
+	});
+
+})();	
+</script>
+</body>
+</html>

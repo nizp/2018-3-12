@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">前进</button>
+    <button id="btn2">后退</button>
+
+<script>
+    /*
+        history（历史记录管理）
+            HTML5的新的属性
+            在服务器环境下才能运行
+
+            back()  退一次
+            forward() 进一次
+            
+            go(num)  可以进退  
+                正数进
+                负数退
+            
+            pushState
+                添加状态
+
+            replaceState
+                替换在状态
+    */
+
+    // console.log(history);
+
+
+    btn1.onclick = function(){
+        history.forward()
+    }
+    btn2.onclick = function(){
+        // history.back();
+        history.go(-1);
+    }
+
+
+    history.pushState({num:1},'hehe','http://localhost:88/2018-4-17/6_history1.html');
+
+
+
+
+</script>
+</body>
+</html>

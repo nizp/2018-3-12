@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height:100px;
+    background: red;
+    position: absolute;
+    top:50px;
+    left:0;
+}    
+</style>
+</head>
+<body>
+    <button id="btn">回放</button>
+    <div id="box"></div>
+<script>
+    const btn = document.getElementById('btn');
+    const box = document.getElementById('box');
+    let arrX = [box.offsetLeft];
+    let arrY = [box.offsetTop];
+    
+    box.onmousedown = function(ev){
+        let disX = ev.pageX - box.offsetLeft;
+        let disY = ev.pageY - box.offsetTop;
+        document.onmousemove = function(ev){
+            box.style.left = ev.pageX - disX + 'px';
+            box.style.top = ev.pageY - disY + 'px';
+            arrX.push(ev.pageX - disX);
+            arrY.push(ev.pageY - disY);
+        }
+        document.onmouseup = function(){
+            document.onmouseup = document.onmousemove = null;
+        }
+        return false;
+    }
+
+
+    let timer = null;
+    btn.onclick = function(){
+        // console.log(arrX);
+        timer = setInterval(function(){
+           
+            box.style.left = arrX.pop() + 'px';
+            box.style.top = arrY.pop() + 'px';
+            
+            if(arrX.length === 0 && arrY.length === 0){
+                clearInterval(timer);
+            }
+            console.log(1);
+
+        },16.7);
+    };
+</script>
+</body>
+</html>

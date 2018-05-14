@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div{
+    padding:100px;
+}
+#box{
+    background: red;
+}
+#box2{
+    background: green;
+}
+#box3{
+    background: yellow;
+}
+#btn{
+    background: skyblue;
+    color: #fff;
+}
+
+
+</style>
+</head>
+<body>
+    <div id="box">
+        <div id="box2">
+            <div id="box3">
+                <button id="btn">小按钮</button>
+            </div>
+        </div>
+    </div>
+<script>
+    /*
+        传统的事件绑定是不能监听到捕获的。
+
+        on的事件没有捕获只有冒泡。
+
+        只有addEventListener才能监听捕获状态。
+
+        捕获:
+            自上而下从window起到目标的过程
+    */
+    box.addEventListener('click',function(){
+        alert('red');
+    },true);
+    box2.addEventListener('click',function(){
+        alert('green');
+    },true);
+    box3.addEventListener('click',function(){
+        alert('yellow');
+    },true);
+    btn.addEventListener('click',function(){
+        alert('btn');
+    },true);
+
+</script>
+</body>
+</html>

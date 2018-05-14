@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+#box {
+	width: 100px;
+	height: 100px;
+	background: red;
+}	
+#box2 {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 300px;
+	height: 300px;
+	background: rgba(0, 0, 0,.5)
+}
+</style>
+</head>
+<body>
+<div id="box"></div>
+<div id="box2"></div>
+<script type="text/javascript">
+(function(){
+	var box = document.querySelector('#box');
+	var box2 = document.querySelector('#box2');
+	/*
+		事件点透:
+		
+			鼠标事件会有300ms的延迟
+			当我们在屏幕中，点击,会先执行元素的touch事件，然后记录手指坐标，300ms之后在该坐标上查找元素,如果元素有鼠标事件就执行
+			
+
+
+	*/
+	box.onclick = function(){
+		alert(1);
+	};
+	box2.addEventListener('touchend', function(e) {
+		this.style.display = "none";
+	});
+})();
+</script>
+</body>
+</html>

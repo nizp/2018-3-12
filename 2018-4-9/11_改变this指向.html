@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        函数调用:
+            1.函数名 + ()
+            2.事件调用
+            3.定时器调用
+
+        一个函数在创建的时候自身会加一些属性或者方法
+            其中有些方法专门修改this指向的
+        call
+            若干个参数:
+            第一个参数：
+                this指向（写什么是什么）
+            第二个参数以后:
+                实参
+
+
+        apply
+            两个参数:
+                第一个参数：
+                    this指向（写什么是什么）
+                第二个参数:
+                    数组[]数组中放的就是实参
+
+        bind
+            返回值为一个修改完this的函数，需要主动调用
+
+            let f = fn.bind(this,a,b..);
+            f();
+
+
+            fn.bind(this,a,b..)()
+
+            
+            若干个参数:
+                第一个参数：
+                    this指向（写什么是什么）
+                第二个参数以后:
+                    实参
+
+
+
+
+    */
+
+    function fn(a,b,c){
+        alert(this);
+        alert(a+b+c);
+    }
+
+    // fn.call('地',1,2); //window -> 地
+
+    // fn.apply('天',[1,2,3]);
+
+    let f = fn.bind('人间',1,2,3);
+    console.dir(f);
+    f();
+
+
+    // console.dir(fn);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">后退</button>
+    <button id="btn2">前进</button>
+    <div id="box"></div>
+<script>
+    /*
+        hash:
+            1.地址栏 #号及#号之后的信息
+            2.改变不会刷新页面
+            3.当操作了hash，会触发onhashchange
+    */
+
+    let arr = ['肖云珊','云肖珊','珊云肖'],
+    num = 0;
+
+    btn2.onclick = function(){
+        //操作hash
+        let h = location.hash;
+        if(h){
+            h = h.split('=')[1];
+            h ++;
+        }else{
+            h = 0;
+        }   
+        location.hash = 'page='+h;
+    }
+
+    //当hash变化的时候干嘛
+    window.onhashchange = function(){
+        let h = location.hash.split('=')[1]*1;
+        box.innerHTML = arr[h];
+    }
+
+
+
+</script>
+</body>
+</html>

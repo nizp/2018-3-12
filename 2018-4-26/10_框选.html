@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:0;
+    height: 0;
+    background:rgba(0,0,0,.2);
+    border: 1px dashed #000;
+    position: absolute;
+    top:0;
+    left:0;
+}
+</style>
+</head>
+<body id="body">
+<script>
+    document.onmousedown = function(ev){
+        if(ev.button != 0)return;
+        let div = document.createElement('div');
+        let disX = ev.pageX;
+        let disY = ev.pageY;
+        div.id = 'box';
+        div.style.left = disX + 'px';
+        div.style.top = disY + 'px';
+        body.appendChild(div);
+        document.onmousemove = function(ev){
+            // console.log(Math.abs(ev.pageX - disX))
+            // console.log(disX,ev.pageX);
+
+            /*
+                拖拽的时候哪个值小，就用哪个
+            */
+            let l = Math.min(disX,ev.pageX);
+            let t = Math.min(disY,ev.pageY);
+
+            div.style.left = l + 'px';
+            div.style.top = t + 'px';
+            div.style.width = Math.abs(ev.pageX - disX) + 'px';
+            div.style.height =  Math.abs(ev.pageY - disY) + 'px';
+        }
+        document.onmouseup = function(){
+            div.remove();
+            document.onmousemove = document.onmouseup = null;
+        }
+    }
+</script>
+</body>
+</html>

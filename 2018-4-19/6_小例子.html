@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+}
+ul{
+    width:100px;
+    border: 1px solid #000;
+    list-style: none;
+}
+li{
+    height: 20px;
+}
+.o{
+    background: orange;
+}
+.g{
+    background: gainsboro;
+    font-size:18px;
+}
+.b{
+    background:grey;
+    font-size:12px
+}
+.s{
+    background: skyblue
+}
+</style>
+</head>
+<body>
+    <ul id="ul">
+        <li class="s">1</li>
+        <li>2</li>
+        <li class="b">3</li>
+        <li class="g">4</li>
+        <li class="b">5</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li class="s">6</li>
+    </ul>
+<script>
+    const ul = document.getElementById('ul');
+    const lis = Array.from(ul.children);
+    let first = ul.firstElementChild;
+    let last = ul.lastElementChild;
+    lis.forEach((e,i)=>{
+        e.onmouseover = function(){
+            lis.forEach(e=>e.className='');
+            let prev =  this.previousElementSibling;
+            let next = this.nextElementSibling;
+        
+            // console.log(this == first);
+            if(this != first && this != last){
+                this.className = 'g';
+                prev.className = next.className = 'b';
+                first.className = last.className = 's';
+            }else{
+                //第一个和最后一个全部变成蓝色
+                first.className = last.className = 's';
+                
+                //如果有上一个兄弟就让上一个兄弟节点class变
+                if(prev)prev.className = 'b';
+                //如果有上一个兄弟就让下一个兄弟节点class变
+                if(next)next.className = 'b';
+
+                //当前变橘色
+                this.className = 'o';
+            }
+        }
+        e.onmouseout = function(){
+            first.className = last.className = 's';
+        }
+    });
+
+    
+
+</script>
+</body>
+</html>

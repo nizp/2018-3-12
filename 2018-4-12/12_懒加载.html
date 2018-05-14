@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+    list-style: none;
+}
+ul{
+    width:150px;
+    /* border: 1px solid #000; */
+    overflow: hidden;
+}
+li{
+    width:45px;
+    height: 200px;
+    float: left;
+}
+img{
+    width:45px;
+    height:200px;
+    opacity: 0;
+    transition:1.2s;
+}
+</style>
+</head>
+<body>
+    <ul id="ul">
+        <!-- <li>
+            <img _src="./img/0.png" alt="">
+        </li>
+        <li>
+            <img _src="./img/1.png" alt="">
+        </li>
+        <li>
+            <img _src="./img/2.png" alt="">
+        </li>  -->
+    </ul>
+<script>
+
+    /*
+        offsetLeft
+        offsetTop
+    */
+    let html = '';
+    for(let i=0;i<100;i++){
+        html += `<li>
+                <img index="./img/${i%9}.png" alt="">
+            </li>`
+    }
+    ul.innerHTML = html;
+
+    let lis = document.getElementsByTagName('li');
+    let imgs = document.getElementsByTagName('img');
+    //布局转换
+    for(let i=0;i<lis.length;i++){
+        // lis[i].offsetTop
+        /*
+            lis[0].offsetTop = 0 -> 0
+            lis[1].offsetTop = 0 -> 0
+
+            先开个循环去获取当前元素的位置，如果在循环中加上定位
+            那么当第一个设置top为0的时候（不占位了），第二个也就顶
+            到了0的位置，以此类推，所以所有的元素top值都是0
+        */
+        lis[i].style.top = lis[i].offsetTop + 'px';
+        lis[i].style.left = lis[i].offsetLeft + 'px';
+    }
+    for(let i=0;i<lis.length;i++){
+        lis[i].style.position = 'absolute';
+    }
+
+    let iH = window.innerHeight;
+    window.onscroll = function(){
+        //console.log(window.pageYOffset);
+        // console.log(iH + window.pageYOffset);
+        //底边 = 可视区的高度 + 滚动条的高度
+        let bottom = iH + window.pageYOffset;
+        /*
+            每个图片的top到底有没有进入底边
+                lis[i].style.top <= bottom  （显示√）
+                    
+        */
+        for(let i=0;i<lis.length;i++){
+            // console.log(lis[i].style.top);
+            if(parseFloat(lis[i].style.top) <= bottom){
+                if(imgs[i].getAttribute('index')){
+                    imgs[i].setAttribute('src',imgs[i].getAttribute('index'));
+                    imgs[i].removeAttribute('index');
+                    setTimeout(function(){
+                        imgs[i].style.opacity = 1;
+                    },500);
+                    // (function(i){
+                    //     setTimeout(function(){
+                    //         imgs[i].style.opacity = 1;
+                    //     },500);
+                    // })(i);
+                }
+            }
+        }
+    }
+
+
+
+
+</script>
+</body>
+</html>

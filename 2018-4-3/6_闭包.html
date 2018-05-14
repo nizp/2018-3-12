@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <div id="box"></div>
+<script>
+    /*
+        闭包（父函数的参数或者变量不被回收）:
+            
+            函数套函数，子函数引用了父函数的参数或者变量，就形成闭包环境
+
+
+    */
+    // function fn(){
+    //    let a = 10;
+    //    alert(a);
+    // }
+
+    // fn(); //就会被浏览器的垃圾回收机制回收，浏览器的性能优化
+    // fn();
+    // fn();
+
+
+    // function fn(){
+    //    let a = 10;
+    //    function fn2(){
+    //         ++a;
+    //         alert(a);
+    //    }
+    //    return fn2;
+    // }
+
+    // let f = fn();
+
+    // f();
+    // f();
+
+    // fn()();
+    // fn()();
+
+    // console.dir(fn());
+
+    const btns = document.querySelectorAll('button');
+    let arr = [1111,2222,3333];
+    const box = document.getElementById('box');
+
+    // for(var i=0,len=btns.length;i<len;i++){
+    //     // btns[i].index = i;
+    //     // function fn(i){
+    //     //     btns[i].onclick = function(){
+    //     //         box.innerHTML = arr[i];
+    //     //     }
+    //     // }
+    //     // fn(i);
+
+    //     !function(i){
+    //         btns[i].onclick = function(){
+    //             box.innerHTML = arr[i];
+    //         }
+    //     }(i);
+    // }
+
+
+    for(let i=0,len=btns.length;i<len;i++){
+        btns[i].onclick = function(){
+            box.innerHTML = arr[i];
+        }
+    }
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    top:0;
+    left:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    let num = 0;
+    let oldDate = +new Date;
+    let timer = null;
+    document.onkeydown = function(ev){
+        // let newDate = +new Date()
+        
+        // console.log(newDate - oldDate)
+
+        // oldDate = newDate;
+
+        /*
+            在按键的时候为什么会停顿一下？
+                为了用户体验
+
+                当用户在按键的时候，会去判断在指定时间内，如果还没抬起，才认为你是长按
+                如果没有这种机制，那么用户随便小按一下就会出现多个按键的效果。
+
+            检测下来为400毫秒左右
+
+            解决:
+                当按下的时候把所有的频率都设置为24毫秒左右。
+            
+        */
+        clearInterval(timer);
+        timer = setInterval(function(){
+            switch(ev.keyCode){
+                case 37:
+                    box.style.left = box.offsetLeft - 5 + 'px';
+                break;
+                case 38:
+                    box.style.top = box.offsetTop - 5 + 'px';
+                break;
+                case 39:
+                    box.style.left = box.offsetLeft + 5 + 'px';
+                break;
+                case 40:
+                    box.style.top = box.offsetTop + 5 + 'px';
+                break;
+
+            }
+        },15);
+    }
+
+    document.onkeyup = function(ev){
+        clearInterval(timer);
+    }
+</script>
+</body>
+</html>

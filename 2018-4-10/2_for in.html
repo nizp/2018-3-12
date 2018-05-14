@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        for in
+
+        in 运算符
+            检测一个对象是否有指定的key
+
+        [1,2,3,4] -> 
+            for
+            forEach
+            map
+            .....
+    */
+   let obj = {
+       0:'1',
+       1:'2',
+       length:2
+   }
+//    for(let i=0;i<obj.length;i++){
+//        alert(obj[i]);
+//    }
+
+    for(let attr in obj){
+        console.log(obj[attr]);
+    }
+
+
+//    console.log('name' in obj);
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        传参 -> 多传，传个4层
+        {}
+        回调
+        for in
+    */
+
+    //var a 
+    // function fn(a){ //形参:形式上的参数(变量)
+    //     // alert(a);
+    //     a();
+    // }
+    // fn(function(){
+    //     alert(123);
+    // });//实参:实实在在的参数（***所有的数据类型***）
+
+
+    // (function(a,call){
+    //     call(a);
+    // })(this,function(a){
+    //     console.log(this);
+    //     console.log(a);//window
+    // });
+
+    // let obj = {
+    //     name:'肾肾'
+    // }
+    // function fn(o){ //复合类型
+    //     // var o = {
+    //     //     name : '老王'
+    //     // }
+    //     o.name = '玉玉';
+    //     // console.log(o);
+    // }
+    // fn(obj);
+    // console.log(obj);
+
+    // let a = 10;  //简单类型
+    // function fn(c){
+    //     c = 20;
+    // }
+    // fn(a);
+    // alert(a);
+
+
+    // let arr = [1,2];
+
+    // function fn(a){
+    //     a.push(3);
+    // }
+    // fn(arr);
+    // alert(arr);
+
+
+    // let a = 10;
+    // let b = a;
+    // b ++;
+    // alert(a);
+
+    // let arr = [1,2,3];
+    // // let arr2 = arr;
+    // let arr2 = arr.map(e=>e);
+
+    // // console.log(arr2);
+    // // console.log(arr == arr2);
+
+    // arr2.push(4);
+    // alert(arr);
+
+    let a = 8,b = 9;
+    function fn(a,b,d){
+        let c = 20;
+        alert(d);
+        return function(d){
+            alert(c); //20,undefined,10,报错
+            d = 30;
+            c = d;
+            alert(a);
+            var c = 10;
+            fn(c,a,d);
+            alert(c);
+        }
+    }
+    let f = fn(a,b);  //A:10,B:20,C:30,D:undefined,E:报错
+    f(a);
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

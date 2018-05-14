@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+#box {
+	width: 240px;
+	height: 240px;
+	background: red;
+	font: bold 50px "宋体" ;
+	color: #fff;
+}	
+</style>
+</head>
+<body>
+<div id="box"></div>	
+<script type="text/javascript">
+(function(){
+	var box = document.querySelector('#box');
+	box.addEventListener('touchstart', function(e) {
+		e.preventDefault();
+		this.innerHTML = e.targetTouches.length;	
+		/*
+			e.touches 当前屏幕上的手指列表 
+				演示：
+					一个手指在元素身上，另一根手指在屏幕上（元素外）
+					显示2根手指。
+
+				应用场景:
+					多根手指在指定元素和屏幕中操作的时候使用					
+
+
+			e.targetTouches 当前元素上的手指列表
+				演示:一个手指在元素身上，另一根手指在屏幕上（元素外）
+					显示1根手指(元素身上的)。
+				应用场景:
+					多根手指在指定元素身上操作的时候使用。
+
+
+			****上面2种都会进行手指累计（先放一个手指上去就会显示1个，再放一根手指的时候就会出现2个）
+
+			应用场景:
+				一根手指在指定元素上操作的时候使用。
+			先放一个手指上去就会显示1个，再放一根手指的时候
+			e.changedTouches 触发当前事件的手指列表
+		*/
+			
+			
+		
+	});
+})();	
+</script>
+</body>
+</html>

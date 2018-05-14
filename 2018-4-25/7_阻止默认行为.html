@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#img{
+    position: absolute;
+    top:0;
+    left:0;
+    display: none;
+}
+</style>
+</head>
+<body style="height:3000px">
+    <img id="img" src="0.png" alt="">
+<script>
+    /*
+        自己不想干，系统帮你偷偷地干了，就叫默认行为
+
+        解决方案是找到触发这种行为的源头
+
+        return false;  只在传统中有效
+        ev.preventDefault();  常用的
+    */
+
+    // document.onkeydown = function(){
+    //     return false;
+    // }
+
+    // document.addEventListener('keydown',function(ev){
+    //     ev.preventDefault();
+    // });
+
+    // img.onmousedown = function(ev){
+    //     // return false;
+    //     ev.preventDefault();
+    // }
+
+    //阻止右键菜单
+    document.oncontextmenu = function(ev){
+        img.style.display = 'block';
+        img.style.left = ev.pageX + 'px';
+        img.style.top = ev.pageY + 'px';
+        return false;
+    }
+
+    //按到img时不会消失
+    img.onmousedown = function(ev){
+        ev.cancelBubble = true;
+    }
+
+    document.onmousedown = function(){
+        img.style.display = 'none';
+    }
+    
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box" index="hehe">
+        <p>123</p>
+        5432
+        <!--{"name":"肾肾"}-->
+        3u892738921
+        <span id="span" ></span>
+    </div>
+<script>
+    /*
+        HTML中常用的节点类型
+            typeof 查看数据类型 (方法 || 运算符)
+                number类型的
+
+            nodeType  查看页面的节点类型  (属性)
+
+            nodeName  节点名
+
+            nodeValue 节点值
+
+            tagName   元素名  (全大写) 
+
+            获取当前元素下的*所有*子节点：
+                childNodes
+
+            元素节点 - 标签   1
+
+            document - document  9
+
+            文本节点  - 文字和空格、回车 3
+
+            注释节点 - <!--猜猜看-->  8
+
+            属性节点 - id,style,index   2
+                attributes
+
+                指定属性节点下的value或者textContent是节点的值
+
+                未来vue中的指令就是那么实现的。
+
+
+    */
+
+    const box = document.getElementById('box');
+
+    // console.log(document.nodeType);
+    // console.log(box.childNodes[0].nodeType);
+    // console.log(box.childNodes.length);
+
+    // console.log(box.childNodes[3].nodeType);
+
+    // console.log(JSON.parse(box.childNodes[3].nodeValue).name);
+
+    // console.log(box.nodeName);
+
+    // console.log(box.tagName);
+    // console.log(box.childNodes[3].nodeName);
+
+    // box.index2 = 1;
+    // box.setAttribute('index3',2);
+    // console.log(box.attributes[0].nodeType);
+
+
+    console.dir(box.attributes[1])
+
+
+</script>
+</body>
+</html>

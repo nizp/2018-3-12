@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+            div{
+                padding:100px;
+            }
+            #box{
+                background: red;
+            }
+            #box2{
+                background: green;
+            }
+            #box3{
+                background: yellow;
+            }
+            #btn{
+                background: skyblue;
+                color: #fff;
+            }
+            
+            
+            </style>
+</head>
+<body>
+        <div id="box">
+                <div id="box2">
+                    <div id="box3">
+                        <button id="btn">小按钮</button>
+                    </div>
+                </div>
+            </div>
+<script>
+    /*
+        1.元素本身就有事件，只是没事件函数
+
+            div.onclick = function(){}
+
+        2.事件模型（事件流）
+            从捕获阶段到目标阶段（从window起到目标）最后到冒泡阶段的过程（目标到window）
+        
+        3.addEventListener('不带on事件名',事件函数,false);
+
+            如果某个元素的事件，绑定了多个同名事件函数且捕获冒泡一致，这个时候后面绑定的不起效。
+          removeEventListener('不带on事件名',事件函数,false)
+
+        4.event事件对象
+            事件函数的第一个参数（当用户操作页面时记录下的用户操作的细节信息）
+
+        5.冒泡的弊端的解决方案
+            ev.cancelBubble = true
+            ev.stopPropagation()
+
+            ev.target -> 事件源（事件委托，事件监听）
+    */
+   btn.addEventListener('click',fn);
+   box2.addEventListener('click',function(){
+       alert('green-冒泡')
+   });
+   box.addEventListener('click',function(){
+       alert('red-捕获')
+   },true);
+   btn.addEventListener('click',fn);
+   function fn(){
+       alert('btn-冒泡');
+   }
+   box3.addEventListener('click',function(){
+       alert('yellow-冒泡')
+   });
+   btn.addEventListener('click',function(){
+       alert('btn-捕获');
+   },true);
+
+   /*
+        red-捕获
+        btn-冒泡
+        btn-捕获
+        yellow-冒泡
+        green-冒泡
+   */
+
+</script>
+</body>
+</html>

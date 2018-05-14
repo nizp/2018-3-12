@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮</button>
+<script>
+    /*
+        DOM0-1
+            on开头的事件绑定
+            给某个元素绑多个事件前后会覆盖,触发的时候只会执行一次
+        DOM2
+            移动端都要用事件绑定的形式去绑定事件函数。
+
+            addEventListener(不带on的事件名,事件函数,是否捕获默认为false)
+
+            给某个元素绑多个事件,触发的时候会执行绑定的次数
+
+
+            removeEventListener('要解绑不带on的事件名',**解绑的函数名**,是否捕获);
+
+            *****匿名函数不能从根源上解除事件绑定*****
+
+        未来要知道的大概的原理
+        {
+            'click':[fn1,fn2]
+        }
+    */
+    const btn = document.getElementById('btn');
+
+    // btn.onclick = fn1;
+    // btn.onclick = fn2;
+
+    // btn.addEventListener('click',fn1);
+    btn.addEventListener('click',function(){
+        alert(1);
+        // btn.removeEventListener('click',)
+    });
+    // btn.addEventListener('click',fn2);
+
+
+    // function fn1(){
+    //     alert(1);
+    //     // btn.onclick = null;
+    //     btn.removeEventListener('click',fn1);
+    // }
+   
+    // function fn2(){
+    //     alert(2);
+    // }
+
+
+    
+</script>
+</body>
+</html>

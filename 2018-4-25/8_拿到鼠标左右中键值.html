@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        通过ev.button可以找到鼠标点击的是左中右中的哪个键
+
+        0代表 左键
+        1代表 中间
+        2代表 右键
+
+    */
+    document.onmousedown = function(ev){
+        console.log(ev.button)
+    }
+</script>
+</body>
+</html>

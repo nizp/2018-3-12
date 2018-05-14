@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        chrome 调用直接关
+        ff  默认不关(当通过open打开的才关闭)
+        ie  弹窗询问
+    */
+    document.onclick = function(){
+        window.close();
+    }
+    
+</script>
+</body>
+</html>

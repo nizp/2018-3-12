@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //用于有滚动条
+    // window.onscroll = function(){
+    //     console.log(1);
+    // }
+
+    /*
+        在IE和chrome中onmousewheel
+            ev.wheelDelta  正数为向上，负数为向下
+
+        FF:
+            DOMMouseScroll(必须用addEventListener去绑)
+            ev.detail  正数为向下，负数为向上
+            
+    */
+    // window.onmousewheel = function(ev){
+    //     console.log(ev.wheelDelta);
+    // }
+
+    // window.addEventListener('DOMMouseScroll',function(ev){
+    //     console.log(ev.detail);
+    // });
+
+    let o = true; //目的:如果滚动的时候o为true说明向上滚,false向下滚
+    if(typeof window.onmousewheel === 'object'){
+        window.onmousewheel = function(ev){
+            //console.log(1);
+            o = ev.wheelDelta>0?true:false;
+            fn(o);
+        }
+    }else{
+        window.addEventListener('DOMMouseScroll',function(ev){
+            o = ev.detail < 0?true:false;
+            fn(o);
+        });
+    }
+
+    function fn(o){
+        console.log(o);
+    }
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    top:0;
+    left:0;
+    
+}
+
+</style>
+</head>
+<body>
+    2y38921y89u8du8e831u321u321u8312u380
+    <div id="box"></div>
+<script>
+    /*
+        事件应用:
+            拖拽三大事件
+                onmousedown
+                onmousemove
+                onmouseup
+
+        问题：
+            move在box身上触发的事件，一旦鼠标移动过快，鼠标会移出box
+            移出box就不会动了
+        解决:
+            把move绑在document身上（因为就算过快move也在doument身上） 
+
+
+    */
+    const box = document.getElementById('box');
+    let num = 0; 
+    box.onmousedown = function(ev){
+        let disX = ev.pageX - box.offsetLeft;
+        let disY = ev.pageY - box.offsetTop;
+
+        document.onmousemove = function(ev){
+            box.style.left = ev.pageX - disX + 'px';
+            box.style.top = ev.pageY - disY + 'px';
+        }
+        document.onmouseup = function(){
+            document.onmouseup = document.onmousemove = null;
+            console.log(++num);
+            // console.dir(document);
+        }
+        return false;
+    }
+
+    // console.dir(document);
+    
+
+
+    
+
+
+</script>
+</body>
+</html>

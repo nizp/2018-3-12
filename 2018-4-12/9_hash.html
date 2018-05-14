@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <img src="img/0.png" alt="" id="img">
+    <button id="b1">上一张</button>
+    <button id="b2">下一张</button>
+<script>
+    /*
+        hash  #之后的内容
+
+        onhashchange  当hash值改变的时候就会触发
+
+        f=8 & rsv_bp=0 &  rsv_idx=1 & tn=baidu & wd=mia
+    */
+   let num = 0;
+   b2.onclick = function(){
+        // img.src = 'img/'+ (num = num<9?++num:0) +'.png';
+        num = num<9?++num:0;
+        location.hash = 'page='+num;
+   }
+
+   //一上来看看有没有hash，然后来显示图片
+   hashFn();
+
+   //每当hash值变化的时候触发这个事件
+   window.onhashchange = hashFn;
+
+   function hashFn(){
+       //看看有没有hash,有hash走hash，没hash走0
+       let hash = location.hash.split('=')[1] || 0;  //#page=2
+       //通过hash去更改num值，使得与点击同步
+       num = hash*1;
+       //通过num值，去匹配png
+       img.src = 'img/'+ hash +'.png';
+   }
+
+
+
+
+</script>
+</body>
+</html>

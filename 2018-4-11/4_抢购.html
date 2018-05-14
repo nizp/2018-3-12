@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt" value="2018,3,11,12:00:00">
+    <button id="btn">点击开始</button>
+    <p>还剩下：<strong id="strong">00分00秒</strong></p>
+
+<script>
+    const btn = document.getElementById('btn');
+    const txt = document.getElementById('txt');
+    const strong = document.getElementById('strong');
+    let timer = null;
+    btn.onclick = function(){
+        clearInterval(timer);
+        let val = txt.value;
+        let f = new Date(val); //未来的时间
+        function time(){
+            let o = new Date(); //当前的时间
+            let t = Math.floor(f - o)/1000;
+            if(t < 0){
+                clearInterval(timer);
+                alert('时间到');
+            }else{
+                let iDay = Math.floor(t/86400);
+                let iHou = Math.floor(t%86400/3600);
+                let iM = Math.floor(t%86400%3600/60);
+                let iS = Math.floor(t%60);
+                strong.innerHTML = toDou(iDay) + '天'+ toDou(iHou) + '时'+ toDou(iM) +'分'+toDou(iS)+'秒';
+            }
+        }
+        time();
+        timer = setInterval(time,1000);  
+    }
+    function toDou(n){
+        return n < 10?'0'+n:''+n;
+    }
+</script>
+</body>
+</html>

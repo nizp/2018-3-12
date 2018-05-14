@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    /* position: absolute; */
+    top:0;
+    left:0;
+    opacity: .4;
+}
+#box2{
+    width:100px;
+    height: 100px;
+    background: yellow;
+    /* position: absolute; */
+    top:0;
+    left:0;
+    opacity: .4;
+}
+</style>
+</head>
+<body>
+    <div id="box"> </div>
+    <div id="box2"> </div>
+<script>
+    const box = document.getElementById('box');
+    const box2 = document.getElementById('box2');
+
+    /*
+        在移动端中，touchmove,touchend都基于touchstart的
+
+        从start到end为一套事件（一个疗程）,如果这一个“疗程没有用完药”（没有触发end），那么是不会在别的元素上重新触发的。
+        就算在别的元素上move或者end，都是第一元素的事件触发。
+    */
+
+    // box.onmousedown = function(){
+    //     console.log('down')
+    //     box.onmousemove = function(){
+    //         console.log('move')
+    //     }
+    //     box.onmouseup = function(){
+    //         console.log('up')
+    //     }
+    // }
+
+
+    box.addEventListener('touchstart',start);
+    box.addEventListener('touchmove',move);
+    box.addEventListener('touchend',up);
+
+
+    box2.addEventListener('touchstart',start2);
+    box2.addEventListener('touchmove',move2);
+    box2.addEventListener('touchend',up2);
+
+    function start(){
+        console.log('按下')
+    }
+    function move(){
+        console.log('移动')
+    }
+    function up(){
+        console.log('抬起')
+    }
+
+    function start2(){
+        console.log('按下2')
+    }
+    function move2(){
+        console.log('移动2')
+    }
+    function up2(){
+        console.log('抬起2')
+    }
+
+
+   
+
+
+
+</script>
+</body>
+</html>

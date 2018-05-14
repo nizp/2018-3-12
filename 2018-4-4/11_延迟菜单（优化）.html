@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+}
+
+#box1{
+    width:300px;
+    height: 100px;
+    background: green;
+    position: absolute;
+    top:150px;
+    display: none;
+}
+
+</style>
+</head>
+<body>
+    <div id="box"></div>
+
+    <div id="box1"></div>
+<script>
+    /*
+        1.移入 box让box1显示（关闭隐藏的定时器），移出：隐藏
+        2.移入 box1的时候（关闭隐藏的定时器），你要隐藏  移出:慢点隐藏
+       
+    */
+
+    const divs = document.querySelectorAll('div');
+    let timer = null;
+
+
+    divs[0].onmouseover = divs[1].onmouseover = function(){
+        divs[1].style.display = 'block';
+        clearInterval(timer);
+    }
+
+    divs[0].onmouseout = divs[1].onmouseout =  function(){
+        timer = setTimeout(function(){
+            divs[1].style.display = 'none';
+        },1000);
+    }
+
+   
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:100px;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        时间版运动
+
+            目标点 * (已过时间/总共的时间) = 已走了多少路程
+
+            已过时间 = 现在时间 - 刚才时间
+    */
+    const box = document.getElementById('box');
+    let d = 600;
+    let c = 10000;
+    let b = parseFloat(getComputedStyle(box).left);
+    
+    document.onclick = function(){
+        //真正目标点的位置 = 目标点的位置 - 当前的位置
+        d = d - b;
+        let oldDate = Date.now(); //时间戳  100
+        let timer = setInterval(function(){
+            //现在的时间 - 刚才的时间 = 花费的时间
+            let t = Date.now() - oldDate; //116.7
+            //当花费的时间大于或者等于总时间，就让花费时间=总时间
+            if(t >= c){
+                t = c;
+                clearInterval(timer);
+            }
+            // console.log(t);
+            //要加上一个起始的位置
+            box.style.left = b + d * (t/c) + 'px';
+        },16.7);
+    }
+</script>
+</body>
+</html>

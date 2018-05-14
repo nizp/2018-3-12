@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    const div = document.getElementById('box');
+    let timer = null;
+    let obj = {
+        37:false,
+        38:false,
+        39:false,
+        40:false
+    }
+
+    //发动机
+    timer = setInterval(fn,16.7); 
+
+    function fn(){
+        if(obj[37]){
+            div.style.left = div.offsetLeft - 10 + 'px';
+        }
+        if(obj[38]){
+            div.style.top = div.offsetTop - 10 + 'px';
+        }
+        if(obj[39]){
+            div.style.left = div.offsetLeft + 10 + 'px';
+        }
+        if(obj[40]){
+            div.style.top = div.offsetTop + 10 + 'px';
+        }
+        console.log(1)
+    }
+
+
+    //方向盘
+    document.onkeydown = function(ev){
+        obj[ev.keyCode] = true;
+        if(!timer){
+            timer = setInterval(fn,16.7); 
+        }
+    };
+    document.onkeyup = function(ev){
+        let num = 4;
+        obj[ev.keyCode] = false;
+        for(let attr in obj){
+            if(!obj[attr]){
+                num --;
+            }
+        }
+        if(num === 0){
+            clearInterval(timer);
+            timer = null;
+        }
+    };
+
+
+
+
+</script>
+</body>
+</html>

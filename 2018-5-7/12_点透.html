@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    top:0;
+    left:0;
+    opacity: .4;
+}
+</style>
+</head>
+<body>
+    <a id="aa" href="http://www.baidu.com">点击1</a>
+    <a id="aa2" href="http://www.taobao.com">点击2</a>
+    <!-- <div id="box2">点击</div> -->
+    <div id="box"> </div>
+<script>
+    /*
+        当一个元素下正好是一个焦点元素的时候，
+        上面那个元素如果在300ms之内隐藏或者漂移，
+        那么会触发下面焦点元素的行为。
+
+        在300ms之内会把触发事件的坐标记录下来，所以才会触发下面焦点元素的行为。
+
+        问题 ：300ms、焦点元素
+
+        解决：
+            不使用焦点元素
+
+                a：对于网络爬虫有影响
+            缺点：
+                不会被网络爬虫爬到
+
+            超过300ms在执行
+
+                隐藏或者漂移在300ms之后执行
+        
+            缺点:
+                300ms用户是看得出来的，用户体验不佳
+
+           （强烈推荐）阻止焦点元素的默认行为:
+                在document上阻止所有的默认行为
+                使用js去实现点击跳转
+        
+        
+    */
+    const box = document.getElementById('box');
+    const box2 = document.getElementById('box2');
+    const as = document.getElementsByTagName('a');
+
+
+    // a.addEventListener('touchstart',function(ev){
+    //     ev.preventDefault();
+    // });
+    // box.addEventListener('touchstart',function(ev){
+    //     ev.preventDefault();
+    // });
+    document.addEventListener('touchend',function(ev){
+        ev.preventDefault();
+    });
+
+    box.addEventListener('touchend',function(){
+        // setTimeout(function(){
+        //     box.style.display = 'none';
+        // },310);
+        box.style.display = 'none';
+    });
+
+    // aa.addEventListener('touchend',function(){
+    //     location.href = 'http://www.baidu.com';
+    // });
+
+    let arr = ['http://www.baidu.com','http://www.taobao.com']
+    for(let i=0;i<as.length;i++){
+        as[i].addEventListener('touchend',function(){
+            location.href = arr[i];
+        });
+    }
+
+    // box2.addEventListener('touchend',function(){
+    //     location.href = 'http://www.baidu.com';
+    // });
+
+</script>
+</body>
+</html>

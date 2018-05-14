@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    top:0;
+    left:0;
+}
+</style>
+</head>
+<body style="height:3000px">
+    <div id="box"></div>
+<script>
+    /*
+        clientX/clientY  可视区的坐标,会被滚动条影响的
+
+        pageX/pageY   页面的坐标，是不会受滚动条影响
+        
+    */
+    let y = 0;
+    document.onmousemove = function(ev){
+        box.style.left = ev.clientX - box.clientWidth/2 + 'px';
+        // box.style.top = window.pageYOffset +  ev.clientY - box.clientHeight/2 + 'px';
+        y = ev.clientY - box.clientHeight/2;
+        box.style.top = ev.pageY - box.clientHeight/2 + 'px';
+        // console.log(ev.clientX)
+    }
+    document.onscroll = function(){
+        box.style.top = y + window.pageYOffset + 'px';
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: #000;
+}
+</style>
+</head>
+<body>
+    <button id="btn">点击</button>
+    <div id="box"></div>
+<script>
+    /*
+        40%的同学会不知道阻止冒泡在哪里阻止
+
+        阻止冒泡，其实是子孙级触发不让，祖先级触发，所以
+        阻止冒泡要从源头下手（子孙级【目标】）
+
+        传统的事件绑定用
+        addEventListener
+            ev.cancelBubble = true;   不是标准（但是所有浏览器都支持）
+            ev.stopPropagation();     是标准（但是不是所有浏览器都支持）
+            
+        
+    */
+    let onOff = true;
+    // btn.onclick = function(ev){
+    //     if(onOff){
+    //         box.style.display = 'none';
+    //     }else{
+    //         box.style.display = 'block';
+    //     }
+    //     onOff = !onOff;
+    //     ev.cancelBubble = true;
+    // }
+
+     btn.addEventListener('click',function(ev){
+        if(onOff){
+            box.style.display = 'none';
+        }else{
+            box.style.display = 'block';
+        }
+        onOff = !onOff;
+        // ev.cancelBubble = true;
+        ev.stopPropagation();
+    });
+
+
+    document.addEventListener('click',function(){
+        onOff = false;
+        box.style.display = 'none';
+    })
+
+    // document.onclick = function(){
+    //     onOff = false;
+    //     box.style.display = 'none';
+    // }
+</script>
+</body>
+</html>

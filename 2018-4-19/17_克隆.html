@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+    width:100px;
+    height:100px;
+    background: red;
+}
+.active2{
+    width:100px;
+    height:100px;
+    background: greenyellow;
+}
+
+</style>
+</head>
+<body id="body">
+    <div id="box" class="active">
+        <p>123213</p>
+    </div>
+    <hr>
+    <div id="box2" class="active2"></div>
+<script>
+    /*
+        cloneNode():
+            克隆
+
+            默认只克隆元素本身，不会克隆子孙级元素
+
+            如果在参数中传入一个true，就可以克隆子孙级元素了
+    */
+    document.onclick = function(){
+        let box1 = box.cloneNode(true);
+        body.insertBefore(box1,box2);
+    }
+</script>
+</body>
+</html>

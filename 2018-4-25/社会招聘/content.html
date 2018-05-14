@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		    html,body{
+		    	width: 100%;
+		    	height: 100%;
+		    	margin: 0;
+		    }
+		    body{
+		    	background: url(img/zpbg.png) no-repeat center center;
+		    	background-size: cover;
+		    	display: flex;
+		    	color:#b6bdcf;
+		    }
+		    ul,li{
+		    	margin: 0;
+		    	padding: 0;
+		    	list-style: none;
+		    }
+		    dl,dd{
+		    	margin: 0;
+		    	padding: 0;
+		    }
+		    p{
+		    	margin: 0;
+		    }
+		    a{
+		    	text-decoration: none;
+		    	color:#b6bdcf;
+		    }
+		    #content{
+		    	width: 650px;
+		    	height: 460px;
+		    	border-radius: 10px;
+		    	border: 1px solid #30343f;
+		    	margin: auto;
+		    	background: url(img/logo.png) no-repeat 25px 25px #252934;
+		    	box-sizing: border-box;
+		    	padding: 84px 25px 0px;
+		    	position: relative;
+		    }
+		    #rightTop{
+		    	position: absolute;
+		    	right: 0;
+		    	top: 0;
+		    	width: 285px;
+		    }
+		    #rightTop a{
+		    	float: left;
+		    	line-height: 80px;
+		    	margin-right: 34px;
+		    	font-size: 14px;
+		    }
+		    #rightTop a:nth-of-type(2){
+		    	border: 1px solid #ff2c4f;
+		    	border-radius: 28px;
+		    	width: 110px;
+		    	height: 28px;
+		    	text-align: center;
+		    	color: #ff2c4f;
+		    	line-height: 28px;
+		    	margin-top: 23px;
+		    }
+		    #rightTop a:nth-of-type(1):hover{
+		    	color:#ff2c4f;
+		    }
+		    #rightTop a:nth-of-type(2):hover{
+		    	background-color: #ff2c4f;
+		    	color: #000;
+		    }
+		    #title{
+		    	border-bottom: 1px dashed #303642;
+		    	height: 77px;
+		    }
+		    #title p{
+		    	font: 24px/38px "微软雅黑";
+		    }
+		    .simple{
+		    	font: 14px/30px "微软雅黑";
+		    }
+		    .simple span{
+		    	width: 20px;
+		    	display: inline-block;
+		    	text-align: center;	
+		    }
+		    .simple time{
+		    	color: #5c6675;
+		    	float: right;
+		    	width: 100px;
+		    	font: 12px/30px "微软雅黑";
+		    }
+		    #content dl{
+		    	margin-top: 13px;
+		    }
+		    #content dt{
+		    	font: 16px/27px "微软雅黑";
+		    }
+		    #content dd{
+		    	font: 14px/25px "微软雅黑";
+		    	color: #677282;
+		    }
+		</style>
+	</head>
+	<body>
+		<div id="content">
+			<div id="rightTop">
+				<a id="a" href="list2.html" class="goback">&lt;&nbsp;返回招聘列表</a>
+				<a href="javascript:;">投个简历</a>
+			</div>
+			<div id="title">
+				<p>前端开发工程师</p>
+				<div class="simple">18k-25k<span>/</span>北京<span>/</span>经验3-5年<span>/</span>本科及以上<span>/</span>2名 <time>2014-04-10</time></div>
+			</div>
+			<div id="bottom">
+					<!-- <dl>
+							<dt>岗位要求：</dt>
+							<dd>1.  熟练使用JavaScript/CSS/HTML，熟悉HTML5 / CSS3；</dd>
+							<dd>2.  熟悉JavaScript的核心技术，包括并不限于AJAX、DOM、BOM、JSON等；</dd>
+							<dd>3.  熟悉ES5 / ES6规范，并且有实践经验；</dd>
+							<dd>4.  熟悉Web标准，能够开发通用的Web组件，对HTML语义化有深刻理解；</dd>
+							<dd>5.  熟悉前端模块化开发方案，对前端工程化有深刻理解，熟悉任一一种前端构建工具，包括Webpack、Grunt、Gulp等；</dd>
+							<dd>6.  有前端性能优化经验，包括语言层面和架构层面；</dd>
+							<dd>7.  对前后端分离有深入的理解和具体的实践；</dd>
+							<dd>8.  了解任一一种流行的前端框架，包括但不限于React、Vue、Angular等；</dd>
+						</dl> -->
+			</div>
+			
+		</div>
+<script src="js/data.js"></script>
+<script>
+	/*
+		通过search值去获取对应的数据
+	*/
+
+	let dataArr = data[getSearch('data')].text[getSearch('n')];
+
+	let title = document.getElementById('title');
+	let bottom = document.getElementById('bottom');
+	let a = document.getElementById('a');
+
+	a.href = 'list2.html#data='+getSearch('data')+'&page='+getSearch('page');
+
+	//数据展示title
+	title.innerHTML = `<p>${dataArr.zw}</p>
+	<div class="simple">
+		${dataArr.dy}
+		<span>/</span>${dataArr.dd}
+		<span>/</span>${dataArr.jy}
+		<span>/</span>${dataArr.xl}
+		<span>/</span>${dataArr.rs}名 
+		<time>${data.formateDate(dataArr.sj)}</time></div>`
+
+	console.log(dataArr)
+
+	//数据展示岗位要求
+	let bottomText = '';
+	dataArr.info.forEach(el=>{
+			bottomText += `<dl><dt>${el.t}</dt>`;
+			el.l.forEach(e=>{
+				bottomText += `<dd>${e}</dd>`
+			});
+		bottomText += '</dl>';
+	});
+
+	bottom.innerHTML = bottomText;
+
+
+
+
+
+
+
+	function getSearch(data){
+		let search = location.search.split('&');
+		return search.find(e=>e.includes(data)).split('=')[1];
+		 
+	}
+
+
+
+	
+	
+
+</script>
+</body>
+</html>

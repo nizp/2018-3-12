@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<div id="div"></div>
+	
+	<div id="div2">
+		<img src="img/0.png" />
+		<img src="img/0.png" />
+		<img src="img/second1.png" />
+		<img src="img/0.png" />
+		<img src="img/0.png" />
+		<img src="img/second1.png" />
+		<img src="img/0.png" />
+		<img src="img/0.png" />
+	</div>
+	
+	
+<script type="text/javascript">
+	
+	const div2 = document.getElementById('div2');
+	const imgs = div2.getElementsByTagName('img');
+
+	time();
+	setInterval(time,1000);
+	function time(){
+		let d = new Date();
+		let H = d.getHours();
+		let M = d.getMinutes();
+		let S = d.getSeconds();
+		let str = toDou(H)+':'+toDou(M)+':'+toDou(S);
+		for(let i=0;i<str.length;i++){
+			if(i != 2 && i!=5){
+				imgs[i].src = 'img/'+str[i]+'.png';
+			}
+		}
+	}
+
+
+
+
+	
+	
+	function toDou(n){
+		return n<10?'0'+n:''+n;
+	}
+
+	
+	
+</script>	
+</body>
+</html>

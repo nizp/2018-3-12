@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        1.初始化  只走一次
+        2.条件判断
+        3.执行代码
+        4.自增
+
+        for(let i=0,len=li.length;i<len;i++){
+            ...
+        }
+
+        只要碰到单纯的for套for，那么2个for的变量名是不能重复的
+
+
+        for(var i=0;i<5;i++){
+            li[i].onclick = function(){
+                var i=0;
+                for(;i<2;){
+                    alert(i);
+                    i++
+                }
+            }
+        }
+
+    */
+
+    for(var i=0;i<5;i++){
+        alert('进大循环'+i); //0 1 2 ...
+        for(var j=0;j<2;j++){
+            alert('进小循环的'+j); //0,1  0,1 0,1 ...
+        }
+    }
+
+    console.log(i);
+
+</script>
+</body>
+</html>

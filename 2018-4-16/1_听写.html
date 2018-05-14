@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        1.（时间版）匀速运动的原理
+
+        (总路程-起始的位置) * (已过时间/总时间) + 起始位置
+
+        2.js无缝轮播的原理
+
+            1.先复制一份li出来
+            2.当到了最后一张再往下点击的时候，回到第一组的最后一张
+            3.然后再运动到第二组的第一张
+
+        3.举例说明this出现在什么地方
+
+            1.  ele.onclick = function(){alert(this)} //点谁是谁
+        
+            2.  function fn(){alert(this)}  fn() // this -> window
+
+            3.  obj.fn = function(){alert(this)} obj.fn()  -> this -> obj
+
+                let a = 10;   console.log(a);  变量
+                obj.a = 10;   console.log(obj.a);  属性
+
+                fn() -> 函数
+                obj.fn() -> 方法
+
+                arr.push()
+                string.substring()
+
+            4.  定时器 -> widnow
+
+        4.倒计时原理
+            未来的时间 - 当前的时间 = 剩下多少时间
+
+            /1000 转秒
+
+            Math.floor(t/86400)  天
+            
+            t%=86400
+            Math.floor(t/3600)   时
+
+
+            t%=3600
+            Math.floor(t/60)     分
+
+            t%=60                秒
+
+
+        5.如何获取当前月份有多少天
+
+            1.设置下个月
+                let d = new Date()
+
+                d.getMonth()+1  -> 当月
+
+                d.setMonth(d.getMonth()+1);  下个月
+
+            2.设置上个的最后一天
+
+                d.setDate(0);
+
+            3.获取最后一天
+                console.log( d.getDate() );
+        
+        6.如何打开、关闭浏览器新窗口，有些什么需要注意的？
+
+            window.open(url,name);  //人为触发才能使用
+
+            window.close()  //在FF下必须要open打开才能关闭，IE会有弹框
+        
+        7.可视区尺寸、滚动距离、监听滚动事件、窗口缩放事件
+
+        window.innerWidth/window.innerHeight
+        document.documentElement.clientWidth/clientHeight
+
+        window.pageXOffset/window.pageYOffset
+
+        window.scrollTo(x,y);
+
+        document.documentElement.scrollTop/scrollLeft
+
+        window.onscroll  监听滚动事件
+
+        window.onresize  窗口缩放事件
+
+
+    8.绝对位置是什么意思，如何获得某个元素的绝对位置？
+
+        元素到页面顶端（左上下右，边）的位置就叫绝对位置
+
+        elem.getBoundingClientRect() -> 对象
+
+    9.location下，hash，search，href各代表什么意思？
+
+        hash ->  #后的
+            onhashchange  -> 当hash值改变的时候触发
+            值改变是不刷新页面的
+
+        search -> ?到#之间的
+
+        href -> 地址栏的信息，可读可写
+
+    
+    10.行间属性和对象属性有什么区别？
+
+        行间属性:
+            设置：
+                setAttribute(key,value)
+
+            获取:
+                getAttribute(key)
+
+            删除:
+                removeAttribute(key)
+
+        obj.index
+
+
+        两个属性存储的空间是不一样的
+        如果说从元素中直接获取属性，那必须是浏览器默认有的属性
+            比如：
+                style、id...
+
+        如果没有就undefined
+        所以自定义的行间属性，我们要通过行间属性那套方法去操作
+        不能直接用.的方式去操作
+
+        对象.属性 写什么就是什么，写了就能读
+
+
+
+
+
+    */
+
+//     let obj = {
+//        fn:function(){
+//            console.log(this);
+//        }
+//     }
+
+//    obj.fn();
+
+    //setTimeout(obj.fn(),1000);  //obj
+    // setTimeout(obj.fn,1000); //window
+    //console.log(obj.fn);
+
+
+
+
+    /************************************/
+
+    // let d = new Date();
+
+    // d.setMonth(d.getMonth()+1);  //下个月
+
+    // d.setDate(0)
+
+    // console.log( d.getDate() );
+
+
+
+
+
+
+</script>
+</body>
+</html>

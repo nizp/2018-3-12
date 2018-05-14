@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        new Date(一般来说是传入一个服务器时间)
+            设置月份的时候要当前月份减一
+            获取时间月份加一
+
+            一般服务器时间是以秒为单位，
+            需要秒转毫秒 即 * 1000
+
+        January、
+		February、
+		March、
+		April、
+		May、
+		June、
+		July、
+		August、
+		September、
+		October、
+		November、
+		December
+
+        setDate() 设置 Date 对象中月的某一天
+            如果传入一个0，设置上个月的最后一天
+            
+        setMonth() 设置 Date 对象中月份s
+            设置的时候得减一
+
+            如果要获取这一年的最后一天
+            那么需要写12， 不能写0
+            因为12为下一年，而0是上一年
+            
+        setFullYear() 设置 Date 对象中的年份
+        setYear() 请使用 setFullYear() 方法代替
+        setHours() 设置 Date 对象中的小时
+        setSeconds() 设置 Date 对象中的秒钟
+        setMilliseconds() 设置 Date 对象中的毫秒
+        setTime() 以毫秒设置 Date 对象
+    */
+
+    // let d = new Date;
+    // d.setMonth(3); //**** 设置要减一
+    // d.setDate(0); //如果传入0，默认上个月有多少天
+    // console.log(d.getDate());
+
+    
+
+
+//    console.log(new Date(2018,3,1,0,0,0))
+// console.log(new Date("Apr 10,2018 0:0:0"))
+//new Date(new Date().getTime())
+// new Date('2018,3,11,12:00:00'); //字符串的写法，写啥是啥（写几月是几月就不用减了）
+
+    // //6月有多少天
+    // let d = new Date;
+    // /*
+    //     设置7月份
+    // */
+    // d.setMonth(6);
+    // /*
+    //     写0能找到6月份
+    // */
+    // d.setDate(0);
+    // console.log(d.getDate());
+
+
+    /*
+        2020年2月有多少天
+    */
+    // let d = new Date();
+    // d.setFullYear(2020);
+    // d.setMonth(2);  为了设置3月份，去取2月
+    // d.setDate(0);
+    // console.log(d.getMonth()+1); //2
+    
+    
+    /*
+        1840年12有多少天
+    */
+
+//    let d = new Date;
+//    d.setFullYear(1840);
+//    d.setMonth(12);//设置：1841的1月份
+// //    d.getFullYear()
+//    d.setDate(0);//获取1840年12月份
+//    console.log(d.getFullYear());
+
+    
+    /*
+        1997年12月
+    */
+
+    let d = new Date;
+    d.setFullYear(1997);
+    d.setMonth(0);
+    d.setDate(0); //写0为上个月的最后一天
+    // console.log(d.getFullYear());
+    
+</script>
+</body>
+</html>

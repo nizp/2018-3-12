@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        navigator
+            关于计算机中的信息
+
+            appName	返回浏览器的名称  netscape
+
+            onLine 返回指明系统是否处于脱机模式的
+                布尔值  -> 是否连网，连：true，否则:false
+
+            platform 返回运行浏览器的操作系统平台（不太精准）
+
+            userAgent 返回由浏览器代理的详细信息
+                注意：
+                    信息容易被修改
+
+        IE:
+            11:
+                "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; rv:11.0) like Gecko"
+
+            10:  "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E)"
+
+            9:   "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E)"
+
+            8:   "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E)"
+    */
+    //据说是调用iphone的摄像头
+    // console.dir(navigator.mediaDevices.getUserMedia());
+
+    
+
+    // if(navigator.userAgent.toLowerCase().indexOf('msie 8')!=-1){
+    //     alert('IE8');
+    // }else{
+    //     alert('不是IE8');
+    // }
+
+    // if(isPhone()){
+    //     location.href = 'http://m.taobao.com';
+    // }else{
+    //     location.href = 'http://miaov.com';
+    // };
+
+    function isPhone(){
+        let str = navigator.userAgent.toLowerCase();
+        if(str.includes('android') || str.includes('iphone') || str.includes('mac')){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+</script>
+</body>
+</html>

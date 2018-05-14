@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button>引爆</button>
+    <button>拆弹专家</button>
+<script>
+    /*
+       
+        连续炸：
+            setInterval(callback,time)
+                time -> 毫秒
+            
+            返回值: number类型 （编号）
+
+            编号也是为了关闭
+                clearInterval(定时器的编号)
+
+            *** 在定时器中的this指向window
+
+        alert() 会阻塞代码
+
+    */
+
+
+    const btns = document.querySelectorAll('button');
+    let num = 50;
+    let time = 8000;
+    let timer = null;
+    btns[0].onclick = function(){
+        
+        timer = setInterval(function(){
+           
+            if(num <= 0){
+                btns[0].innerHTML = num;
+               
+            }else{
+                btns[0].innerHTML = num;
+                num --;
+            }
+        },time);
+    }
+
+    btns[1].onclick = function(){
+        clearInterval(timer);
+        time = time/3;
+    }
+
+
+   
+
+
+</script>
+</body>
+</html>

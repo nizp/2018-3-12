@@ -1,0 +1,45 @@
+/* reset css */
+body{
+	margin: 0;
+}
+ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* main */
+body{
+	background-color: pink;
+}
+.box{
+	width: 500px;
+	height: 500px;
+	margin: 30px auto 0;
+	position: relative;
+}
+li{
+	width: 480px;
+	padding-left: 20px;
+	height: 80px;
+	margin-bottom: 20px;
+	background-color: #eee;
+	border: 1px solid red;
+	border-radius: 30px;
+	line-height: 80px;
+	/* position:absolute; */
+}
+span{
+	display: inline-block;
+	width: 320px;
+}
+a{
+	display: inline-block;
+	padding: 5px;
+	background-color: #f04848;
+	border-radius: 4px;
+	line-height: 21px;
+	color: #fff;
+	text-decoration: none;
+	margin: 5px;
+}

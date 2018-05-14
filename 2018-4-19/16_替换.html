@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+    width:100px;
+    height:100px;
+    background: red;
+}
+.active2{
+    width:100px;
+    height:100px;
+    background: greenyellow;
+}
+
+</style>
+</head>
+<body id="body">
+    <div class="active" id="box"></div>
+<script>
+    /*
+        替换：
+            parentNode.replaceChild(newElement,oldElement)
+    */
+    document.onclick = function(){
+        let div = document.createElement('div');
+        div.className = 'active2';
+        body.replaceChild(div,box);
+    }
+</script>
+</body>
+</html>

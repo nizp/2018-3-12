@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div{
+    padding:100px;
+}
+#box{
+    background: red;
+}
+#box2{
+    background: green;
+}
+#box3{
+    background: yellow;
+}
+#btn{
+    background: skyblue;
+    color: #fff;
+}
+
+
+</style>
+</head>
+<body>
+    <div id="box">
+        <div id="box2">
+            <div id="box3">
+                <button id="btn">小按钮</button>
+            </div>
+        </div>
+    </div>
+<script>
+    /*
+       事件模型(事件流)
+            一共分为3个阶段
+
+            捕获阶段
+         ***目标阶段
+                执行的顺序跟绑定的顺序是一样一样的。
+            冒泡阶段
+
+        当触发某个事件的时候执行了这三个阶段的过程就叫事件流
+
+        通过多次的无脑撞击测试（在事件绑定中）：
+            实验研究结果表明：
+                在同一个函数绑定的时候，看上去像前面覆盖后面的，其实是后面绑定的无效。
+
+                
+    */
+
+   
+    btn.addEventListener('click',fn,false);
+    btn.addEventListener('click',fn2,true);
+    
+
+    // box3.addEventListener('click',function(){
+    //     console.log('yellow-捕获');
+    // },true);
+
+    // box3.addEventListener('click',function(){
+    //     console.log('yellow-冒泡');
+    // },false);
+   
+    // btn.addEventListener('click',function(){
+    //     console.log('btn-bh2');
+    // },true);
+
+ 
+
+    function fn(){
+        console.log('btn-冒泡');
+    }
+    function fn2(){
+        console.log('btn-捕获');
+    }
+    
+
+    /*
+        yellow-捕获
+        btn-bh2
+        btn-捕获
+        btn-冒泡
+        yellow-冒泡
+    */
+   
+
+</script>
+</body>
+</html>

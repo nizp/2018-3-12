@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+
+    <textarea 
+        name="" id="t" cols="30" rows="10"></textarea>
+    <span id="span">0/200</span>
+    <input type="checkbox" id="c">
+<script>
+    /*
+        onclick
+        ondblclick
+        onmouseover
+        onmouseout
+        onchange
+        onhashchange
+        onpopstate
+        onresize
+        onscroll
+
+
+        onmousedown   鼠标按下
+        onmousemove   鼠标移动
+        onmouseup     鼠标抬起
+        oninput    当value发生变化的时候不用失焦就直接触发
+        onkeyup   键盘抬起
+        onkeydown 键盘按下
+
+        初始document中有焦点，一个页面有一个焦点
+
+        onfocus   聚焦  （蓝亮）
+        onblur    失焦  （默认的）
+        自动聚焦
+            focus()
+
+        select  文字选中（聚焦）
+
+        
+    */
+
+    const box = document.getElementById('box');
+    const t = document.getElementById('t');
+    const span = document.getElementById('span');
+
+    // t.onkeyup = function(){
+    //     span.innerHTML = this.value.length + '/200字';
+    // }
+
+    let timer = null;
+    t.onfocus = function(){
+        // let _this = this;
+        timer = setInterval(function(){
+            span.innerHTML = t.value.length + '/200字';
+            console.log('123');
+        },16.7);
+    }
+    t.onblur = function(){
+        clearInterval(timer);
+    }
+
+    // t.focus();
+    c.onchange = function(){
+        if(this.checked){
+            t.select();
+        }
+    }
+    
+
+    // t.oninput = function(){
+    //     span.innerHTML = this.value.length + '/200字';
+    //     // console.log(this.value);
+    // }
+
+    
+
+
+
+    
+
+
+  
+
+    // box.onmousedown = function(){
+    //     console.log('鼠标按下')
+    // }
+    // box.onmouseup = function(){
+    //     console.log('鼠标抬起')
+    // }
+    // box.onmousemove = function(){
+    //     console.log('鼠标移动')
+    // }
+
+
+</script>
+</body>
+</html>

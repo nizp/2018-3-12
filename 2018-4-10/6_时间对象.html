@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        时间对象:
+            new Date()
+            当前计算机的时间
+                注意：本地时间是不安全的
+
+            Tue Apr 10 2018 15:04:19 GMT+0800 (中国标准时间)
+            Tue Apr 10 2018 17:05:21 GMT+0800 (中国标准时间)
+
+        下面方法返回值都是number类型的
+
+        getDate() 从 Date 对象返回一个月中的某一天 (1 ~ 31)
+
+        getDay() 从 Date 对象返回一周中的某一天 (0 ~ 6)
+
+        getMonth() 从 Date 对象返回月份 (0 ~ 11)
+            *** 获取月份的时候记得加1
+
+        getFullYear() 从 Date 对象以四位数字返回年份
+
+        getHours() 返回 Date 对象的小时 (0 ~ 23)
+
+        getMinutes() 返回 Date 对象的分钟 (0 ~ 59)
+
+        getSeconds() 返回 Date 对象的秒数 (0 ~ 59)
+
+        getMilliseconds() 返回 Date 对象的毫秒(0 ~ 999)
+    */
+
+//    console.log(new Date);
+
+    let d = new Date();
+
+    // console.log(d.getDate());
+
+    // console.log(d.getDay()); //周几 *** 周日为0
+
+    // let arr = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+
+    // alert(arr[d.getDay()]);
+
+    // console.log(d.getMonth()+1);
+
+    // console.log(d.getFullYear());
+
+    // console.log(d.getHours() + '时'+ d.getMinutes() +'分'+d.getSeconds()+'秒');
+    
+    function time(){
+        let d = new Date();
+        console.log(toD(d.getHours()) + '时'+ toD(d.getMinutes()) +'分'+toD(d.getSeconds())+'秒');
+    }
+    time();
+    setInterval(time,1000);
+
+    function toD(n){
+        // if(n < 10){
+        //     return '0'+n;
+        // }else{
+        //     return '' +n;
+        // }
+        return n<10?'0'+n:'' +n;
+    }
+
+    console.log(toD(2))
+
+</script>
+</body>
+</html>

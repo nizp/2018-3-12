@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div{
+    padding:100px;
+}
+#box{
+    background: red;
+}
+#box2{
+    background: green;
+}
+#box3{
+    background: yellow;
+}
+#btn{
+    background: skyblue;
+    color: #fff;
+}
+
+
+</style>
+</head>
+<body>
+    <div id="box">
+        <div id="box2">
+            <div id="box3">
+                <button id="btn">小按钮</button>
+            </div>
+        </div>
+    </div>
+<script>
+    /*
+        冒泡:
+            当触发某个元素的事件时，如果***自己及祖先节点都绑定了同样的事件函数***
+            那么会从下而上依次触发，直到window结束，这个过程叫冒泡过程
+
+
+        从下而上依次触发同一个事件，直到window结束叫冒泡
+
+    */
+    window.onclick = function(){
+        console.log('window');
+    }
+    document.onclick = function(){
+        console.log('document');
+    }
+    box.onclick = function(){
+        // alert('red');
+    }
+    box2.onclick = function(){
+        // alert('green');
+        console.log('green');
+    }
+    // box3.onclick = function(){
+    //     alert('yellow');
+    // }
+    box3.ondblclick = function(){
+        // alert('yellow');
+        console.log('yellow');
+    }
+    btn.onclick = function(){
+        // alert('btn');
+        console.log('btn');
+    }
+
+    /*
+        A:r,g,y,b   2
+        B:b,y,g,r   14  √
+        C:b,g,y,r    
+        D:r,b,g,y    
+        E:r     2
+        F:b     6
+    */
+</script>
+</body>
+</html>

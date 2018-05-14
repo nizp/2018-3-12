@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串查找替换</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        section{
+            width: 800px;
+            height: 630px;
+            margin: 50px auto;
+            padding-top: 40px;
+            background-color: rgb(171, 221, 231);
+            background: url("images/background.png") no-repeat;
+            overflow: hidden;
+
+        }
+        #logo{
+            width: 200px;
+            height: 48px;
+            margin: 0px auto;
+        }
+        #top{
+            width: 520px;
+            height: 274px;
+            border-radius: 10px;
+            margin: 20px auto ;
+            background-color: white;
+            padding: 27px;
+            box-shadow: 0px 0 7px RGB(152, 210, 221) ;
+            z-index: 99;
+        }
+        #top .top_container{
+            width: 360px;
+            height: 230px;
+            padding: 20px;
+            float: left;
+            overflow: hidden;
+        }
+        .bg{
+            background-color: rgb(238,248,250);
+            border: 1px solid rgb(171,221,231);
+            border-radius: 2px;
+            color: #004654;
+            font-family: 'Lantinghei SC ';
+        }
+        #top .top_container p{
+            line-height: 30px;
+            font-size: 14px;
+            height: 30px;
+            color: #004654;
+            width: 360px;
+            height: 240px;
+            border-width: 0;
+            background-color: rgba(0,0,0,0);
+
+            overflow: auto;
+        }
+        #top .top_container p span{
+            line-height: 30px;
+            background-color: green;
+            color: white;
+            height: 30px;
+            display: inline-block;
+
+        }
+
+        #top .top_func{
+            float: left;
+
+            width: 100px;
+            height: 270px;
+            margin-left: 17px;
+        }
+        #top .top_func ul{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        #top .top_func ul li{
+            width: 100px;
+            height: 65px;
+            list-style: none;
+            border-radius: 3px;
+            position: absolute;
+            padding-top: 15px;
+            cursor: pointer;
+
+        }
+        #top .top_func ul li img{
+            display: block;
+            margin: 0px auto;
+            width: 27px;
+            height: 27px;
+            padding-top: 0px;
+        }
+        #top .top_func ul li p{
+            font-size: 16px;
+            font-family: 'Lantinghei SC ';
+            color: white;
+            display: block;
+            height: 40px;
+            width: 100px;
+            text-align: center;
+            line-height: 40px;
+        }
+        #top .top_func ul .func_open{
+            background-color: rgb(144,226,242);
+
+        }
+        #top .top_func ul .func_find{
+            background-color: rgb(168,166,245);
+            /*display: none;*/
+            /*top:95px;*/
+
+        }
+        #top .top_func ul .func_replace{
+            background-color: rgb(159,231,169);
+            /*display: none;*/
+            /*top:190px;*/
+
+        }
+
+
+        #bottom{
+
+            width: 526px;
+            height: 158px;
+            position: relative;
+            top: 12px;
+            margin: 0 auto;
+            border-radius: 10px;
+            background-color: white;
+            color: white;
+            padding: 0px 22px;
+            box-shadow: 0px 0 7px rgb(147,208,221) ;
+            display: none;
+        }
+        #bottom div{
+            height: 40px;
+            padding-top: 25px;
+        }
+        #bottom div a{
+            display: block;
+            font-size: 16px;
+            width: 100px;
+            height: 40px;
+            border-radius: 3px;
+            float: left;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #bottom div .find{
+            background-color: rgb(168,166,245);
+            margin-left: 5px;
+        }
+        #bottom div .replace{
+            background-color: rgb(159,231,169);
+            margin-left: 20px;
+        }
+        #bottom div .close{
+            color: #222222;
+            width: 14px;
+            height: 14px;
+            float: right;
+            background: url("images/close.png");
+        }
+        #bottom input{
+            float: left;
+        }
+        #bottom #text1{
+            margin: 14px 0 0 5px;
+            width: 400px;
+            height: 48px;
+            padding-left:10px;
+            font-size: 16px;
+            /*display: none;*/
+        }
+        #text2{
+               margin: 14px 0 0 5px;
+               width: 190px;
+               height: 48px;
+               padding-left:10px;
+               font-size: 16px;
+               display: none;
+           }
+        #text3{
+            margin: 14px 0 0 8px;
+            width: 190px;
+            height: 48px;
+            padding-left:10px;
+            font-size: 16px;
+            display: none;
+        }
+        #bottom #btn1{
+            width: 60px;
+            height: 40px;
+            background-color: rgb(168,166,245);
+            margin: 14px 0 0 10px;
+            float: right;
+            border-radius: 2px;
+            padding: 10px 0 0 36px;
+            cursor: pointer;
+        }
+        #prompt{
+            height: 30px;
+            margin-top: 10px;
+            color: red;
+            font-size: 12px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+    </style>
+<script src="tween.js"></script>
+</head>
+<body>
+<section>
+    <div id="container">
+
+        <div id="logo">
+            <img src="images/images/logo_03.png" width="200" height="48">
+        </div>
+
+        <div id="top">
+            <div class="top_container bg">
+
+                <p id="txt">
+                    妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一途中全新的快乐学习方法！目前主要针对的是javascript培训，同时还提供了css教程、javascript视频、js特效等，最新推出了外地学员们喜欢的javascript网络课程服务，同时还为处于javascript入门阶段的朋友录制了大量javascript视频，其中涉及了大量javascript基础知识，希望妙味课堂推出的javascript网络培训课程能带给大家更多惊喜。
+                </p>
+            </div>
+            <div class="top_func">
+                <ul id="top_ul">
+                    <li class="func_replace">
+                        <img src="images/images/replace_11.png">
+                        <p>替换</p>
+                    </li>
+                    <li class="func_find">
+                        <img src="images/images/li_bg_12.png">
+                        <p>查找</p>
+                    </li>
+                    <li class="func_open">
+                        <img src="images/images/open_10.png">
+                        <p>展开</p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div id="bottom">
+
+            <div>
+                <a class="find">查找</a>
+                <a class="replace">替换</a>
+                <a class="close"></a>
+
+            </div>
+            <input id="text1" class="bg" type="text" placeholder="输入要查找的内容">
+            <input id="text2" class="bg" type="text" placeholder="输入要查找的内容">
+            <input id="text3" class="bg" type="text" placeholder="输入要替换的内容">
+            <div id="btn1">
+                <img src="images/images/li_bg_12.png">
+            </div>
+            <div id="prompt"></div>
+
+        </div>
+
+    </div>
+</section>
+<script>
+    const top_ul = document.getElementById('top_ul');
+    const top_list = top_ul.getElementsByTagName('li');
+
+    const bottom = document.getElementById('bottom');
+    const aA = bottom.getElementsByTagName('a');
+    const inputs = bottom.getElementsByTagName('input');
+
+    const btn1 = document.getElementById('btn1');
+
+    const txt = document.getElementById('txt');
+
+    let v = txt.innerText;  //文本内容
+
+    /*
+        展开收起
+    */
+   let onOff = true;//展开，收缩
+   let onOff2 = true; //区别查找还是替换
+   aA[2].onclick = top_list[2].onclick = function(){
+        let img =  top_list[2].getElementsByTagName('img')[0];
+        let p = top_list[2].getElementsByTagName('p')[0];
+        if(onOff){
+            //要展开
+            img.style.transform = 'rotateZ(45deg)';
+            p.innerText = '收起';
+            move({
+               el:top_list[1],
+               attr:{
+                   top:95
+               },
+               d:300
+            });
+            move({
+                el:top_list[0],
+                attr:{
+                    top:190
+                },
+                d:300,
+                callback(){
+                    bottom.style.display = 'block';
+                }
+            });
+           
+        }else{
+            //要收起
+            img.style.transform = 'rotateZ(0deg)';
+            p.innerText = '展开';
+            move({
+               el:top_list[1],
+               attr:{
+                   top:0
+               },
+               d:300
+            });
+            move({
+                el:top_list[0],
+                attr:{
+                    top:0
+                },
+                d:300,
+                callback(){
+                    bottom.style.display = 'none';
+                }
+            });
+        }
+        onOff = !onOff;
+   }
+    aA[1].onclick = top_list[0].onclick = function(){
+        onOff2 = false;
+        inputs[1].style.display = inputs[2].style.display = 'block';
+        inputs[0].style.display = 'none';
+    }
+    aA[0].onclick = top_list[1].onclick = function(){
+        onOff2 = true;
+        inputs[1].style.display = inputs[2].style.display = 'none';
+        inputs[0].style.display = 'block';
+    }
+
+
+    /*
+        点击搜索按钮
+    */
+
+   btn1.onclick = function(){
+        if(onOff2){  
+            //查找
+            let searchVal = inputs[0].value;
+            /*
+                如果没有输入内容或者找不到查找的内容就弹弹弹！~
+            */
+            if(!searchVal || !v.includes(searchVal)){
+                alert('请检查您输入的内容!~~');
+                return;
+            }
+
+            txt.innerHTML = v.split(searchVal).join(`<span>${searchVal}</span>`)
+            
+            inputs[0].value = ''; //searchVal = ''; ×
+
+        }else{
+            //替换
+
+            let v1 = inputs[1].value,v2 = inputs[2].value;
+            
+            if(!v1 || !v.includes(v1)){
+                alert('请检查您输入的内容!~~');
+                return;
+            }
+
+            //替换操作
+            if(!v2){
+                alert('我靠，你瞎呀，替换被你吃掉啦？呵呵!');
+                return;
+            }
+
+            txt.innerHTML = v.split(v1).join(`<span>${v2}</span>`);
+            
+            /*
+                在替换的时候，v值需要改变，主要是为了
+                替换完成之后，还能查找
+
+                因为查找或者替换都是根据v值来操作的
+                v值变了结果才会变，不然一直都是最原始的文字
+            */
+            v = v.split(v1).join(`${v2}`);
+
+            inputs[1].value = inputs[2].value = '';
+            
+        }
+   }
+
+
+
+
+
+
+
+    console.log(top_list.length);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    /* transform: translate(100px,100px); */
+    transition:1s; 
+    /* 第一个：运动的时间
+    第二个: 延迟多少时间
+    第三个：运动的形式 */
+}
+#box:hover{
+    /* transform: rotateZ(180deg); */
+    transform: scale(.5);
+    /* transform-origin:left; */
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        webkitTransitionEnd 当动画结束触发的事件
+
+        利用transform做动画的好处
+
+            transform 不会引起元素重绘，性能要比修改left，top值高出很多
+
+            transform3D 的计算运用的是GPU，所以在计算效率上会比传统的内存计算性能要高
+
+        注意：
+            addEventListener去绑定  DOM2事件
+    */
+    // box.onclick = function(){
+    //     box.style.transform = 'translateX(600px)';
+    // }
+
+//    box.addEventListener('webkitTransitionEnd',function(){
+//        alert(1);
+//    });
+</script>
+</body>
+</html>

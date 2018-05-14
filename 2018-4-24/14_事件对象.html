@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        ***事件对象：
+            当用户操作页面的时候，事件函数的第一个参数会记录下
+            用户本次操作的细节信息。
+        
+        ev event
+
+    */
+   document.onclick = function(ev){
+       console.log(ev.clientX);
+   }
+</script>
+</body>
+</html>

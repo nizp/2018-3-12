@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        速度版运动
+    */
+    let speed = 0;
+    const box = document.getElementById('box');
+    document.onclick = function(){
+        let timer = setInterval(function(){
+            speed += 10;
+            if(speed == 600){
+                clearInterval(timer);
+            }
+            box.style.left = speed + 'px';
+        },16.7);
+    }
+</script>
+</body>
+</html>

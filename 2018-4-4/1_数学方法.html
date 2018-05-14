@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    let obj = {name:'123'}
+    let box = document.getElementById('box');
+
+    // let arr = [];
+    // console.log(arr);
+    // console.dir(Math);
+
+    /*
+        Math:
+            random 0-1之间的无限不循环小数  随机数
+
+            floor  向下取整
+
+            ceil   向上取整
+
+            round   四舍五入
+
+            abs     取绝对值
+
+            max    取最大
+
+            min    取最小
+
+            sqrt   平方根 
+
+            PI      圆周率
+
+    常用的取整公式
+			x ~ y : Math.round(Math.random()*(y-x) + x)
+			0 ~ x : Math.round(Math.random()*x)
+			1 ~ x : Math.ceil(Math.random()*x)||1
+			0 ~ x-1 : Math.floor(Math.random()*x) 
+
+    toFixed:
+        返回保留 n 位小数的字符串
+            注意：在保留小数位数的后一位会四舍五入
+            比如：
+                12.334  toFixed(2)  会看第2位后面的4，如果是5就会进一位
+
+    */
+
+    // console.log(Math.max(10,20,30,5,8));
+
+    /*
+        20-88
+    */
+    console.log(Math.round(Math.random()*(88-20) + 20));
+
+
+
+
+</script>
+</body>
+</html>

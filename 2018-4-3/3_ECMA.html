@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<!-- <script>
+    window.onload = function(){
+        const div = document.getElementById('div');
+
+        console.log(div);
+    }
+</script> -->
+<body>
+    <div id="div"></div>
+<script>
+    /*
+        ECMAscript
+            数据类型
+
+            undefined、null、string、number
+            boolean、symbol、Object
+
+            typeof
+                undefined、Object、string、number
+                boolean、symbol、function
+
+                string
+        
+        undefined:
+            1.有变量未赋值
+            2.函数默认返回值
+            3.某个对象没有这个属性
+            4.undefined
+            5.没有传入实参
+
+        null:
+            null
+            页面中没有元素的时候
+            window.onload
+
+        null的undefined区别
+
+            null是压根没有这个东西，undefined是有这个东西但是还没有赋值
+
+        
+        string
+
+            ''  ""
+
+            字符串拼接
+                let r = 'red';
+                let w = 100
+                let h = 100
+
+                'background:' + r +';width:' + w + 'px;height:' + h + 'px;'
+
+                'background:'+r+';width:'+w+'px;height:'+h+'px;'
+
+                `background:${r};width:${w}px;height:${h}px;`
+
+            对于后端过来的数据都是字符串
+
+                json
+
+                '{}'  "{}"  '[]' "[]"
+
+                json转对象 -> JSON.parse(json)
+                注意：
+                    json必须为标准格式的（key值被双引号包裹）
+
+                对象转json -> JSON.stringify(obj)
+                
+                注意:如果对象中有函数、undefined，那么转不出来的
+
+            截取类:
+                substring *
+
+                substring、substr、slice、
+            
+            查询类:
+                indexOf *
+                includes *
+
+                indexOf、lastIndexOf、includes、charCodeAt、charAt、fromCharCodeAt
+
+            分割类:
+                split
+
+            转换类:
+                toUpperCase、toLowerCase
+            
+            其他:
+                repeat、trim
+
+            string.includes('字符串')：
+                是否包含 -> 返回一个布尔值  
+                包含:
+                    true
+                不包含:
+                    false
+
+        Object：
+            Array
+            Object
+            function
+
+    */
+
+//    function fn(a){
+//        console.log(a);
+//    }
+//    fn();
+
+    //a = undefined
+    // alert(a);
+    // var a = 10;
+    // alert(a); //10;
+
+    // let obj = "{'name':'徐涛'}";  //×
+    // let obj = '{"name":"徐涛"}';
+    // let obj2 = {name:'徐涛',fn:function(){},n:undefined};
+
+    // // console.log(JSON.parse(obj));
+    // console.log(JSON.stringify(obj2));
+
+
+
+    // let str = 'miaov';
+
+    let num = 10.2347678;
+
+    // console.log(parseFloat(num));
+
+    // console.log(num.toFixed(3));
+
+    let str = num.toString();
+
+    str = str.substr(0,str.indexOf('.')+3);
+    console.log(str + 100);
+    
+
+
+    // console.log(str.indexOf('i')!=-1);
+
+    // console.log(str.includes('i'));
+
+   
+
+</script>
+</body>
+</html>

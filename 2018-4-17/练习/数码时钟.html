@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+    list-style: none;
+}
+li{
+    float: left;
+}
+ul{
+    position: relative;
+    width:400px;
+    margin: 100px auto;
+    overflow: hidden;
+}
+li{
+    width:45px;
+    height: 61px;
+    /* overflow: hidden; */
+    position: relative;
+    top:0;
+    transition:500ms;
+}
+</style>
+</head>
+<body>
+    <ul id="ul">
+        <li>
+            <img src="../img/9.png">
+            <img src="../img/0.png">
+        </li>
+        <li>
+            <img src="../img/0.png">
+            <img src="../img/0.png">
+        </li>
+
+        <!-- <li>
+            <img src="../img/second1.png">  
+        </li>
+        <li>
+            <img src="../img/0.png">
+            <img src="../img/0.png">
+        </li>
+        <li>
+            <img src="../img/second1.png">  
+        </li>
+        <li>
+            <img src="../img/0.png">
+            <img src="../img/0.png">
+        </li> -->
+    </ul>
+<script>
+    /*
+        秒
+    */
+    const ul = document.getElementById('ul');
+    const li = ul.getElementsByTagName('li');
+    
+
+    //../img/0.png
+
+    // let num = 09;
+
+    /*
+        34  刚才的时间
+
+        35  现在的时间
+
+
+    */
+   let oldTime = '00';
+   let timer = setInterval(function(){
+        let date = new Date();
+        let s = tDou(date.getSeconds());
+        for(let i=0;i<li.length;i++){
+            //刚才的不等于现在的，就可以运动
+            if(oldTime[i] != s[i]){
+                move(li[i],s[i]);
+            }
+        }
+        /*
+            为了下次使用
+        */
+        oldTime = s;
+        // console.log(s);
+   },1000);
+
+   function tDou(n){return n<10?'0'+n:''+n};
+
+
+    
+    function move(li,num){
+        /*
+            把当前的li传入进来，从这个li下去获取img
+        */
+        const img = li.getElementsByTagName('img');
+        img[1].src = '../img/'+num+'.png';
+        li.style.transition = '500ms';
+        li.style.top = '-61px';
+        setTimeout(function(){
+            li.style.transition = 'none';
+            li.style.top = '4px';
+            img[0].src = '../img/'+num+'.png';
+        },510);
+    }
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/css.css" />
+</head>
+
+<body>
+    <div id="box">
+        <header id="head">
+            <div id="top">
+                <h1 class="title">
+						<a href="" title="妙味云盘"></a>
+					</h1>
+                <div class="right">
+                    <div class="user">
+                        <span><img src="img/user-ico.jpg" alt="" /></span>
+                        <i></i>
+                    </div>
+                    <div class="gap"></div>
+                    <div class="set"></div>
+                </div>
+            </div>
+            <div id="nav">
+                <ul class="nav_left" onselectstart="return false;">
+                    <li><i></i>下载</li>
+                    <li><i></i>分享</li>
+                    <li id="remove"><i></i>移动到</li>
+                    <li id="rename"><i></i>重命名</li>
+                    <li id="del"><i></i>删除</li>
+                    <li id="create"><i></i>新建文件夹</li>
+                    <li><i></i></li>
+                </ul>
+                <div class="nav_right">
+                    <div class="show_mode"></div>
+                    <div class="sort_mode">
+                        <i></i>
+                        <div class="cover"></div>
+                        <ul>
+                            <li>按时间排列</li>
+                            <li>按字母排列</li>
+                            <li>显示缩略图</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section id="section">
+            <div class="tree-menu" class="fix" onselectstart="return false;">
+                <!-- <ul>
+                    <li>
+                        <div class="tree-title tree-ico close">
+                            <span><i></i>微云</span>
+                        </div>
+                        <ul>
+                            <li>
+                                <div class="tree-title tree-ico close">
+                                    <span><i></i>我的音乐</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul> -->
+            </div>
+            <div class="folder-content">
+                <div class="breadmenu">
+                    <div class="checkall">
+                        <i class="checkedAll"></i>
+                    </div>
+                    <div class="bread-nav" onselectstart="return false;">
+                        <!-- <a href="javascript">微云</a>
+							<span>我的音乐</span> -->
+                    </div>
+                </div>
+                <div class="f-empty"></div>
+                <div id="yj-list">
+                    <span class="dl">下载</span>
+                    <span class="mv">移动到</span>
+                    <span class="de">删除</span>
+                    <span class="rn">重命名</span>
+                    <span class="sh">分享</span>
+                </div>
+                <div class="folders">
+                    <!-- <div class="file-item">
+							<img src="img/folder-b.png" alt="" />
+							<span class="folder-name">JS基础课程</span>
+							<input type="text" class="editor"/>
+							<i class="checked"></i>
+                        </div> -->
+                </div>
+            </div>
+        </section>
+        <div class="modal-tree">
+            <h2>选择存储位置</h2>
+            <p class="folderName">我的文档</p>
+            <div class="content">
+				
+            </div>
+            <div class="footer">
+                <input type="button" name="" class="cancel" value="取消">
+                <input type="button" name="" class ="ok" value="确定">
+                <p class="tip"></p>
+            </div>
+            <i class="icon_close"></i>
+        </div>
+        <div id="tanbox">
+            <div class="conf">
+                <i class="close-ico">X</i>
+                <h3 class="conf-title">删除文件</h3>
+                <div class="conf-content">
+                    确定要删除文件吗？
+                </div>
+                <div class="conf-btn">
+                    <a href="javascript:;">确定</a>
+                    <a href="javascript:;">取消</a>
+                </div>
+            </div>
+        </div>
+        <div class="full-tip-box">
+            <span class="full-tip">
+					<span class="inner">
+						<i class="ico"></i>
+						<span class="tip-text">新建文件夹成功</span>
+            </span>
+            </span>
+        </div>
+    </div>
+    <script src="js/sql/data.js"></script>
+    <script src="js/tools/index.js"></script>
+    <script src="js/setHeight/index.js"></script>
+    <script src="js/content/breadmenu.js"></script>
+    <script src="js/content/folders2.js"></script>
+<script>
+
+    /*
+        [
+            {
+                name:'微云',
+                children:[
+                    {
+                        name:'我的音乐',
+                        
+                    },
+                    {
+                        name:'我的文档'，
+                        children:[
+                            {},{},{}
+                        ]
+                    }
+                ]
+            }
+        ]
+
+        {
+            "0":{
+                id:0,
+                name:'微云',
+                pid:-1
+            },
+            "1":{
+                id:1,
+                name:'我的音乐',
+                pid:0
+            },
+            "2":{
+                id:2,
+                name:'我的文档',
+                id:0
+            },
+            "3":{
+                id:3,
+                name:'我的爱好',
+                pid:0
+            }
+        }
+    */
+
+</script>
+</body>
+
+</html>

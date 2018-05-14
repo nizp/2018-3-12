@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+#box {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -25px 0 0 -25px;
+	width: 50px;
+	height: 50px;
+	background: red;
+}	
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script type="text/javascript">
+function getIos()
+{
+      var u = navigator.userAgent;
+      return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+}
+(function(){
+	var box = document.querySelector('#box');
+	var t = 0;
+	var l = 0;
+	/*
+		ios 下 和 安卓下 取值相反
+	*/
+	window.addEventListener('devicemotion', function(e) {
+		var motion = e.accelerationIncludingGravity;
+		//为了慢一点
+		var x = (motion.x/2).toFixed(1) - 0;
+		var y = (motion.y/2).toFixed(1) - 0;
+		if(!getIos()){
+			x = -x;
+			y = -y;
+		}
+		t -= y;
+		l += x; 
+		box.style.WebkitTransfrom = box.style.transform = "translate("+l+"px,"+t+"px)";
+	});
+})();	
+</script>
+</body>
+</html>

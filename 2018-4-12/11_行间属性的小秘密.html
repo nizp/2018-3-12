@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    height:100px;
+    background: red;
+} 
+</style>
+</head>
+<body>
+   <img src="./img/0.png" id="img" alt="">
+<script>
+    /*
+        居然可以去判断src了
+    */
+    // console.log(img.src)
+    if(img.getAttribute('src',2) == './img/0.png'){
+        alert('是');
+    }else{
+        alert('不是');
+    }
+    img.removeAttribute('src');
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt">
+    <button id="btn">添加</button>
+    <ul id="ul">
+        <li>123</li>
+    </ul>
+<script>
+    // let html = '';
+
+    /*
+        创建元素：
+            document.createElement('tagName');
+
+
+        末位添加元素:
+            parent.appendChild(child);
+
+        在js中所有的DOM操作都是剪切。
+
+        动态方法和静态方法
+    */
+
+    // let lis = ul.querySelectorAll('li'); //静态方法
+
+    let lis = ul.children; //动态方法
+
+
+    for(let i=0;i<lis.length;i++){
+        lis[i].onclick = function(){
+            alert(this.innerHTML);
+        }
+    }
+    btn.onclick = function(){
+        let v = txt.value;
+        // // html += `<li>${v}</li>`;
+        // ul.innerHTML += `<li>${v}</li>`;
+        
+        let li = document.createElement('li');
+        li.innerHTML = v;
+
+        li.onclick = function(){
+            alert(this.innerHTML);
+        }
+
+        ul.appendChild(li);
+
+        txt.value = '';
+        console.log(lis.length);
+    }
+
+</script>
+</body>
+</html>

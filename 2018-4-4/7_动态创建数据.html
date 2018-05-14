@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    top:0;
+    left:0;
+    position: absolute;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    // let arr = [10,-10,8,-8,6,-6,4,-4,2,-2,0];
+
+    let arr = [];
+
+    for(let i=10;i >=2 ;i-=2){
+        arr.push(i,-i);
+    }
+    arr.push(0);
+
+    const box = document.getElementById('box');
+    let timer = null;
+    let num = 0;
+    box.onclick = function(){
+        timer = setInterval(function(){
+            box.style.left = arr[num] + 'px';
+            num ++;
+            if(num > arr.length){
+                clearTimeout(timer);
+                num = 0;
+            }
+        },30);
+    } 
+</script>
+</body>
+</html>

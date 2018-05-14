@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button id="btn1">后退</button>
+    <button id="btn2">前进</button>
+    <div id="box"></div>
+<script>
+    /*
+        history（历史记录管理）
+            HTML5的新的属性
+            在服务器环境下才能运行
+
+            back()  退一次
+            forward() 进一次
+            
+            go(num)  可以进退  
+                正数进
+                负数退
+            
+            pushState({},名字,url)
+                添加状态
+                url:要和自己的服务器环境对接
+
+            replaceState
+                替换在状态
+    */
+
+    let arr = ['肖云珊','云肖珊','珊云肖'],
+    num = 0;
+
+    btn2.onclick = function(){
+        box.innerHTML = arr[num];
+        history.pushState({num},'name','http://localhost/2018-4-17/8_history.html/'+num);
+        num ++;
+        num %= 3;
+    };
+
+    window.onpopstate = function(ev){ //细节信息
+        box.innerHTML = arr[ev.state.num];
+    }
+
+
+
+
+
+   
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <input type="text" id="txt"> -->
+    <!-- <select name="" id="t">
+        <option>上海</option>
+        <option>北京</option>
+    </select> -->
+    <button id="btn">按钮</button>
+<script>
+/*
+    事件:
+        事件，是文档或浏览器窗口发生一些特定交互的交互瞬间。
+        js可以侦听这些交互，在交互发生时执行相应的一些代码。
+
+    onclick
+    onmouseover
+    onmouseout
+    onscroll
+    onresize
+    onhashchange
+    onpopstate
+    
+    onchange    --当表单元素内容改变的时候触发的事件
+    ondblclick  --双击
+    
+
+*/
+
+    // txt.onchange = function(){
+    //     console.log(this.value);
+    // }
+    // t.onchange = function(){
+    //     console.log(this.value);
+    // }
+
+    /*
+        当用户操作浏览器页面的时候，会触发各种事件,这个时候如果
+        对应的事件有绑定事件函数，那么就触发
+
+        用户是被监听者
+        浏览器是监听者
+
+        *** 事件是元素本身自带的一个属性。
+    */
+    const btn = document.getElementById('btn');
+
+    // btn.onclick = function(){
+    //     alert(1);
+    // }
+
+    console.dir(btn.onclick);
+
+
+
+</script>
+</body>
+</html>

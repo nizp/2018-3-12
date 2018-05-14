@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+    list-style: none;
+}
+ul{
+    width:150px;
+    /* border: 1px solid #000; */
+    overflow: hidden;
+}
+li{
+    width:45px;
+    height: 200px;
+    float: left;
+}
+img{
+    width:45px;
+    height:200px;
+    opacity: 0;
+    transition:1.2s;
+}
+</style>
+</head>
+<body>
+    <ul id="ul">
+        <!-- <li>
+            <img _src="./img/0.png" alt="">
+        </li>
+        <li>
+            <img _src="./img/1.png" alt="">
+        </li>
+        <li>
+            <img _src="./img/2.png" alt="">
+        </li>  -->
+    </ul>
+<script>
+
+    /*
+        offsetLeft
+        offsetTop
+    */
+    let html = '';
+    for(let i=0;i<100;i++){
+        html += `<li>
+                <img index="./img/${i%9}.png" alt="">
+            </li>`
+    }
+    ul.innerHTML = html;
+
+    let lis = document.getElementsByTagName('li');
+    let imgs = document.getElementsByTagName('img');
+
+    let iH = window.innerHeight;
+    window.onscroll = function(){
+        for(let i=0;i<lis.length;i++){
+            if(lis[i].getBoundingClientRect().top <= iH){
+                if(imgs[i].getAttribute('index')){
+                    imgs[i].setAttribute('src',imgs[i].getAttribute('index'));
+                    imgs[i].removeAttribute('index');
+                    imgs[i].style.opacity = 1;
+                }
+            }
+        }
+    }
+
+
+
+
+</script>
+</body>
+</html>

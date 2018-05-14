@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    top:100px;
+    left:0;
+    position: absolute;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        getComputedStyle：
+            计算后的样式
+
+            getComputedStyle(ele).top
+
+        什么是真，什么是假？
+
+        真：true,非0数字，对象，非空字符串，函数，symbol
+        假：false,0,NaN,undefined,null,''
+    */
+
+   
+
+    const box = document.getElementById('box');
+
+    // console.log( getComputedStyle(box).top * 10)
+    
+    box.onclick = function(){
+        dou(this,'top',10,function(){
+            dou(box,'left');
+        });
+    }
+
+    function dou(obj,attr,n=10,callback){
+        let timer = null;
+        let num = 0;
+        let px = parseFloat(getComputedStyle(obj)[attr]);
+        //创建数据
+        let arr = [];
+        for(let i=n;i >=2 ;i-=2){
+            arr.push(i,-i);
+        }
+        arr.push(0);
+
+        //真正的抖
+        timer = setInterval(function(){
+            obj.style[attr] = px + arr[num] + 'px';
+            num ++;
+            if(num > arr.length){
+                clearTimeout(timer);
+                num = 0;
+                // if(callback){
+                //     callback();
+                // }
+
+                callback && callback();
+            }
+        },30);
+    } 
+</script>
+</body>
+</html>

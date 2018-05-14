@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+ul{}
+ul li{
+    width:50px;
+    height:50px;
+    float: left;
+    margin: 5px;
+    background: red;
+    transition: .5s;
+}
+</style>
+</head>
+<body>
+    <ul id="ul">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+<script>
+    let num = 0; 
+    let lis = ul.children;
+    let timer = null;
+    document.onclick = function(){
+        timer = setInterval(function(){
+            lis[num].style.transform = 'translateY(300px)'
+            num ++;
+        },100);
+    }
+</script>
+</body>
+</html>

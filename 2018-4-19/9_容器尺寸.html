@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+}
+#box{
+    width:100px;
+    height:100px;
+    background: red;
+    /* padding:100px; */
+    border: 5px solid #000;
+    overflow: hidden;
+}
+</style>
+</head>
+<body>
+    <div id="box">
+        <p>12321321321</p>
+        
+    </p>
+<script>
+    /*
+        容器的宽高 + padding = clientWidth/clientHeight
+
+        容器的宽高 + padding + border = offsetWidth/offsetHeight
+
+        被内容撑开的宽高（不加border）scrollWidth/scrollHeight
+    */
+    let box = document.getElementById('box');
+
+    // console.log(box.clientWidth);
+
+    // console.log(box.offsetWidth);
+
+    // console.log(box.offsetHeight);
+
+    console.log(box.scrollHeight);
+
+
+    // console.log(getComputedStyle(box).width);
+
+    // console.log(box.style.width); //A:100  B:100px  C:undefind  D:报错  E:''
+</script>
+</body>
+</html>

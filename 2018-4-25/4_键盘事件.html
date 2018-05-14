@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="t">
+    <ul id="ul"></ul>
+<script>
+    /*
+        keyCode  键值  数字类型
+
+        上  38
+        下  40
+        左  37
+        右  39
+
+        回车 13
+
+        如果同时按2个键，那么下面的会把上面的键值覆盖。
+
+        特殊按键：
+            ev.ctrlKey  -> 布尔值  按着就为true
+            ev.shiftKey
+            ev.altKey
+        
+    */
+    t.onkeyup = function(ev){
+        if(ev.keyCode === 13 && ev.ctrlKey){
+            let li = document.createElement('li');
+            li.innerHTML = t.value;
+            ul.appendChild(li);
+            t.value = '';
+        }
+        console.log(ev.ctrlKey,ev.keyCode);
+    }
+
+</script>
+</body>
+</html>

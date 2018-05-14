@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        倒计时原理：
+            未来的时间 - 现在的时间 = 还剩下多少时间
+
+            相减后的值为时间戳的形式（毫秒）
+        
+        new Date(2018,2,11,12)
+
+
+        86400
+        3600
+        60
+
+        第一种公式：
+	
+			天：86400 = 60*60*24  : Math.floor(t/86400)
+			
+			小时：Math.floor(t%86400/3600)
+			
+			分钟：Math.floor(t%86400%3600/60)
+			
+			秒：Math.floor(t%60)
+	
+		第二种公式：
+			天	Math.floor(t/86400);
+				t%=86400;
+			小时	var h=Math.floor(t/3600);
+				t%=3600;
+			分钟	var m=Math.floor(t/60);
+			秒	t%=60;
+
+
+    */
+//    console.log(new Date('2018,3,11,12:00:00'))//未来的时间
+    let f = new Date('2018,3,11,12:00:00'); //未来的时间
+    time();
+    setInterval(time,1000);
+    function time(){
+        let o = new Date();
+        let t = Math.floor(f - o) / 1000;
+        let id = Math.floor(t/86400);
+        t%=86400;
+        let iH = Math.floor(t/3600);
+        t%=3600;
+        let iM = Math.floor(t/60);
+        t%=60;
+        console.log(iM +'分'+ Math.floor(t) + '秒');
+    }
+
+
+
+
+
+    // console.log(s/60);
+
+</script>
+</body>
+</html>

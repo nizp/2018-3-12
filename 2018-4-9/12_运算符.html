@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+      钱  && vip ——> 打折
+
+        左值true 会去右值
+            
+
+       钱 || 手机 -> 买到商品
+       
+        左值如果成立就不会去看右值，否则去看右值
+
+        
+        ?:
+            非ta即ta
+
+    */
+
+//    let a = 0 || (5-2) && (7-7) && true || false && undefined && 123;
+
+    // let a =  0 && 5-2 || (7-8) && false || true || undefined && 123;
+
+//    console.log( a );
+
+    // let a = true ? 1 : 2;
+
+    let a = 0 && 5-2 || (7-8) && false?{}:[] && false || undefined && 123 ? 6 : 8 && true || 10;
+
+    console.log(a);
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+}
+#div1{
+    position: relative;
+}
+#div2{
+    position: absolute;
+    top:100px;
+}
+#div3{
+    top:100px;
+    position: absolute;
+}
+
+
+</style>
+</head>
+<body>
+    <div id="div1">
+        -1
+        <div id="div2">
+            0
+            <span>1</span>
+            <div id="div3">2</div>
+        </div>
+    </div>
+<script>
+    /*
+        offsetParent:
+            定位父级
+    */
+    // console.log(div3.offsetParent);
+
+    // console.log(div3.offsetTop);
+
+    // console.log(div3.getBoundingClientRect().top);
+
+    
+    let obj = div3;
+    let itop = 0;
+
+    /*
+        判断是否有obj
+        只要有就加上obj到定位父级的距离
+
+        更改obj = 当前元素的定位父级
+    */
+    //判断是否有obj
+    while(obj){
+        //只要有就加上obj到定位父级的距离
+        itop += obj.offsetTop;
+        //更改obj = 当前元素的定位父级
+        obj = obj.offsetParent;
+        console.log(obj);
+    }
+
+    console.log(itop);
+
+
+</script>
+</body>
+</html>

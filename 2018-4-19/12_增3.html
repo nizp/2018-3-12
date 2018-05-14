@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt">
+    <button id="btn">添加</button>
+    <ul id="ul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+<script>
+    let lis = ul.querySelectorAll('li');
+    /*
+        A:1234   B:3241 C:4321  D:2431  E:4213  F:1324
+
+        [1,2,3,4]
+    */
+    btn.onclick = function(){
+        for(let i=0;i<lis.length;i++){
+            ul.appendChild(lis[i]);
+        }
+    }
+</script>
+</body>
+</html>

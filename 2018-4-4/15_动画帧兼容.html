@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #box{
+        width:100px;
+        height: 100px;
+        background: red;
+        position: absolute;
+        left:0;
+        top:0;
+    }
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        兼容:
+            1.加前缀的兼容
+                webkit,moz
+
+            2.
+                CancelRequestAnimationFrame
+
+    */
+
+    // window.requestAnimationFrame = window.requestAnimationFrame || window.msRequestAnimationFrame || window.webkitRequestAnimationFrame 
+
+    // var arr = ['ms','o','webkit','moz'];
+    // /*
+    //     判断length 并且 window上还没有requestAnimationFrame 才循环添加动画帧
+    // */
+    // for(var i=0;i<arr.length && !window.requestAnimationFrame;i++){
+    //     //开始的动画帧
+    //     window.requestAnimationFrame = arr[i]+'RequestAnimationFrame';
+    //     window.cancelAnimationFrame =  arr[i]+'CancelAnimationFrame' || arr[i] +'CancelRequestAnimationFrame';
+       
+    // }
+
+    // console.log(requestAnimationFrame)
+
+    //如果没有动画帧，我就自己创建一个动画帧
+    var lastTime = 0;
+    if(!window.requestAnimationFrame ){
+        window.requestAnimationFrame = function(callback){
+            var currTime = Date.now(); //现在的时间
+            /*
+                现在的时间 - 刚才的时间 = 等于使用了多少时间
+
+                如果 16 减 使用的时间 为负数 那么设置定时器的时间就为0
+                否则就为相减的时间
+
+            */
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));    
+            
+            var id = window.setTimeout(function(){
+                callback(); 
+            },timeToCall);
+            /*
+                现在的时间 + 使用的时间 = 上一次一共用了多少时间
+            */
+            lastTime = currTime + timeToCall; 
+            return id; //为了关闭定时器
+        }
+    }
+
+    if (!window.cancelAnimationFrame){    
+        window.cancelAnimationFrame = function(id) {    
+            clearTimeout(id);    
+        };    
+    }
+
+
+    // requestAnimationFrame(move);
+
+    var timer;
+    var num = 0;
+    ;(function move(){
+        requestAnimationFrame(move);
+        if(num >= 600){
+            cancelAnimationFrame(timer);
+            timer = null;
+            return;
+        }else{
+            num += 10;
+            box.style.left = num + 'px';
+        }
+    })();
+
+    
+
+
+
+</script>
+</body>
+</html>

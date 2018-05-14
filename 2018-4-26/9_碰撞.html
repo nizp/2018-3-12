@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height:100px;
+    background: red;
+    position: absolute;
+    top:50px;
+    left:0;
+}  
+#box2{
+    width:100px;
+    height:100px;
+    background:green;
+    margin: 200px auto;
+}  
+#box2.active{
+    background: tomato;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>   
+    <div id="box2"></div>   
+<script>
+    /*
+        什么时候没碰到，否则就是碰到了
+
+        br(100) < cl(200)
+    */
+    box.onmousedown = function(ev){
+        let disX = ev.pageX - box.offsetLeft;
+        let disY = ev.pageY - box.offsetTop;
+        document.onmousemove = function(ev){
+            let bl = ev.pageX - disX;
+            let bt = ev.pageY - disY
+            let br = bl + box.offsetWidth;
+            let bb = bt + box.offsetHeight;
+
+
+            let cl = box2.offsetLeft;
+            let ct = box2.offsetTop;
+            let cr = cl + box2.offsetWidth;
+            let cb = ct + box2.offsetHeight;
+
+            if(br < cl || bb < ct || bl > cr || bt > cb){
+                box2.className = '';
+            }else{
+                //碰到了
+                box2.className = 'active';
+            }
+            
+            box.style.left = bl + 'px';
+            box.style.top = bt + 'px';
+            
+
+        }
+        document.onmouseup = function(){
+            document.onmouseup = document.onmousemove = null;
+        }
+        return false;
+    }
+
+</script>
+</body>
+</html>

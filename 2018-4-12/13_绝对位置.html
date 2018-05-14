@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        找到元素到页面顶端的位置  --- 绝对位置
+        ele.getBoundingClientRect()
+
+        {
+            top,
+            left,
+            right,
+            bottom,
+            width,
+            height,
+            x,
+            y
+        }
+    */
+    var box = document.getElementById('box');
+    console.log( box.getBoundingClientRect() )
+   
+</script>
+</body>
+</html>

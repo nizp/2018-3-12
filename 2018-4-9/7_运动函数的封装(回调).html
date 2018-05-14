@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:100px;
+    top:0;
+    border-radius: 50%;
+}
+#box2{
+    width:100px;
+    height: 100px;
+    background: green;
+    position: absolute;
+    left:100px;
+    top:150px;
+    border-radius: 50%;
+}
+</style>
+</head>
+<body>
+    <button id="btn">停止</button>
+    <div id="box"></div>
+    <div id="box2"></div>
+<script src="tween.js"></script>
+<script>
+    /*
+        时间版运动
+
+            目标点 * (已过时间/总共的时间) = 已走了多少路程
+
+            已过时间 = 现在时间 - 刚才时间
+
+        当某个条件成立时执行的函数就叫回调函数（钩子函数）
+    */
+    const box = document.getElementById('box');
+    const box2 = document.getElementById('box2');
+    const btn = document.getElementById('btn');
+    let timer = null;
+
+    box.onclick = function(){
+        move(box,'left',2000,550,function(){
+            move(box,'top',300,550,true);
+        });
+    }
+    box2.onclick = function(){
+        move(box2,'left',2000,550);
+    }
+
+    /*
+        属性和变量
+            let timer = null;
+
+            obj.timer = null;
+
+            obj.style.left
+
+            obj = {
+                style:{
+                    left:,
+                    top:
+                }
+            }
+    */
+
+    btn.onclick = function(){
+        cancelAnimationFrame(box.timer);
+        // cancelAnimationFrame(box2.timer);
+    }
+
+    function move(obj,attr,d,c,callback){
+        let b = parseFloat(getComputedStyle(obj)[attr]);
+        //真正目标点的位置 = 目标点的位置 - 当前的位置
+        c = c - b;
+        let oldDate = Date.now(); //时间戳  100
+        (function animate(){
+            obj.timer = requestAnimationFrame(animate);
+           //现在的时间 - 刚才的时间 = 花费的时间
+           let t = Date.now() - oldDate; //116.7
+            //当花费的时间大于或者等于总时间，就让花费时间=总时间
+            if(t >= d){
+                t = d;
+                cancelAnimationFrame(obj.timer);
+            }
+            //要加上一个起始的位置
+            // box.style.left = b + d * (t/c) + 'px';
+            let v = Tween.linear(t, b, c, d);
+            obj.style[attr] = v + 'px';
+            //t === d说明走完了
+            if(t === d){
+                // alert('真的走完了')
+                // if(callback){
+                //     callback();
+                // }
+               callback && typeof callback === 'function' && callback();
+            }
+        })();
+    }
+</script>
+</body>
+</html>

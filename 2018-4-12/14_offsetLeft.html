@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+}
+div{
+    padding:100px;
+}
+#div1{
+    background: red;
+}
+#div2{
+    background: skyblue;
+    position: relative;
+    border: 10px solid #000;
+}
+#div3{
+    zoom:1;
+    background: yellowgreen;
+    position: absolute;
+    left:200px;
+    border: 20px solid #000;
+    margin-left:10px; 
+}
+</style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2">
+            <div id="div3"></div>
+        </div>
+    </div>
+<script>
+    /*
+        290
+        310
+        300
+
+        offsetLeft/offsetTop
+            offsetLeft：
+                当前元素的左外边框，到定位父级的左内边框的距离
+    */
+    
+    console.log(div3.getBoundingClientRect().top);
+
+    window.onscroll = function(){
+        console.log(div3.getBoundingClientRect().top);
+    }
+</script>
+</body>
+</html>

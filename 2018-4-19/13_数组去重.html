@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // let arr = [1,'1',1,1,1,2,2,3,4,5,6,7,4,2,3,4,[1,2,3],[1,2,3],[],[],{},{name:123}];
+
+    let arr = [1,'1',1,1,1,2,2,3,4,5,6,7,4,2,3,4];
+
+    /*
+        [1,1,2,3]
+        splice -> 更改数组
+
+        
+    */
+
+    //[1,2,3,4,5,6,7]
+    // for(let i=0;i<arr.length;i++){
+    //     for(let j=i+1;j<arr.length;j++){
+    //         if(arr[i] == arr[j]){
+    //             arr.splice(j,1);
+    //             j--;
+    //         }
+    //     }
+    // }
+
+    // console.log([...new Set(arr)]); //不允许有重复项
+
+    let obj = {};
+    let arr2 = [];
+
+    /*
+        {
+            number1:true,
+            string1:true
+            2:true
+        }
+    */
+
+    // let toS = Object.prototype.toString;
+    // for(let i=0;i<arr.length;i++){
+    //     /*
+    //         只要对象中没有这个属性，就push到arr2中并且把刚才没有属性添加到这个对象中
+    //     */
+    //     // if(typeof arr[i] == 'object' || !obj[typeof arr[i] + arr[i]]){
+    //     if(toS.call(arr[i])==='[object Object]' || toS.call(arr[i])==='[object Array]' || !obj[typeof arr[i] + arr[i]]){
+    //         arr2.push(arr[i]);
+    //         obj[typeof arr[i] + arr[i]] = true;
+    //     }
+    // }
+    // console.log(arr2);
+
+
+    // let arr3 = arr.filter((e,i,all)=>{
+    //     // console.log(all[i])
+    //     // if(all.indexOf(e)){
+    //     //     console.log(e);
+    //     //     // return e;
+    //     // }
+    //     //当前的e的位置不在第一次找的位置就留下（过滤不是第一次出现位置值）
+    //     // console.log(all);
+    //     if(i == all.indexOf(e)){
+    //         return true;
+    //     }
+       
+    // });
+
+    console.log(arr.filter((e,i,all)=>i==all.indexOf(e)));
+
+
+</script>
+</body>
+</html>

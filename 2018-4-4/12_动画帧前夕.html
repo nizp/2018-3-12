@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:0;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        requestAnimationFrame（动画帧）
+            根据刷新频率16.7毫秒每次来做动画
+
+            1.经过浏览器优化，动画更流畅
+
+	        2.窗口没激活时，动画将停止，省计算资源
+
+	        3.更省电，尤其是对移动终端
+    */
+    const box = document.getElementById('box');
+    let num = 0;//有过程
+    let timer = null;
+
+
+
+    document.documentElement.onclick = function(){
+
+        let oldTime = Date.now(); //点击时候的时间
+        timer = setInterval(function(){
+           let now =  Date.now() - oldTime; //现在的时间 - 点击时候的时间 = 定时器用了多少时间 
+           console.log(now);
+           oldTime = Date.now(); //现在的时间等于 下次的点击的时间
+            if(num > 600){
+                clearInterval(timer);
+            }else{
+                num += 10;
+                box.style.left = num + 'px';
+            }
+        },16.7);
+    }
+
+
+
+
+</script>
+</body>
+</html>

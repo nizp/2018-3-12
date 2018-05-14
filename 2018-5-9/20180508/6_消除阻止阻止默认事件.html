@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=no" />	
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+.box {
+	margin: 30px auto;
+	width: 200px;
+	height: 200px;
+	background: red;
+}	
+#i{
+	border: 2px solid #000;
+}
+</style>
+</head>
+<body>
+<div id="page">
+	<a href="http://www.baidu.com" id="b">百度</a>
+	<a href="http://www.taobao.com" id="c">tb</a>
+	<input type="text" id="i"/>
+	<div class="box">box1</div>	
+	<div class="box" id="box2">box2</div>	
+	<div class="box">box3</div>	
+	<div class="box">box4</div>	
+	<div class="box">box5</div>	
+</div>	
+<script type="text/javascript">
+// document.addEventListener('touchstart', function(e) {
+// 	e.preventDefault();
+// });
+/*
+	新版 webkit 内核不支持 给 document  和 body 这些元素添加 touch 的阻止默认行为
+
+*/
+(function(){
+	var page = document.querySelector('#page');
+	//把焦点事件都阻止掉了。包括a,input
+	page.addEventListener('touchstart', function(e) {
+		e.preventDefault();
+	});
+	var box2 = document.querySelector('#box2');
+	box2.addEventListener('touchstart', function(e) {
+		e.stopPropagation();
+	});  
+
+	const a = document.getElementsByTagName('a');
+	for(let i=0;i<a.length;i++){
+		a[i].addEventListener('touchstart', function(ev) {
+			ev.stopPropagation();
+		});  
+	}
+	// i.addEventListener('touchstart', function(e) {
+	// 	e.stopPropagation();
+	// });  
+	// b.addEventListener('touchstart', function(e) {
+	// 	e.stopPropagation();
+	// });  
+})();
+/*
+	阻止默认事件带来的问题:
+		1. 禁止滑动
+		2. 阻止所有的鼠标事件
+		3. 阻止内容选中
+		4. 阻止长按时菜单
+		5. 阻止输入框输入
+		6. 阻止默认的多指操作
+		7. 阻止页面回弹(橡皮筋效果)
+*/	
+</script>
+</body>
+</html>

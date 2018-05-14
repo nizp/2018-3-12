@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<style>
+		#box{
+			width:0;
+			height: 0;
+			background:rgba(0,0,0,.2);
+			border: 1px dashed #000;
+			position: absolute;
+			top:0;
+			left:0;
+		}
+		body{
+			margin: 0;
+		}
+		#warp {
+			width: 700px;
+			height: 500px;
+			margin: 30px auto;
+			background: url(img/warp.png) no-repeat;
+			position: relative;
+			/*text-align: center;*/
+		}	
+		#files {
+			position: absolute;
+			left: 148px;
+			width:420px;
+			top: 200px;
+			overflow: auto;
+		}
+		.add {
+			width: 132px;
+			height: 47px;
+			display: inline-block;
+			text-decoration: none;
+			background: url(img/addberfor.png) no-repeat;
+			background-size: cover;
+			position: absolute;
+			left: 290px;
+			bottom: 102px;
+		}
+		.del{
+			width: 132px;
+			height: 48px;
+			display: inline-block;
+			text-decoration: none;
+			background: url(img/add.png) no-repeat;
+			position: absolute;
+			left: 295px;
+			bottom: 50px;
+		}
+		.file{
+			width: 116px;
+			height: 118px;
+			border: 2px solid rgba(0,0,0,0);
+			position: relative;
+			border-radius: 10%;
+			float: left;
+			margin-right: 10px;
+			
+		}
+		.fileActive{
+			border-color:#b5a3c2 ;
+			background:#6f5872 ;
+		}
+		.file .ico{
+			margin: 20px auto 0;
+			width:70px;
+			height: 57px;
+			background: url(img/wenjian.png) no-repeat;
+			background-size: cover;
+		}
+		.file .check{
+			position: absolute;
+			left: 0;
+			top: 0;
+			display: none;
+		}
+		.fileActive .check{
+			display: block;
+		}
+		.file span{
+			display: block;
+			font: 16px/34px "微软雅黑";
+			text-align: center;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			color: #fff;
+			
+		}
+		.file .text{
+			position: absolute;
+			left: 12px;
+			top: 82px;
+			height: 20px;
+			padding: 1px;
+			display: none;
+			width: 80px;
+			font: 16px/34px "微软雅黑";
+		}
+	</style>
+</head>
+<body>
+	<section id="warp">
+		<div id="files">
+			<!--<div class="file">
+				<div class="ico"></div>
+				<input type="checkbox" class="check">
+				<span>新建文件夹</span>
+				<input type="text" class="text" style="display: none;">
+			</div>
+			<div class="file">
+				<div class="ico"></div>
+				<input type="checkbox" class="check">
+				<span>新建文件夹</span>
+				<input type="text" class="text" style="display: none;">
+			</div>
+			<div class="file"
+				<div class="ico"></div>
+				<input type="checkbox" class="check">
+				<span>新建文件夹</span>
+				<input type="text" class="text" style="display: none;">
+			</div>-->
+		</div>
+		<a href="javascript:;" class="add"></a>
+		<a href="javascript:;" class="del"></a>
+	</section>
+<script>
+	/*
+		先看第一个有没有 -> 没有直接返回第一个
+		再看有没有下一个,如果没有下一个，就返回当前的num+1
+		再再看当前的num+1 和 下一个的num是不是相等
+		如果说相等就继续循环，如果不相等，返回num+1
+	*/
+	var data=[
+		{
+			name:'新建文件夹1',
+			num:1,
+			id:0
+		},
+		// {
+		// 	name:'新建文件夹2',
+		// 	num:2
+		// },
+		// {
+		// 	name:'新建文件夹3',
+		// 	num:3
+		// },
+		// {
+		// 	name:'新建文件夹3',
+		// 	num:4
+		// }
+	];
+	const add = document.querySelector('.add');
+	const del = document.querySelector('.del');
+
+	//新建文件夹补位
+	function getNum(){
+		//如果没有第一个，就返回第一个
+		if(data[0].num != 1){
+			return 1;
+		}
+		for(let i=0;i<data.length;i++){
+			//有没有下一个	
+			if(data[i+1]){
+				//如果有，判断当前的num+1 是不是下一个
+				if((data[i].num+1) != data[i+1].num){
+					//如果不是，没有下一个（返回下一个）
+					return data[i].num + 1;
+				}
+			}else{
+				//如果没有下一个，就直接下一个
+				return data[i].num + 1;
+			}
+		}
+	}
+	// console.log(getNum());
+	add.onclick = function(){
+		let div = document.createElement('div');
+		div.className = 'file';
+		div.innerHTML = `<div class="ico"></div>
+				<input type="checkbox" class="check">
+				`;
+		let span = document.createElement('span');
+		let txt = document.createElement('input');
+		txt.className = 'text';
+		
+		txt.style.display = 'block';
+		//新文件夹，到底是第几个
+		let v = (getNum()==1)?'新建文件夹':'新建文件夹('+getNum()+')';
+		span.innerHTML = v;
+		span.style.display = 'none';
+		txt.value = v;
+		div.appendChild(txt);
+		div.appendChild(span);
+		files.appendChild(div);
+		txt.select();
+		//失去焦点的时候添加数据
+		txt.onblur = function(){
+			let obj = {}
+			//文件夹的名字改了,就不加入新建文件夹的行列了
+			//不带num
+			if(this.value != v){
+				obj = {
+					name:txt.value,
+					id:+new Date
+				}
+			}else{
+				//没有改变新文件夹的名字，加入到新建文件夹的行列中
+				obj = {
+					name:txt.value,
+					num:getNum(),
+					id:+new Date
+				}
+			}
+			//添加在缺少位置的数据
+			if(obj.num){
+				data.splice(getNum()-1,0,obj);
+			}else{
+				data.push(obj);
+			}
+			render();
+			// txt.style.display = 'none';
+			// span.style.display = 'block';
+			// span.innerHTML = txt.value;
+			// console.log(data)
+		}
+	}
+
+	render();
+	function render(){
+		let html = '';
+		data.forEach((e,i)=>{
+			html += `<div class="file">
+				<div class="ico"></div>
+				<input type="checkbox" class="check">
+				<span style="display:block;">${e.name}</span>
+				<input type="text" 
+					value="${e.name}"
+					class="text" style="display: none;">
+			</div>`;
+		});
+		files.innerHTML = html;
+	}
+
+
+	/*
+		框选
+	*/
+	warp.onmousedown = function(ev){
+		/*
+			还没做的：
+				排除文件夹，新建文件夹按钮才可以拖拽
+		*/
+		if(ev.button != 0)return;
+        let div = document.createElement('div');
+        let disX = ev.pageX;
+        let disY = ev.pageY;
+		div.id = 'box';
+		// console.log(disX)
+        div.style.left = disX - warp.offsetLeft + 'px';
+        div.style.top = disY - warp.offsetTop + 'px';
+		warp.appendChild(div);
+		
+        warp.onmousemove = function(ev){
+            /*
+                拖拽的时候哪个值小，就用哪个
+            */
+            let l = Math.min(disX,ev.pageX);
+			let t = Math.min(disY,ev.pageY);
+			// console.log(document.querySelector('.file'))
+			if(bong(div,document.querySelector('.file'))){
+				document.querySelector('.file').classList.add('fileActive');
+			}else{
+				// console.log('bu');
+				document.querySelector('.file').classList.remove('fileActive');
+			}
+			
+            div.style.left = l - warp.offsetLeft + 'px';
+            div.style.top = t - warp.offsetTop + 'px';
+            div.style.width = Math.abs(ev.pageX - disX) + 'px';
+            div.style.height =  Math.abs(ev.pageY - disY) + 'px';
+        }
+        document.onmouseup = function(){
+            div.remove();
+            warp.onmousemove = document.onmouseup = null;
+		}
+		return false;
+	}
+
+	function bong(box,box2){
+		let bl = box.offsetLeft - files.offsetLeft;
+		let bt = box.offsetTop - files.offsetTop;
+		let br = bl + box.offsetWidth;
+		let bb = bt + box.offsetHeight;
+
+		let cl = box2.offsetLeft;
+		let ct = box2.offsetTop;
+		let cr = cl + box2.offsetWidth;
+		let cb = ct + box2.offsetHeight;
+
+		// console.log(br,cl);
+
+		if(br < cl || bb < ct || bl > cr || bt > cb){
+			return false;
+		}else{
+			//碰到了
+			return true;
+		}
+	}
+
+
+</script>
+</body>
+</html>

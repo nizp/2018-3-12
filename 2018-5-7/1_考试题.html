@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ul"></ul>
+<script>
+    /*
+        1.CD
+        2.BD
+        3.AC
+        4.C
+        5.B
+        6.D
+        7.AC
+        8.A
+        9.acb
+        10.BAC
+        11.AC
+        12.B
+        13.C
+        14.B
+        15.BC
+        16.ce
+        17.C
+        18.C
+        19.B
+        20.A
+        21.D
+        22.C
+        23.D
+        24.BAB
+        25.AAB
+
+    */
+    // let li = ul.getElementsByTagName('li');
+    for(var i=0;i<6;i++){
+        /*
+            因为用的是 += 所以后一个把前一个覆盖
+        */
+        // ul.innerHTML += '<li>'+i+'</li>';
+        var li = document.createElement('li');
+        li.innerHTML = i;
+        li.onclick = function(){
+            alert(this.innerHTML);
+        }
+        ul.appendChild(li);
+        // li[i].onclick = function(){
+        //     alert(this.innerHTML);
+        // }
+    }
+
+
+
+    document.onclick = function(ev){
+        console.log(ev.which);
+    }
+    document.onkeydown = function(ev){
+        console.log(ev.which);
+    }
+</script>
+</body>
+</html>

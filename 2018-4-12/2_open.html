@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <a href="http://www.miaov.com" target="_blank">点击</a>
+<script>
+    /*
+        target="_blank" 打开新窗口
+
+        window.open(URL,name,features,replace)
+            URL:链接地址
+            name:打开方式  默认新窗口（_blank）
+            features:新窗口的大小（兼容性极差）
+
+        http://www.runoob.com/jsref/met-win-open.html
+
+        window.location.href = "写入url地址"
+
+
+        在高版本浏览器下，如果不是用户主动触发，那么会拦截
+    */
+    document.documentElement.onclick = function(){
+        // let w = window.open('http://www.miaov.com','','width=300,resizable=no');
+        // console.log(w); //新窗口的window
+        // console.log(window); //当前窗口
+
+        // window.open('./3_close.html');
+
+        // window.location.href = 'http://www.miaov.com';
+
+    }
+    
+
+</script>
+</body>
+</html>

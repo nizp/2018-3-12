@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <ul id="ul">
+        <li>0</li>
+    </ul>
+<script>
+    ul.onclick = function(ev){
+        if(ev.target.tagName === 'LI'){
+            alert(ev.target.innerHTML);
+        }
+    }
+    let num = 0;
+    btn.onclick = function(){
+        let li = document.createElement('li');
+        li.innerHTML = ++num;
+        ul.appendChild(li); 
+    };
+
+</script>
+</body>
+</html>
