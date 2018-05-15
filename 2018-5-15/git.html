@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+}    
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script src="1.js"></scrip>
+<script>
+/*
+    技巧：
+        天天用，用了就熟了，不用就忘了
+        git
+    
+    git（工具） 
+        版本控制工具
+
+       控制 版本 
+
+       理解为代码的一种备份，方便控制版本
+    
+    svn
+        集成式
+            版本控制依赖网络传输，没有电和网就做不到版本控制
+            范围小，一般都是用在一个范围内（在本公司范围能用）
+            如果中央服务器挂了，整个公司就瘫痪了
+
+
+    git
+        分布式
+            不用网络就能进行版本控制
+
+    github
+        网站(程序员基友网站)
+        交友、代码托管、私有仓库、参与协作
+
+    git + github
+
+    1.github与本机关联
+        创建一个github账号
+        创建秘钥：
+            ssh-keygen -t rsa -C "你的邮箱名"
+        github中的settings -> sshkey
+
+    2.设置贡献者
+        配置本地提交的用户名和密码
+        git config --global user.email "你提交分支的时候提交记录里显示的用户邮箱"
+        git config --global user.name "提交分支的时候提交记录里显示的用户名"
+        git config --global user.name 查看用户邮箱
+
+        git config --list  查看所有配置项
+
+
+    clear 清屏
+    cd .. 回退目录
+    cd 目录名 -> 进入某个目录
+    ls 查看当前目录下的所有子文件
+
+    cd d: 进入盘符
+
+
+    到底有没有进行版本控制，跟.git文件有关
+    创建一个版本:
+        git init 
+
+        使用github来创建
+
+    三大区域:
+        工作区
+        暂存区
+        版本区
+
+        git status 查看当前的状态
+
+        工作区到暂存区:
+            git add 文件名
+
+            git add . 批量放入到暂存区
+
+        暂存区到版本区
+            git commit -m "注释"  
+                注释：主要为了你好辨别，然后去进行控制
+
+            git commit -a -m "注释"
+                直接从工作区到版本区
+                注意:最好是commit一次的，重复提交的时候就可以使用快捷方式
+                    如果没有提交过，那么是无效的。
+
+    对比:
+        工作区看暂存区
+            git diff
+
+        暂存区看版本区
+            git diff --cached
+        
+        工作区看版本区
+            git diff master
+
+        q退出
+    
+    撤销:
+        把暂存区撤销到工作区
+            git reset HEAD 文件名
+        
+        如果不小心删了，想还原这个文件
+            git checkout 文件名
+
+        如果有2个以上文件，一个提交到版本库了，
+        另一个忘记提交，
+        可以先将没提交的文件拉到暂存区，
+        然后通过git commit -m “注释” --amend 撤销回来，
+        最后自动一次性提交暂存区中的文件和撤销回来的版本
+        形成一个新的版本，撤销回来的版本就销毁了，
+        git log查看是否提交成功
+
+    删除:
+        工作区删除了，还想删除暂存区
+            git rm 文件名
+        
+        当一个文件到暂存区的时候，既想删除暂存区又想删除工作区
+            git rm -f 文件名
+
+    恢复:
+        git reset --hard 版本ID  （git log获取id）
+        
+
+
+
+
+
+        
+
+
+    
+
+    
+    
+
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+</script>
+</body>
+</html>
