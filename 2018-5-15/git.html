@@ -133,8 +133,12 @@
 
         git checkout 历史记录编码（git log获取） 文件名（要恢复的文件名）   指定的文件还原。
 
-        
+        git reset --hard HEAD^   回滚版本记录
 
+        git reset --hard HEAD~2  （以当前版本为基准跳过了2个，0,1,2）
+
+        当版本比较多的时候，如果操作版本次数也较多，直接git log有可能找不到想要的版本信息，这个时候使用
+        git reflog    快速查看历史版本记录，方便回滚
 
 
 
