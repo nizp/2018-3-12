@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        正则表达式:
+            
+            火星文 ^[^|s]\d+?.\w\n
+
+            专门用来操作（检：检验，索:搜索）字符串的一种工具||一种规则。
+  
+    */
+    
+
+    /*
+        找出下面字符串中带有数字的字符，并且放到一个数组中
+
+        找出下面字符串中带有数字的字符(包括连续的)，并且放到一个数组中
+    */
+
+    let str = 'dhsuaey71 9den1i9dj10die2jc8r9'; //[7,1,9,1,9,1,0,2,8]
+
+    let arr = [];
+
+    //[71,9,1,9,10,2,8]
+
+    /*
+        temp = '';
+
+        temp += 7   7
+        temp += 1   71
+
+        [71]
+        temp = '';
+    */
+    let temp = '';
+    for(let i=0;i<str.length;i++){
+        if(!isNaN(parseInt(str[i]))){
+            //arr.push(str[i]);
+            temp += str[i];  //temp += 9
+        }else{
+            if(temp){
+                arr.push(temp);
+                temp = '';
+            }
+        }
+    };    
+
+    if(temp){
+        arr.push(temp);
+        temp = '';
+    }
+    // console.log(arr);
+
+    console.log(str.match(/\d+/g));
+
+</script>
+</body>
+</html>

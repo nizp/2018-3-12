@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        正则表达式为一个对象
+            /字符串/  简写  里面只能为字符串
+            
+            new Regexp(正则||字符串) 标准写法
+
+        \转义符
+
+        \+一些字母，有可能会为一个特殊的符号
+    
+    区别:
+        let c = 2;
+        /c/   'c'  简写中的c认为是字符串（放不了变量）
+
+        new Regexp(c+'d')  c -> 2  这个中的c为变量，代表是2
+
+    */
+
+    // console.log(/a/);
+
+    // console.log(new RegExp('/a/')); //  a-> /a/ -> //a// 
+
+    /*
+        a
+        /a/
+
+        /a/
+
+        /\/a\//
+        /\/a\//
+    */
+
+
+    alert('通知:\\n明天早上不上课!');
+</script>
+</body>
+</html>
