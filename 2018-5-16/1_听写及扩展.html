@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+    <button id="btn">下一个</button>
+    <button id="btn2">上一个</button>
+    <img src="http://www.vsochina.com/data/uploads/resource/batch/2/123504488153a276b545996.jpg" alt="">
 <script>
     /*
         1.history能干嘛，都有哪些方法
@@ -15,14 +18,256 @@
 
         history.go()
 
+        history.forward();
+
         history.pushstate({},name,url);
 
-        onpopstate = function(ev){
+        window.onpopstate = function(ev){
             ev.state
         }
+    */
+    // let num = 0;
+    // btn.onclick = function(){
+    //     num ++;
+    //     history.pushState({num},'','http://localhost/1听写.html'+num);
+    //     console.log(num);
+    // }
+
+    // btn2.onclick = function(){
+    //     history.go(-1);
+    // }
+
+    // window.onpopstate = function(ev){
+    //     console.log(ev.state.num);
+    // }
+
+    /*
+        2.如何查看浏览器内核信息?
+    */
+    // console.log(window.navigator.userAgent);
+
+    /*
+        3.常用的DOM节点类型都有哪些，各代表多少
+
+        nodeType
+            1  元素
+            2  属性
+            3  文本
+            8  注释
+            9  document
+    */
+
+    /*
+        4.创建、插入、删除、替换的AIP怎么写？
+
+        document.createElement()
+
+        parent.appendChild(child);
+
+        parent.insertBefore(newChild,oldChild);
+
+        parent.removeChild(child)
+        child.remove();
+
+        parent.replaceChild(newChild,oldChild);
+
+    */
+
+    /*
+        5.有事件和没事件的区别是什么？
+
+            null还是undefined
+
+            ev || window.event
+    */
+
+    // console.dir(btn.onhehe);
+
+    /*
+        
+        6.事件模型（事件流）是啥？
+
+        从window起到目标点的阶段  捕获
+
+        目标阶段
+
+        目标阶段到window结束  冒泡
+
+    */
+
+    /*
+        7.举例说明冒泡的优缺点及解决冒泡的方案
+
+        优点:
+            ev.target
+        缺点:
+            div.onclick = function(){
+                alert(1)
+                div2.onclick = function(ev){
+                    alert(2);
+                    ev.cancelBubble = true
+                    ev.stopPropagation();
+                }
+            }
+
+            2 -> 1
+    */
+
+    /*
+        8.怎么阻止默认行为
+
+            return false
+
+            ev.preventDefault();
+
+    */
+
+    /*
+       9.滚轮事件有哪些？
+        onmousewheel  ev.wheelDelta  上滚+
+        DOMMouseScroll ev.detail     上滚-
 
 
     */
+
+    // window.onload = function(){
+    //     //当页面中的所有静态资源加载完成时触发
+    //     alert(1);
+    // }
+
+    // window.addEventListener('DOMContentLoaded',function(){
+    //     //当DOM加载完成时触发  在低版本是不兼容的。
+    //     //在低版本下 onreadystatechange
+    //     //在低版本IE下当DOM加载完成可以调用document.documentElement.doScroll('left')
+    //     //如果没有doScroll方法会报错，那么用try来解决
+    //     alert(1);
+    // });
+
+    // function ff(){
+    //     try{
+    //         fn();
+    //     }catch(e){
+    //         setTimeout(ff,500);
+    //     }
+    // }
+
+    /*
+        
+        10.如何获取键值？特殊键的有哪些，值是啥？
+        
+        ev.keyCode  number
+
+        ev.altKey  boolean
+        ev.shiftKey boolean
+        ev.ctrlKey boolean
+
+    */
+
+    /*
+        11.拖拽的原理
+            按下的时候记录下鼠标点到元素边的距离
+
+            移动的时候用移动的位置 - 按下的时候记录下鼠标点到元素边的距离 = 当前元素的位置
+
+            抬起的时候清move，up
+    */
+
+    /*
+        12.移动端的事件及事件对象的手指数应用场景是什么？
+
+        touchstart
+        touchmove
+        touchend
+
+        ev.touches  元素和屏幕  
+
+        ev.targetTouches  元素本身可以获取新添加的多指
+
+        ev.changedTouches  当前触发元素
+    */
+
+    /*
+        13.点透bug如何解决
+
+        父级.addEventListener('touchstart',function(ev){
+            ev.preventDedault();
+        });
+
+        setTimeout > 300ms
+        
+        不用焦点元素
+
+        焦点元素会失效 -> 阻止冒泡就能触发
+    */
+
+    /*
+        14.误操作解决原理
+
+        因为touchstart和touchend为一套事件
+
+        在抬起的时候看一看,start的坐标和抬起的坐标有没有在某个范围内
+        如果不在return
+    */
+   
+
+    // let btns = document.getElementsByTagName('button');
+    // let disX = 0,disY = 0;
+
+    // for(let i=0;i<btns.length;i++){
+    //     btns[i].addEventListener('touchstart',function(ev){
+    //        disX = ev.changedTouches[0].pageX;
+    //        disY = ev.changedTouches[0].pageY;
+    //     })
+    //     // btns[i].addEventListener('touchmove',function(ev){
+    //     //    let disX = ev.changedTouches[0].pageX;
+    //     //    let disY = ev.changedTouches[0].pageY;
+    //     // })
+    //     btns[i].addEventListener('touchend',function(ev){
+    //         let disX2 = ev.changedTouches[0].pageX;
+    //         let disY2= ev.changedTouches[0].pageY;
+            
+    //         if( wcz(disX2,disX,disY2,disY) )return;
+
+    //         console.log('点击');
+           
+    //     });
+    // }
+
+    // function wcz(disX2,disX,disY2,disY){
+    //         return Math.abs(disX2-disX) > 50 || Math.abs(disY2-disY) > 50
+    // }
+
+    /*
+        
+        15.摇一摇原理
+
+            1.拿到手机晃动的事件
+            2.找到最长的那个.x,y,z
+            3.这一次的x,y,z如果大于某个值就说明摇了
+            4.如果数值小了就说明摇停了
+    */
+
+    /*
+        16.自定义滚动条原理
+
+        比例:
+            scale = t / 到底部的top值（div1.offsetHeight - div2.offsetTop）
+
+            scale * (div3.offsetHeight - div4.scrollHeight)
+
+
+    */
+
+
+
+    
+
+    
+
+
+
+
+
 
 </script>
 </body>
