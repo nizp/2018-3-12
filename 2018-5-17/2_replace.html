@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        string.replace(要替换的|//,替换成什么|callback)    新的字符串
+    
+        敏感词:
+
+            |  或者
+            
+    */
+    // let str = 'a1ca2ca3c';
+
+    let str = '中国共产党总书记习近平说:"法轮功是邪教"';
+
+    console.log(str.replace(/共产党|习近平|法轮|邪/g,'*'));
+
+
+
+    // console.log(str.replace('1','壹'))
+
+    // console.log(str.replace(/\d/g,'*'))
+
+</script>
+</body>
+</html>

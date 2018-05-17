@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        请计算下列字符串的字节长度
+           假设：
+                数字、字母为1个字节
+                中文2个字节
+
+        [\u4e00-\u9fa5]
+    */
+
+    let str = '你好!mynameis_马虎。'; //17个;
+
+    let num = 0;
+
+    for(let i=0;i<str.length;i++){
+        if(/[\u4e00-\u9fa5]/.test(str[i])){
+            num += 2;
+        }else{
+            num ++;
+        }
+    }
+    console.log(num);
+
+    console.log(/[\u4e00-\u9fa5]/.test('遽'));
+
+
+</script>
+</body>
+</html>

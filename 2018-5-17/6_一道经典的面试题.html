@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        \w  一个字母数字下划线
+
+        子项：
+            ()
+
+            从左往右数
+
+        加了子项的callback:
+            $0  每次找到的数据
+            $1  就是第一个子项
+            // $2  就是第二个子项
+            ....
+
+            $2  index
+            $3  all
+            $4  undefined
+    */
+
+    let obj = {
+        name:'肾肾',
+        age:16,
+        j:'前端开发',
+        "2":'呵呵'
+    }
+    let str = '我的名字叫${name},年龄有${age}岁,职业:${j},${2}';
+
+    let s = str.replace(/\${(\w+)}/gi,function($0,$1){
+        return obj[$1];
+    });
+
+    console.log(s);
+
+    
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let str = 'a1ca2ca33ca4cabcaccadcazcaAcaZca^c';
+    /*
+        [] 在中括号中取其一
+
+        小写字母：
+            a-z
+        数字:
+            0-9
+        大写字母：
+            A-Z
+
+        大小写字母
+            A-Za-z
+        0-9A-Za-z
+
+        18-110  肿么写？
+
+        18
+        19
+
+        1[89]
+
+        20-99
+
+        [2-9][0-9]
+
+        100
+        
+        10[0-9] 110
+
+
+        120为什么可以找，因为120中包含了20
+
+        解决：
+            要看整个字符串是否都匹配，而不是某一段匹配就返回
+
+        
+        ^1200000$^13bdsad$^3728321$
+
+            ^开头
+
+            $结尾
+        
+        
+    */
+   let str2 = '200';
+    console.log('====================================');
+    // console.log(str.match(/a(\d|c|b)c/g));
+    // console.log(str.match(/a[\dcb]c/g));
+    // console.log(str.match(/a[A-Za-z]c/g));
+    // console.log(str.match(/a[0-9A-Za-z]c/g));
+    // console.log(str.match(/[18-110]/g));// ×
+    console.log(/^1[89]$|^[2-9][0-9]$|^10[0-9]$|^110$/.test(str2));
+    console.log('====================================');
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+        /*
+            子项:
+                ()
+
+                1.在正则中加括号,如果使用repalce，那么从第一参数之后就是子项
+
+                有几个子项，就会对应回调函数的参数
+
+                当子项用完，又是index，all，undefined
+
+                2.提权
+                    (1+2)*3
+
+            \d  一个数字
+
+            \D  一个非数字
+
+            \w  一个字母数字下划线
+            \W  一个非字母数字下划线
+        */
+
+       let str = '2018-05/////////////17';  //
+
+       let s = str.replace(/(\d+)\D+(\d+)\D+(\d+)/,function($0,$1,$2,$3){
+           return $1 +"年" + $2 + '月' + $3 + '日';
+       });
+
+       console.log(s);
+       
+
+
+
+
+
+</script>
+</body>
+</html>

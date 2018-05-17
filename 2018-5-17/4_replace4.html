@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt">
+    <ul id="ul"></ul>
+<script>
+    /*
+        string.replace(要替换的|//,替换成什么|callback)    新的字符串
+    
+        敏感词:
+
+            |  或者
+        
+        callback:默认 必须要有返回值，不然都为undefined
+            每次匹配到数据之后会调用一次这个函数
+
+            第一个参数:
+                每次匹配到的数据
+
+            第二个参数:
+                每次找到数据的下标
+
+            第三个参数:
+                整个字符串
+
+            第四个参数（包括之后）:
+                undefined
+
+        ['a','b']
+
+        a|b
+
+        /a/
+
+        new RegExp()
+
+    */
+    txt.focus();
+
+    let arr = ['艹','干你','靠','你妹','你大爷','金三胖','d'];
+
+    txt.onkeyup = function(ev){
+        if(ev.keyCode === 13){
+            let v = txt.value;
+            let str = arr.join('|');
+            let re = new RegExp(str,'gi');
+            let s = v.replace(re,function($0){
+                let temp = '';
+                let arr = ['^','&','*','$','~','#'];
+                for(let i=0;i<$0.length;i++){
+                    temp += arr[Math.floor(Math.random()*arr.length)]
+                }
+                return temp;
+            });
+            
+            ul.innerHTML += '<li>'+ s +'</li>'; 
+        }
+    }
+
+
+
+</script>
+</body>
+</html>
