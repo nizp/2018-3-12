@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        重复子项(子项重定向)
+            \number
+        
+        console.log(str.match(/a(3)\1(d)\2(g)\3+c/g));
+
+        a开头c结尾
+
+        中间为
+            (3)\1  第一个子项是3  \1 重复第一个子项3  ==  33
+            
+            (d)\2  第二个子项是d  \2 重复第二个子项d  ==  dd
+
+            (g)\3  第三个子项是g  \3+ 重复第三个子项g  ==  ggg
+    */
+
+    // let str = 'a33dggc';
+
+    // console.log(str.match(/a(\d)\1([a-z])\2\1\2c/g));
+
+    // console.log(str.match(/a(3)\1(d)\2(g)\3\1\2\3c/g));
+    // console.log(str.match(/a(3)\1(d)\2(g)\3+c/g));
+
+
+    /*
+        面试题
+            找出下面哪个重复的次数最多
+
+            {
+                a:5,
+                b:2,
+                c:3
+            }
+    */
+
+    let str = 'dbsah7dha1aauduauahadisajdkaj8hdisaaadkhsjahj1dkancsa';
+    // let obj = {};
+    // for(let i=0;i<str.length;i++){
+    //     if(obj[str[i]]){
+    //         obj[str[i]] ++;
+    //     }else{
+    //         obj[str[i]] = 1;
+    //     }
+    // }
+    // let max = -Infinity; 
+    // let key = '';
+    // for(let attr in obj){
+    //     if(obj[attr] > max){
+    //         max = obj[attr];
+    //         key = attr;
+    //     }
+    // }
+    // console.log(key,max);
+
+    str = str.split('').sort().join('');
+    let max = -Infinity; 
+    let key = '';
+    str.replace(/([0-9a-z])\1+/g,function($0,$1){
+        if(max < $0.length){
+            max = $0.length;
+            key = $1;
+        }
+    });
+
+    console.log(key,max);
+
+
+
+
+
+</script>
+</body>
+</html>

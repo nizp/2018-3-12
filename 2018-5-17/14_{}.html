@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+  /*
+    {a,b}
+        a最小
+        b最大
+
+        {0,5}  最小没有最多5个
+
+        +  {1,} 最小一个最多不限
+
+        ?  {0,1} 最小可以没有，最多只能有一个
+
+        *  {0,} 最小没有最多不限
+  */
+    let str = 'a232132131ca5432ca89caca8c';
+
+    // console.log(str.match(/a\d{0,}c/g));
+
+    // console.log(str.match(/a\d{0,1}c/g));
+
+    console.log(str.match(/a\d*c/g));
+
+
+</script>
+</body>
+</html>

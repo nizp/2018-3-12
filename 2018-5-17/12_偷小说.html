@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        <p class="pp">从前有一颗陨石坠落在了地球上,<span class="shitou">这颗陨石内部蕴藏这巨大能量</span></p>
+    
+        <[^>]+  == <p class="pp"
+
+        <[^>]+> == <p class="pp">
+    */
+    let str = '<p class="pp">从前有<div>一颗陨石</div>坠落在了地球上，<span class="shitou">这颗<strong>陨石</strong>内部蕴藏这巨大能量！</span></p>';
+
+    let s = str.replace(/<[^>]+>/g,'');
+
+    console.log(s);
+
+</script>
+</body>
+</html>

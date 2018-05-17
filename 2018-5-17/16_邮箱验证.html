@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        6~18个字符，可使用字母、数字、下划线，需以字母开头
+
+        dsaday131@163.com
+        dsaday131@sina.com
+        dsaday131@126.com
+        dsad_ay131@vip.com.cn
+        dsad_ay131@vip.com.net
+        dsad_ay131@yahoo.com.net
+         dsad_ay131@yahoo.cn
+    */
+    let str = 'x1236232@qq.com.cn';
+    // alert(/^[1-9]\d{4,11}|^[A-Za-z]\w{5,17}@[0-9a-z]{2,8}(\.com|\.cn|\.net){1,2}$/.test(str)?'是':'不是');
+
+    console.log(str.match(/^[A-Za-z]\w{5,17}@[0-9a-z]{2,8}(\.com|\.com\.cn|\.net){1,2}$/))
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        \d
+        \D
+        \w
+        \W
+        \s  一个空格
+        \S  一个非空格
+
+        () 子项、提权
+
+        [A-Za-z0-9]
+
+        ^ $
+
+        18-120
+
+        18-19  1[89]
+
+        20-99  [2-9][0-9]
+
+        // 100-109 10[0-9]
+
+        // 110-119 11[0-9]
+
+        100-119   1[01][0-9]
+
+        120
+
+        eh118  \w+  [0-9]+  \d+
+
+        [\u4e00-\u9fa5]
+
+        [^] 排除
+
+    */
+   let str = 'a1ca2ca4cabcagca c';;
+
+//    console.log(str.match(/a[^4a-z]c/g));
+
+    // console.log(str.match(/a[^41a-z\s]c/g));
+
+    //排除a c
+    console.log(str.match(/a[\da-z]c/g));
+    // console.log(str.match(/a[^\s]c/g));
+
+
+
+</script>
+</body>
+</html>

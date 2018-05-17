@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        QQ验证的规则:
+            开头不能为0
+            整个都是数字
+            最小5位，最多12位
+    */
+
+    let str = '102111234567';
+    alert(/^[1-9]\d{4,11}$/.test(str)?'是QQ':'不是QQ');
+
+</script>
+</body>
+</html>
