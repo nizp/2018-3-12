@@ -186,16 +186,20 @@ span{
 
 	move();
 	function move(){
+		//获取对应navNum的元素
 		let img = Array.from(divs[navNum].getElementsByTagName('img'));
 		let ul = divs[navNum].getElementsByTagName('ul')[0];
 		let li = Array.from(ul.children);
+		//移入事件
 		li.forEach((item,index)=>{
 			item.onmouseover = function(){
+				//移入大清洗
 				img.forEach((e,i)=>{
 					li[i].className = e.className='';
 				});
+				//当前移入的添加class
 				img[index].className = item.className='active';
-				num = index;
+				num = index; //为了鼠标移开之后继续加
 			}
 		});
 
@@ -210,11 +214,18 @@ span{
 				navNum ++; //切nav
 				navNum %= as.length; //循环nav
 				num = 0; //到了下一页img，li数值都清
+				
+				/*
+					把前一组的img和li重置
+				*/
 				img[num].className = 'active';
 				li[num].className = 'active';
+
+				//清除所有的按钮class
 				as.forEach((e,i)=>{
 					divs[i].className = e.className='';
 				});
+				//给当前navNum对应的按钮的加上class
 				as[navNum].className = 'active';
 				divs[navNum].className = 'show';
 				move();
@@ -226,7 +237,7 @@ span{
 		},1000);
 	}
 
-
+	//移入大盒子就关闭定时器，好让我正常移入
 	wrap.onmouseenter = function(){
 		clearInterval(timer);
 	}
@@ -234,6 +245,7 @@ span{
 		move();
 	}
 
+	//移入按钮
 	as.forEach((e,index)=>{
 		e.onmouseover = function(){
 			as.forEach((e,i)=>{
@@ -259,7 +271,18 @@ span{
 			let img = Array.from(divs[navNum].getElementsByTagName('img'));
 			let ul = divs[navNum].getElementsByTagName('ul')[0];
 			let li = Array.from(ul.children);
-			
+
+			li.forEach((item,index)=>{
+				item.onmouseover = function(){
+					//移入大清洗
+					img.forEach((e,i)=>{
+						li[i].className = e.className='';
+					});
+					//当前移入的添加class
+					img[index].className = item.className='active';
+					num = index; //为了鼠标移开之后继续加
+				}
+			});
 
 			img.forEach((e,i)=>{
 				li[i].className = e.className='';

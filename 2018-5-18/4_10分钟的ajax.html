@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script src="jquery.min.js"></script>
+<script>
+    /*
+        https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=s&json=1&p=3&sid=1466_26459_21115_20927&req=2&csor=1&cb=jQuery110207899134039862761_1526625964539&_=1526625964542
+    
+        https://api.douban.com/v2/book/search?q=java
+    */
+
+    $.ajax({
+        url:'https://api.douban.com/v2/book/search?callback=?',
+        data:{
+            q:'javascript'
+        },
+        dataType:'jsonp',
+        success:function(data){
+            console.log(data.books);
+        }
+    })
+
+    // $.ajax({
+    //     url:'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?cb=?',
+    //     data:{
+    //         wd:'辣图'
+    //     },
+    //     dataType:'jsonp',
+    //     success:function(data){
+    //         console.log(data.s);
+    //     }
+    // })
+
+</script>
+</body>
+</html>

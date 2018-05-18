@@ -27,13 +27,21 @@
 
         (^|\s+)li(\s+|$)
 
+
+
+
+
     */
+
+   
+
     function myQuery(){
         let aEle = document.getElementsByTagName('*');
         let e = arguments[0].substring(1);
         let arr = [];
         // let re = new RegExp('\\b'+ e + '\\b');
-        let re = new RegExp('(^|\\s+)'+e+'(\\s+|$)');
+        // let re = new RegExp('(^|\\s+)'+e+'(\\s+|$)');
+        let re = new RegExp('(^|\\W)'+e+'(\\W|$)');
         for(let i=0;i<aEle.length;i++){
             //if(aEle[i].className === e){
             if(re.test(aEle[i].className)){
