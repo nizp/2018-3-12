@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        \b  边界符  
+        
+            英文左右两边如果是开头或结尾或空格都算边界符
+
+            中文没有边界符的
+
+        \B  非边界符
+    */
+
+    let str = 'dsda';
+
+   console.log( str.replace(/\b/g,'|'));
+
+</script>
+</body>
+</html>

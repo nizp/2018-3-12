@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        元字符：
+            \d
+            \D
+            \w
+            \W
+            \s
+            \S
+            
+        修饰符:
+            i
+            g
+
+        量词:
+            +
+            ?
+            *
+        |
+
+        []
+
+        [^]
+
+        ^$
+
+        a-z
+        0-9
+        A-Za-z
+        [\u4e00-\u9fa5]
+
+        16-108
+
+        1[6-9]
+        [2-9][0-9]
+        10[0-8]
+
+        ((())) \1\2\3...
+
+        gg2  /(g)\12/
+
+        ()提权
+
+        $1  第一个子项，以此类推，没有子项之后index，all，undefined
+
+        ${}
+        {%  %}
+
+        //test(str)
+
+        str.match(//)
+
+        str.replace(//,callback)
+
+
+
+    */
+
+  //1 . 给一个连字符串例如：get-element-by-id转化成驼峰形式
+    
+    let str = 'get-element-by-id';
+    let num = 0;
+
+    let s = str.replace(/-[a-z]/g,function($0){
+        return $0[1].toUpperCase();
+    });
+
+    console.log(s);
+
+    // let s = str.replace(/([a-z]+)/g,function($0){
+    //     num++; 
+    //     if(num == 1){
+    //         return $0
+    //     }else{
+    //         return $0[0].toUpperCase() + $0.substring(1);
+    //     }
+    // });
+    
+    // console.log(s.split('-').join(''));
+
+    /*
+        110
+
+        2  0   0
+        
+        2  1   2
+        
+        2  2   4
+
+        6
+
+
+
+        1010  
+
+        2  0  0   0
+
+        2  1  1   2
+
+        2  2  0   0
+
+        2  3  1   8
+
+        区号34-7
+
+        \d{3,4}-\d{7,8}
+
+        000-12344562
+
+        ^0\d{2}-\d{8}
+
+        \d{3}-\d{8}|\d{4}-\d{7}
+
+    */
+
+    // console.log(parseInt('1010',2));
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <ul id="ul">
+        <li class="li2 li li1">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li class="li">4</li>
+    </ul>
+<script>
+
+    /*
+        [li,li1] -> push()
+        li == li
+        li1 == li
+
+        "|li1| |li|"
+
+        "li li1"
+        "li1   li"
+        "li1   li  li2"
+
+        (^|\s+)li(\s+|$)
+
+    */
+    function myQuery(){
+        let aEle = document.getElementsByTagName('*');
+        let e = arguments[0].substring(1);
+        let arr = [];
+        // let re = new RegExp('\\b'+ e + '\\b');
+        let re = new RegExp('(^|\\s+)'+e+'(\\s+|$)');
+        for(let i=0;i<aEle.length;i++){
+            //if(aEle[i].className === e){
+            if(re.test(aEle[i].className)){
+                arr.push(aEle[i]);
+            }
+        }
+        return arr;
+    }
+
+    let li = myQuery('.li');
+    
+    for(let i=0;i<li.length;i++){
+        li[i].style.background = 'red';
+    }
+
+
+
+
+</script>
+</body>
+</html>

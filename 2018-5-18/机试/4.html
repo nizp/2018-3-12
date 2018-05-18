@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<style>
+*{
+	margin: 0;
+	padding: 0;
+}
+#wrap{
+	width:450px;
+	height: 260px;
+	background: #ffb746;
+	/*border-radius:10px;*/
+	border: 1px solid #000;
+	font-family: "微软雅黑";
+	
+	/*box-shadow:1px 1px 1px #000;*/
+}
+nav a{
+	display: inline-block;
+	width:146px;
+	height: 40px;
+	font-size: 16px;
+	text-align: center;
+	line-height: 40px;
+	color: #000;
+	text-decoration: none;
+	background: #fff;
+}
+a.active{
+	background: #ffb746;
+	color: #fff;
+}
+
+#box{
+	margin:20px;
+	height: 180px;
+}
+#box ul{
+	width:226px;
+	list-style: none;
+	float: left;
+}
+#box div{
+	display: none;
+}
+#box div.show{
+	display: block;
+}
+#box ul li{
+	height: 60px;
+	width
+}
+#box ul li.active{
+	background:#fff;
+}
+#box li p{
+	font-size: 14px;
+	color:#fff;
+	text-indent:2em;
+	line-height:2.5em;
+	height: 35px;
+}
+#box li.active p{
+	font-size: 16px;
+	color:#000;
+}
+#box li.active span{
+	color:#000;
+}
+img{
+	width:178px;
+	height: 178px;
+	display: block;
+	float: left;
+	border: 2px solid #fff;
+	display: none;
+}
+img.active{
+	display: block;
+}
+span{
+	font-size: 12px;
+	line-height: 20px;
+	text-indent:2.5em;
+	display: block;
+	color:#fff;
+}
+#box div{
+	height: 180px;
+	/* width: */
+}
+
+</style>
+</head>
+<body>
+	<section id="wrap">
+		<nav>
+			<a href="javascript:;" class="active">专题</a>
+			<a href="javascript:;">视频</a>
+			<a href="javascript:;">图片</a>
+		</nav>
+		<div id="box">
+			<div class="show">
+				<img src="img/1.jpg" alt="" class="active"/>
+				<img src="img/2.jpg" alt=""/>
+				<img src="img/3.jpg" alt=""/>
+				<ul class="show">
+					<li class="active">
+						<p>奇虎360纽交所上市11</p>
+						<span>2016-10-12</span>
+					</li>
+					<li >
+						<p>2011年IT领袖峰会</p>
+						<span>2016-10-12</span>
+					</li>
+					<li>
+						<p>CCBN召开 助三网融合</p>
+						<span>2016-10-12</span>
+					</li>
+				</ul>
+			</div>
+			
+			<div>
+				<img src="img/4.jpg" alt=""  class="active"/>
+				<img src="img/3.jpg" alt=""/>
+				<img src="img/1.jpg" alt=""/>
+				<ul class="show">
+					<li class="active">
+						<p>奇虎360纽交所上市222</p>
+						<span>2016-10-12</span>
+					</li>
+					<li >
+						<p>2011年IT领袖峰会</p>
+						<span>2016-10-12</span>
+					</li>
+					<li>
+						<p>CCBN召开 助三网融合</p>
+						<span>2016-10-12</span>
+					</li>
+				</ul>
+			</div>
+			
+			<div>
+				<img src="img/1.jpg" alt=""  class="active"/>
+				<img src="img/2.jpg" alt=""/>
+				<img src="img/3.jpg" alt=""/>
+				<img src="img/2.jpg" alt=""/>
+				<img src="img/3.jpg" alt=""/>
+				<ul class="show">
+					<li class="active">
+						<p>奇虎360纽交所上市333</p>
+						<span>2016-10-12</span>
+					</li>
+					<li >
+						<p>2011年IT领袖峰会</p>
+						<span>2016-10-12</span>
+					</li>
+					<li>
+						<p>CCBN召开 助三网融合</p>
+						<span>2016-10-12</span>
+					</li>
+					<li >
+						<p>2011年IT领袖峰会</p>
+						<span>2016-10-12</span>
+					</li>
+					<li>
+						<p>CCBN召开 助三网融合</p>
+						<span>2016-10-12</span>
+					</li>
+				</ul>
+			</div>
+			
+		</div>
+	</section>
+<script type="text/javascript">
+	const wrap = document.getElementById('wrap');
+	const box = document.getElementById('box');
+	const divs = box.children;
+	const as = Array.from(document.getElementsByTagName('a'));
+	let timer = null;
+	let num = 0; //走li的数值
+	let navNum = 0; //nav的数值
+
+	move();
+	function move(){
+		let img = Array.from(divs[navNum].getElementsByTagName('img'));
+		let ul = divs[navNum].getElementsByTagName('ul')[0];
+		let li = Array.from(ul.children);
+		li.forEach((item,index)=>{
+			item.onmouseover = function(){
+				img.forEach((e,i)=>{
+					li[i].className = e.className='';
+				});
+				img[index].className = item.className='active';
+				num = index;
+			}
+		});
+
+		timer = setInterval(function(){
+			//清除img和li的className
+			img.forEach((e,i)=>{
+				li[i].className = e.className='';
+			});
+			//下一页
+			if(num == img.length-1){
+				clearInterval(timer); //到下一页就关定时器
+				navNum ++; //切nav
+				navNum %= as.length; //循环nav
+				num = 0; //到了下一页img，li数值都清
+				img[num].className = 'active';
+				li[num].className = 'active';
+				as.forEach((e,i)=>{
+					divs[i].className = e.className='';
+				});
+				as[navNum].className = 'active';
+				divs[navNum].className = 'show';
+				move();
+			}else{
+				num++;
+				img[num].className = 'active';
+				li[num].className = 'active';
+			}
+		},1000);
+	}
+
+
+	wrap.onmouseenter = function(){
+		clearInterval(timer);
+	}
+	wrap.onmouseleave = function(){
+		move();
+	}
+
+	as.forEach((e,index)=>{
+		e.onmouseover = function(){
+			as.forEach((e,i)=>{
+				divs[i].className = e.className='';
+			});
+			as[index].className = 'active';
+			divs[index].className = 'show';
+			num = 0;
+
+			//刚才的		
+			let oldImg = Array.from(divs[navNum].getElementsByTagName('img'));
+			let oldUl = divs[navNum].getElementsByTagName('ul')[0];
+			let oldLi = Array.from(oldUl.children);
+
+			oldImg.forEach((e,i)=>{
+				oldLi[i].className = e.className='';
+			});
+			oldImg[num].className = oldLi[num].className='active';
+
+			navNum = index;
+			
+			//现在的
+			let img = Array.from(divs[navNum].getElementsByTagName('img'));
+			let ul = divs[navNum].getElementsByTagName('ul')[0];
+			let li = Array.from(ul.children);
+			
+
+			img.forEach((e,i)=>{
+				li[i].className = e.className='';
+			});
+			img[num].className = li[num].className='active';
+		}
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
