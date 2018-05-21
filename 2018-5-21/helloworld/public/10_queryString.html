@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        user=input.value&password=input2.value
+
+        {
+            user:shenshen,
+            password:321
+        }
+    */
+    let str = 'user=shenshen&password=321';
+
+    let obj = {};
+
+    let arr = str.split('&');
+
+    arr.forEach(e=>{
+        let s = e.split('=');
+        obj[s[0]] = s[1];
+    });
+
+   console.log(obj);
+
+
+
+
+</script>
+</body>
+</html>

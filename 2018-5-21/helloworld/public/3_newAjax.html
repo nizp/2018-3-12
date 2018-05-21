@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <form action="/get" method="GET"> -->
+        用户名:<input name="user" id="user"/>
+        密码:<input name="pass" type="password" />
+        <button id="btn">提交</button>
+        <!-- <input type="submit" value="提交"> -->
+    <!-- </form> -->
+<script src="javascripts/jquery-3.2.1.min.js"></script>
+<script>
+    /*
+        接口:
+            /get
+
+        请求的方式:
+            method
+
+        name:
+            user || pass
+
+            前后端统一的  字段
+
+            wd:miaov  -> []
+
+            q:javascript
+
+    */
+
+    user.onblur = function(){
+        $.ajax({
+            url:'/get',
+            data:{
+                user:user.value
+            },
+            success(data){
+                let d = JSON.parse(data);
+                if(d.code === 0){
+                    user.style.color = 'green';
+                }else{
+                    user.style.color = 'red';
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

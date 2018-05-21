@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
 
 let person = [
   'chaoxue',
@@ -17,6 +16,7 @@ router.post('/', function(req, res, next) {
     msg:'有介个银了啦!'
   }
   let json = req.body;
+  console.log(req);
   if(!person.includes(json.user)){
       obj.code = 1;
       obj.msg = '木有介个银!';

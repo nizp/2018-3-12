@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        AJAX
+            异步的js和xml
+
+            xml json
+
+            优点：
+                不需要刷新页面，提升用户体验（不需要排队就能拿到数据）
+
+                减轻服务器压力
+
+            前后端数据交互的一种混杂技术（简单点就是通过制定的字段动态获取数据）
+
+            接口 + 字段 + 请求方式 = 你想要的数据
+
+            http://localhost/get  + user=hehe + get/post
+
+
+            1.new XMLHttpRequest
+
+            2.ajax.open(methods,url,true/false)
+            
+            3.ajax.send()   
+
+            4.ajax.onload 
+
+            5.ajax.responseText
+
+        请求头:
+            ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+
+            
+
+        get:
+            体积小
+            相对不安全
+            url
+            encodeURI() *
+            decodeURI()
+
+        post:
+            体积大
+            相对安全
+            send -> 发送前还需要请求头
+
+        
+        onreadystatechange
+
+            5个阶段（0-4） -> 1-4
+
+            如果要监听1，那么要把onreadystatechange放到send之前
+
+            
+            4代表请求完成 -> ajax.readyState
+
+            状态码：
+                200-207,302成功
+                404 400
+                500 502
+
+                ajax.status;
+
+            
+                
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+    */
+
+</script>
+</body>
+</html>

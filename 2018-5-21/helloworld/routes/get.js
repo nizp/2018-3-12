@@ -6,9 +6,9 @@ var router = express.Router();
   
 */
 let person = [
-  'chaoxue',
-  'yangna',
-  'jquery',
+  'shenshen',
+  '诗雨',
+  '老乔',
   '你真胖',
   'momo'
 ];
@@ -19,8 +19,9 @@ router.get('/', function(req, res, next) {
     msg:'有介个银了啦!'
   }
   let json = req.query;
-  console.log(person.includes(json.name))
-  if(!person.includes(json.name)){
+  
+  console.log(req);
+  if(!person.includes(json.user)){
       obj.code = 1;
       obj.msg = '没有介个银!';
   }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    用户名:<input id="input"/>
+    <button id="btn">提交</button>
+<script>
+    /*
+        ajax交互模型（打电话模式）
+
+            1.有个电话
+                new XMLHttpRequest
+
+            2.给谁打（输入号码）
+                ajax.open('get',url,true);
+
+            3.发送号码
+                ajax.send()
+
+            4.需要等待
+                ajax.onload
+
+            5.通话
+                ajax.responseText
+
+            /get?user=l&pass=21
+
+            协议 + 域名 + '?' + 'user=shenshen' + '&' +'pass=12345'
+
+            http://www.baidu.com -> index.html
+
+            http://www.baidu.com?user=shenshen&pass=12345
+
+        不知道字段是啥  ?之后的
+        不知道接口是啥  /get
+        不知道如何传数据给后端  /get  就是通过url的方式给后端进行传输的
+        不知道拿到数据怎么办
+
+        http://localhost/get?user=shenshen
+
+
+    */
+
+   input.onblur = function(){
+       const ajax = new XMLHttpRequest(); //1.创建一个电话
+
+       ajax.open('get','/get?user='+input.value); //2.拨号 （请求方式,接口(url),是否异步（true））
+
+       ajax.send(); //3.发送
+
+       ajax.onload = function(){ //4.等待服务器
+           console.log(ajax.responseText); //5.通话
+       }
+    }
+
+
+
+</script>
+</body>
+</html>

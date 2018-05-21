@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    用户名:<input id="input"/>
+<script>
+    /*
+
+        1.要接口
+        2.要字段 -> 介个字段是什么意思
+        3.请求的方式
+        4.把填好的数据运行一下  ****
+
+        get
+            url的方式去传输的
+
+            相对来说不安全
+
+            体积:
+                比较小
+
+        post:
+            1.open('post','接口'),不需要写?后面的数据
+            2.?后面的数据应该放到send中
+            3.在send之前，要告诉服务器，当前的数据格式是什么样的
+            在发送前设置请求头。
+
+            相对来说安全
+
+                一般常用在用户信息上、上传（传输一些大体积的文件）
+
+            体积很大（理论上可以无限大）
+                一般来说，后端都会做限制
+
+
+            ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+
+            URI编码  
+                %E8%AF%97   %E9%9B%A8
+
+                中文转URI码 -> encodeURI('中文') 
+
+                URI转中文 -> decodeURI('%E8%AF%97')
+    */
+
+   input.onblur = function(){
+        ajax({
+            url:'/get',
+            data:{
+                user:input.value
+            },
+            success(data){
+                console.log(data);
+            }
+        });
+   }
+
+   function ajax(json){
+        json.opt = {
+            url:'',
+            success:function(){},
+            fail:function(){},
+            data:{},
+            methods:'get'
+        }
+
+        Object.assign(json.opt,json); //浅拷贝
+        
+        /*
+            {
+                user:input.value,
+                password:input2.value
+            }  
+          user=input.value&password=input2.value
+        */
+       let arr = [];
+        for(let attr in json.opt.data){
+            arr.push(attr + '=' + encodeURI(json.opt.data[attr]));
+        }
+        
+        const ajax = new XMLHttpRequest;
+        if(json.opt.methods === 'get'){
+            ajax.open('get',json.opt.url + '?' + arr.join('&'));
+            ajax.send();
+        }else if(json.opt.methods === 'post'){
+            ajax.open('post',json.opt.url);
+            ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+            ajax.send(arr.join('&'));
+        }
+
+        ajax.onload = function(){
+           json.opt.success(ajax.responseText);
+        }
+        
+   }
+
+
+</script>
+</body>
+</html>
