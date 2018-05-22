@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击生成数据</button>
+    <ul id="ul"></ul>
+<script>
+    /*
+        IE10-11  textContent
+        IE9 text
+        chrome innerHTML | textContent
+
+        解决:
+            1.判断内核来解决
+            2.用对象存数据
+    */
+    var html = '';
+    btn.onclick = function(){
+        var ajax = new XMLHttpRequest;
+        ajax.open('get','data.xml');
+        ajax.send();
+        ajax.onload = function(){
+            var xml = ajax.responseXML;
+            var person = xml.getElementsByTagName('person');
+            
+            for(var i=0;i<person.length;i++){
+                var name = person[i].getElementsByTagName('name')[0];
+                var age = person[i].getElementsByTagName('age')[0];
+                var sex = person[i].getElementsByTagName('sex')[0];
+                var info = person[i].getElementsByTagName('info')[0];
+
+                html += '<li>我的名字叫:'+name.text;
+                html += ',我的年龄:'+age.text;
+                html += ',我的性别:'+sex.text;
+                html += ',我想说:'+info.text+'</li>';
+
+            }
+
+            for(var i=0;i<person.length;i++){
+                var name = person[i].getElementsByTagName('name')[0];
+                var age = person[i].getElementsByTagName('age')[0];
+                var sex = person[i].getElementsByTagName('sex')[0];
+                var info = person[i].getElementsByTagName('info')[0];
+                if( isxx('msie 9') ){
+                    fn(name,age,sex,info,'text')
+                }else if(isxx('msie 10') || isxx('rv:11')){
+                    fn(name,age,sex,info,'textContent');
+                }else{
+                    fn(name,age,sex,info,'innerHTML');
+                }
+            } 
+            ul.innerHTML = html;   
+        }
+    };
+
+    
+        
+
+    function fn(name,age,sex,info,inner){
+        html += '<li>我的名字叫:'+name[inner];
+        html += ',我的年龄:'+age[inner];
+        html += ',我的性别:'+sex[inner];
+        html += ',我想说:'+info[inner]+'</li>';
+    }
+    function isxx(xx){
+        var n = window.navigator.userAgent.toLowerCase();
+        if(n.indexOf(xx) != -1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+</script>
+</body>
+</html>

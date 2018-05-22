@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        回调地狱
+
+        move({
+            attr:{
+                width:100
+            },
+            callback(){
+                move({
+                    attr:{
+                        height:100
+                    },
+                    callback(){
+                        move({
+                            attr:{
+                                top:100
+                            },
+                            callback(){
+                                
+                            }
+                        })
+                    }
+                })
+            }
+        });
+
+
+        pp.then(function(){
+            move({attr:{width:100}})
+        }).then(function(){
+            move({attr:{height:100}})
+        }).then(function(){
+            move({attr:{top:100}})
+        });
+
+        
+        A接口 = name
+        B接口 = mobile
+        
+        C接口 = name + mobile ->
+
+
+        Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。
+
+        所谓Promise，简单说就是一个容器，里面保存着（通常是一个异步操作）的结果。
+        
+        只有异步操作的结果，可以决定当前是哪一种状态
+
+        有三种状态：
+            pending（进行中）
+            fulfilled（已成功）
+            rejected（失败）
+
+
+
+
+    */
+
+
+
+    let a = 10;
+    setTimeout(function(){
+        a = 20;
+        alert(a);
+    },1000);
+   
+
+    // let pp = p();
+    // pp.then(function(a){
+    //     alert(a);
+    // });
+
+    // alert(30);
+
+
+
+
+
+
+
+
+    function p(){
+        return new Promise(function(resolve,reject){
+            setTimeout(function(){
+                a = 20;
+                resolve(a);
+            },1000)
+        });
+    }
+
+
+
+
+
+    // let p = new Promise(function(resolve,reject){
+    //     setTimeout(function(){
+    //         a = 20;
+    //         if(a === 20){
+    //             resolve(a);
+    //         }else{
+    //             reject('错误');
+    //         }
+    //     },0);
+    // });
+ 
+    // p.then(function(a){
+    //     alert(a);
+    // },function(){
+
+    // });
+   
+
+</script>
+</body>
+</html>

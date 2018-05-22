@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+        <input type="text" id="txt">
+<script>
+    /*
+        同步:要排队，前面的没有完成后面的就运行不了
+
+        异步:不需要排队,前面的没有完成后面依然运行
+    */
+    txt.onblur = function(){
+        let ajax = new XMLHttpRequest;
+        ajax.open('get','/sleep?user='+this.value,false);
+        ajax.send();
+        // ajax.onload = function(){
+        //     console.log(ajax.responseText);
+        // }
+        console.log(ajax.responseText);
+        console.log('我依然执行');
+    }
+</script>
+</body>
+</html>

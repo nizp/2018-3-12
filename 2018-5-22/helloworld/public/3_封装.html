@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt">
+<script src="myAjax_1.0.js"></script>
+<script>
+    txt.onblur = function(){
+        ajax({
+            url:'/sleep',
+            data:{
+                user:txt.value
+            },
+            sync:false,
+            success(json){
+                console.log(json);
+            }
+        });
+        console.log('hehe');
+    }
+
+   
+
+</script>
+</body>
+</html>

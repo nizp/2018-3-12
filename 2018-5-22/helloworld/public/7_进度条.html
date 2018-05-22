@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+}
+html{
+    transition: 1s;
+}
+#div1{
+    height: 20px;
+    background: skyblue;
+    width:0%;
+    transition: 1s;
+}
+</style>
+</head>
+<body>
+    <div id="div1"></div>
+<script>
+
+    let arr = [
+        'http://wapfile.desktx.com/pc/160823/bigpic/57bbee05a22f7.jpg',
+        'http://imgstore.cdn.sogou.com/app/a/100540002/492175.jpg',
+        'http://imgstore.cdn.sogou.com/app/a/100540002/492176777.jpg',
+        'http://att2.citysbs.com/hangzhou/2014/06/12/13/5714x2447-132436_10961402550676429_e697c8ae89349cd359ae310b7c6be40c.jpg'
+    ];
+
+    let num = 0;
+    arr.forEach(function(e){
+        let img = new Image();
+
+        img.src = e;
+        
+        img.onload = function(){ //图片加载成功
+            num ++;
+            div1.style.width = 25 * num + '%';
+            if(num == arr.length){
+                div1.style.opacity = 0;
+                document.documentElement.style.background = 'yellow'
+                console.log('加载完成');
+            }
+        }
+        img.onerror = function(){//图片加载失败
+            num ++;
+            div1.style.width = 25 * num + '%';
+            if(num == arr.length){
+                div1.style.opacity = 0
+                document.documentElement.style.background = 'yellow'
+                console.log('加载完成');
+            }
+        }
+
+    });
+
+
+
+
+
+    
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="t">
+<!-- <script src="axios.js"></script> -->
+<script src="myAxios_2.0.js"></script>
+<script>
+    /*
+        function getUserAccount() {
+            return axios.get('/user/12345');
+        }
+
+        function getUserPermissions() {
+            return axios.get('/user/12345/permissions');
+        }
+
+        axios.all([getUserAccount(), getUserPermissions()])
+        .then(axios.spread(function (acct, perms) {
+            // 两个请求现在都执行完成
+        }));
+    
+    */
+
+    t.onblur = function(){
+        // axios.get('/get?user='+this.value)
+        // .then((data)=>data.data)
+        // .then((data)=>{
+        //     console.log(data);
+        // });   
+
+        // axios.get('/get',{
+        // params:{
+        //     user:this.value
+        // }
+        // }).then(res=>{
+        //     console.log(res.data);
+        // });
+
+        // axios.post('/post',{
+        //     user:this.value
+        // }).then(res=>{
+        //     console.log(res.data);
+        // });
+
+        axios2({
+            url:'/get',
+            data:{
+                user:this.value
+            }
+        }).then((rep)=>{
+            console.log(rep);
+        });
+    }
+    
+</script>
+</body>
+</html>
