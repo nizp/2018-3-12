@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head id="h">
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="t">
+    <ul id="ul"></ul>
+<script>
+    /*
+        请求之后马上删
+
+        数据用完之后删
+
+        ***
+        ajax的数据是没有函数名 + 小括号的
+        jsonp是函数名 + 括号的
+        https://sug.so.360.cn/suggest?callback=suggest_so&encodein=utf-8&encodeout=utf-8&format=json&fields=word&word=miaov
+    */
+    let oS = null;
+    //定义一个全局的函数去接收后端的数据
+    function fn(data){
+        let html = '';
+        console.log(data);
+        data.s.forEach(e => {
+            html += '<li>'+ e +'</li>'
+        });
+        ul.innerHTML = html;
+        oS.remove();
+    }
+    /*
+        在输入的时候去请求数据
+    */
+    t.onkeyup = function(){
+        oS = document.createElement('script');
+        oS.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+ t.value +'&cb=fn';
+        // oS.src = 'https://sug.so.360.cn/suggest?callback=fn&encodein=utf-8&encodeout=utf-8&format=json&fields=word&word='+t.value;
+        // oS.src = 'https://3g.163.com/touch/api/pagedata/index_yaowen?callback=fn';
+        h.appendChild(oS);
+        oS.remove();
+    }
+
+
+</script>
+</body>
+</html>

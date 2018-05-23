@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" id="t">
+<script src="axios.min.js"></script>
+<script>
+    t.onblur = function(){
+        // let pp = new Promise(function(resolve,reject){
+        //     let ajax = new XMLHttpRequest;
+        //     ajax.open('get','/sleep?user='+t.value,true);
+        //     ajax.send();
+        //     ajax.onload = function(){
+        //         resolve(ajax.responseText);
+        //         // console.log();
+        //     }
+        //     //resolve(ajax.responseText);
+        // });
+        
+        // pp.then(function(res){
+        //     console.log(res);
+        // }).then(function(){
+        //     alert(1);
+        // });
+        // alert(2);
+
+    
+        axios.post('/post',{name:t.value})
+        .then(res => {
+            console.log(res);
+        });
+    }
+</script>
+</body>
+</html>

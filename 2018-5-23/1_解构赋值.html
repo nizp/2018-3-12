@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        解构赋值:   
+
+    */
+
+    // var a = 10;
+    // var b = 20;
+
+    //var [b,a] = [a,b];
+
+    // let [a,b,c] = [1,2,3];
+
+    // console.log(a,b);
+
+    //右边怎么写左边就怎么写
+//    let [foo,[[bar],baz]] = [1, [[2], 3]];
+
+//     console.log(foo,bar,baz);
+
+    // let data = [1, [[2], 3]];
+
+    // let [,[[],c]] = data;
+
+    // console.log(c);
+
+    // let [ , , third] = ["foo", "bar", "baz"];
+
+    // console.log(third);
+
+    // let [head, ...tail] = [1, 2, 3, 4];
+
+    /*
+        左右2边的格式要统一，不统一就报错
+    */
+    // let [foo] = 1;
+    // let [foo] = false;
+    // let [foo] = NaN;
+    // let [foo] = undefined;
+    // let [foo] = null;
+    // let [foo] = {};
+    // console.log(foo);
+
+    // let [x, y = 'b'] = ['a'];
+    // let [x, y] = ['a']; //undefined
+
+    // let [x = 5, y] = ['a']; //a
+
+    // let [x=y, y=5] = ['a',7]; //a
+
+
+    let z = 10;
+
+    /*
+        先看右边的，如果右边没有，看等号
+    */
+    //let [x=y, y=5] = [,7];   //A:7 B:undefined C:报错 D:5
+
+    // function f() {
+    //     console.log('aaa');
+    // }
+    // let [x = f()] = [,1];
+    // console.log(x);
+
+
+
+    
+
+
+
+
+    
+
+
+
+    // let c = a;
+
+    // a = b;
+    // b = c;
+
+    
+
+
+
+</script>
+</body>
+</html>

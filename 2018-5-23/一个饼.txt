@@ -1,0 +1,45 @@
+15k起
+
+10k起
+
+
+ajax、jsonp
+
+瀑布流
+
+豆瓣
+
+微博
+
+
+cookie -> 本地存储 -> 前端数据库
+
+前端写个登录注册
+
+购物车
+
+
+
+ES6
+
+npm -> node -> express -> koa
+
+数据库、socket、爬虫
+
+webpack
+
+4.X
+
+面向对象
+
+组件化开发
+手写JQ，vue，react
+
+
+框架
+
+react react-router   react-redux  redux  
+
+vue   vue-router  vuex 
+
+mpvue  -> 微信小程序 + vue版

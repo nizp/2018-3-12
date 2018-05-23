@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<!-- <script src="axios.min.js"></script> -->
+<script src="jsonp.js"></script>
+<script>
+    /*
+        axios不支持跨域
+
+        fetchJsonp 支持跨域
+
+    */
+    // axios('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=m&cb=fn')
+    // axios('https://api.douban.com/v2/movie/search?q=张艺谋&start=5')
+    // .then(res=>{
+    //     console.log(res);
+    // })
+
+
+    // fetchJsonp('https://api.douban.com/v2/movie/search?q=张艺谋',{
+    //     jsonpCallback:'callback'
+    // }).then(e=>e.json())
+    // .then(res=>{
+    //     console.log(res);
+    // });
+    let url = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=灭霸'
+    fetchJsonp(url,{
+        jsonpCallback:'cb'
+    }).then(e=>e.json())
+    .then(res=>{
+        console.log(res);
+    });
+</script>
+</body>
+</html>

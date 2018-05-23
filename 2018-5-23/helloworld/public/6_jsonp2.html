@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head id="h">
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        link   css
+        script   js
+        script标签可以直接解析js
+    */
+    function fn(a){
+        alert(a);
+    }
+
+window.onload = function(){
+    document.onclick = function(){
+        let oS = document.createElement('script');
+        oS.src = 'http://localhost/data.js';
+        h.appendChild(oS);
+        //fn([1,2,3]);
+    }
+}
+
+
+</script>
+<!-- <script src="http://localhost/data.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function fn(a){
+        console.log(a);
+    }
+    // alert(321);
+</script>
+<script>
+    var a = 10;
+    fn(a);
+    // alert(123); //A:123 B:321 C:undefined D:因为上面的报错（这句话不执行）
+    // alert(a); //A:undefined   B:报错  C:10  D:null
+
+    /*
+        jsonp
+            json + padding
+
+        fn(数据)
+
+        function fn(a){
+            console.log(a);
+        }
+
+    核心:
+        1.后端返回数据的时候必须为函数名 + 括号的形式并且把数据放到括号中
+
+        2.前端需要定义一个全局的函数去接收数据
+
+        说白了：
+            前端定义一个全局函数给后端调用
+            
+    */
+</script>
+</body>
+</html>

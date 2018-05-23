@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        eval
+
+        (new Function('参数','return '+s3))()
+            
+    */
+   let s = 'alert(1)';
+   let s2 = '[1,2,3,4]';
+   let s3 = "{'name':'hehe'}";
+   
+//    console.log(eval('('+s3+')'));
+
+/*
+    Function
+        ->function
+
+    Array
+        -> []
+
+    Object
+        -> {}
+
+*/
+
+    //(function(){
+    //     alert(1);
+    // })();
+
+    let s4 = (new Function('','return '+s3))();
+
+    console.log(s4);
+
+</script>
+</body>
+</html>
