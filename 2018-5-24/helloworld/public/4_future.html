@@ -14,15 +14,20 @@
 
     /*
         post还没有出得来
+        https://segmentfault.com/q/1010000005979776
     */
-    // fetch('/post',{
-    //     method:'POST',
-    //     body:new URLSearchParams([["name","chaoxue"]]).toString()
-    // })
-    // .then(e=>e.json())
-    // .then((data)=>{
-    //     console.log(data);
-    // });
+    fetch('/post',{
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body:new URLSearchParams({"name":"chaoxue"}).toString()
+        //`name=chaoxue`
+    })
+    .then(e=>e.json())
+    .then((data)=>{
+        console.log(data);
+    });
 </script>
 </body>
 </html>
