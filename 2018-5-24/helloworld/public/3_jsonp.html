@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head id="h">
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+ // console.log(a);  //fn()
+    let a = 10;
+    /*
+        jsonp:
+            json + padding
+
+            前端 -> 全局定义函数
+
+            后端 -> 调用这个函数，把数据当实参传递  
+
+            动态创建script是异步，静态的script类似于走同步
+
+            jsonp只有get没有post
+
+            ajax的数据jsonp一定用不了，而jsonp的数据ajax有可能用
+
+            fn([1,2,3]);
+            // [1,2,3]
+
+            // fn()
+
+
+    */
+    document.onclick = function(){
+       const oS = document.createElement('script');
+       oS.src = 'http://localhost/jsonp?callback=fn';
+       h.appendChild(oS);
+       oS.remove();
+    }
+    function fn(arr){
+        alert(arr);
+    }
+</script>
+<!-- <script src="data.txt"></script> -->
+</body>
+</html>

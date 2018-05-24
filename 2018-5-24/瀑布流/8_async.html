@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        async
+        await 
+    */
+
+    function ajax(){
+       return new Promise(function(resolve,reject){
+            setTimeout(function(){
+                resolve(20);
+            },3000);
+       });
+    }
+    
+
+     function ajax2(){
+       return new Promise(function(resolve,reject){
+            setTimeout(function(){
+                resolve(30);
+            },3000);
+       });
+    }
+    
+    
+    async function fnn(){
+      let a =  await ajax();
+      let b = await ajax2();
+      return [a,b];
+    }
+
+    fnn().then(function(arr){
+        console.log(arr);
+    });
+
+   
+</script>
+</body>
+</html>

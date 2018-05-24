@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#div{
+    width:100px;
+    height:200px;
+    background: red;
+    position: relative;
+    top:0;
+    left:0;
+}
+</style>
+</head>
+<body>
+    <div id="div"></div>
+<script>
+    /*
+        解构赋值:
+
+    */
+
+    // let x;
+    // if ([1][0] === undefined) {
+    //     x = f();
+    // } else {
+    //     x = [1][0];
+    // }
+    // console.log(x);
+
+    /*
+        对象解构的时候，如果变量有:就是改名
+        这个foo是访问不到的，如果非要访问就报错
+    */
+    // let { foo:fooa, bar:barb } = { foo: "aaa", bar: "bbb" };
+    
+    // console.log(fooa);
+
+    // let obj = {
+    //     p: [
+    //         'Hello',
+    //         { y: 'World' }
+    //     ]
+    // };
+
+    // let {p:[x,{y}]} = obj;
+
+    // console.log(x,y)
+
+    // let obj = {
+    //     p:'a'
+    // }
+
+    // let {p:[x,{y}]} = obj;
+
+    // let {p} = obj;
+
+    // console.log(p);
+
+
+    // let obj = {
+    //     x:{
+    //         g:[{n:'b',c:[{d:['c']}]},[[{name:'a'}]]]
+    //     }
+    // }
+    // let {x:{g:[{n:b,c:[{d:[C]}]},[[{name:a}]]]}} = obj;
+
+    // console.log(a,b,C);
+
+    // let obj = {};
+    // let arr = [];
+
+    // ({ foo: obj.prop, bar: arr[0] } = { foo: 123, bar: true });
+
+    // console.log(obj,arr);
+
+    // let x;
+    // let {x} = {x: 1};
+    // console.log();
+
+    /*
+        如果之前就有变量名了，在解构过程中可以不写变量关键字（let），
+        要解构同一个变量，需要加括号.
+    */
+    //let x;
+    // (x = 1);
+    //({x} = {x: 1});
+    //console.log(x);
+    // "use strict"
+    // [a,b] = [1,2];
+
+    // let h = getComputedStyle(div).height;
+    // let w = getComputedStyle(div).width;
+    // console.dir(getComputedStyle(div));
+
+    // let {width,height,top:Top} = getComputedStyle(div);
+
+    // console.log(width,height,Top);
+
+    // console.log(top);
+
+    let obj1 = {
+        id:1
+    }
+    let obj2 = {
+        id:2
+    }
+
+    let {id} = obj1;
+    let {id:id2} = obj2;
+    console.log(id,id2);
+
+    
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

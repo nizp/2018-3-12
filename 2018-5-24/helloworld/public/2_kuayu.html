@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" id="t">
+<script>
+    /*
+        解决跨域方案:
+           
+                1.通过高版本的XMLHttpRequest + 后端设置请求头权限
+                header('Access-Control-Allow-Origin:*');
+                 更好用：
+                    优点：
+                        一套ajax请求既能够ajax请求也能跨域请求
+                    缺点:
+                        低版本用不了
+
+                自己玩：
+                    启动node app.js   80端口
+
+                    启动node app2.js   8080端口
+
+                    去访问/kuayu接口
+
+                        
+                2.服务器代理
+                    原理:
+                        a能访问b,b能访问c，就等同于a能访问c
+
+                        a:前端请求
+                        b:同源下的后端文件
+                        c:第三方数据 
+                            比如:http://www.baidu.com
+                            http://www.kaola.com/getSuggestKeyword.html?query=猫&size=10
+
+                    缺点：
+                        第三如果改了，那么你自动也会改
+
+                    玩下:
+                        启动 app3.js   (localhost:3000)
+
+                        访问 /ymjz
+
+                        如果出不来就改端口
+
+            
+    */
+    t.onblur = function(){
+        let ajax = new XMLHttpRequest;
+       
+        // ajax.open('get',' http://www.kaola.com/getSuggestKeyword.html?query=猫&size=10');
+        // ajax.open('get','http://localhost:8080/kuayu?name='+t.value+'&sj='+Date.now());
+        ajax.open('get','/ymjz');
+        ajax.send();
+        ajax.onload = function(){
+           
+            // console.log(ajax.responseText);
+           
+           document.write(ajax.responseText);
+        }
+    }
+</script>
+</body>
+</html>

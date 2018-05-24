@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    	body{
+    		background:skyblue;
+    	}
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      .pic{
+        width: 236px;
+        box-shadow:0 1px 3px rgba(0,0,0,.3);
+        overflow:hidden;
+        margin-top:10px;
+      }
+      img{
+        width:236px;
+        border: none;
+        display: block;
+      }
+      ul{
+        list-style: none;
+        position: relative;
+        margin: 0 auto;
+        border:1px solid #000;
+        /* width:1050px; */
+        /* overflow: hidden; */
+      }
+      li{
+        position: absolute;
+        /* border: 1px solid #ccc; */
+        /* float: left; */
+        /* margin: 8px; */
+        width:236px;
+        transition: 500ms;
+      }
+      #loading{
+        height: 50px;
+        position: fixed;
+        bottom:0;
+        background: #fff;
+        width:100%;
+        transition: 500ms;
+      }
+      #loading img{
+        width:80px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="ul">
+        
+    </ul>
+    <div id="loading">
+      <img height="50" src="1.gif" >
+    </div>
+<script src="jsonp.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+  /*
+    http://www.wookmark.com/api/json/popular?callback=fn
+
+    <li>
+        <!-- <div class="pic">
+          <img src="http:\/\/www.wookmark.com\/images\/original\/638518_wookmark.jpg">
+        </div>
+        <div class="pic">
+          <img src="http:\/\/www.wookmark.com\/images\/original\/638518_wookmark.jpg">
+        </div>
+        <div class="pic">
+              <img src="http:\/\/www.wookmark.com\/images\/original\/638518_wookmark.jpg">
+            </div> -->
+    </li>
+  */
+  let url = 'http://www.wookmark.com/api/json/popular';
+  
+  // fetchJsonp(url,{jsonpCallback:'callback'})
+  // .then(res=>res.json())
+  // .then(res=>{
+  //   console.log(res);
+  // });
+
+  /*
+    当前页面能放多少张图
+
+    可视区宽度/一张的宽度  -> 向下取整
+  */
+
+  let iW = document.documentElement.clientWidth; //可视区的宽度
+  let picW = 236; //一张的宽度
+  let marginL = 10; //间距
+  let sjW = picW + marginL; //实际宽
+
+
+  let len = Math.floor((iW - marginL) / sjW );
+
+  ul.style.width = len * sjW - marginL + 'px';
+
+  /*
+    创建位置
+  */
+  let arrT = [];
+  let arrL = [];
+  let num = 0;
+  for(let i=0;i<len;i++){
+    arrL.push(sjW * i);
+    arrT.push(0);
+  }
+
+  /*
+    [100,150,120,80]
+  */
+
+  //拿到数据去渲染页面
+
+  fetchJsonp(url,{jsonpCallback:'callback'})
+  .then(res=>res.json())
+  .then(res=>{
+      let dataNum = res.length;
+      let html = '';
+      res.forEach(e=>{
+        let img = new Image;
+        img.src = e.preview;
+        let p = new Promise(function(resolve,reject){
+            img.onload = function(){
+              num ++;
+              let index = minIndex(arrT);
+              let picH = e.height * (picW/e.width);
+              html += `
+                <li style="left:${arrL[index]}px;top:${arrT[index]}px">
+                    <div class="pic">
+                      <img style="width:236px;" src="${e.preview}">
+                    </div>
+                </li>
+              `;
+              arrT[index] += (picH + marginL);
+              if(num == dataNum){
+                resolve();
+              }
+            }
+            img.onerror = function(){
+              num ++;
+              if(num == dataNum){
+                resolve();
+              }
+            }
+        });
+
+        p.then(e=>{
+          ul.innerHTML = html;
+        });
+      });
+  });
+
+
+  function minIndex(arr){
+      return arr.findIndex(e=>e == Math.min(...arr));
+  }
+
+  
+
+
+
+
+
+  // console.log(arrL,arrT);
+
+
+
+
+
+  
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let obj = "{'name':'suibian'}";
+    let fn = new Function('a,b,c','return'+obj); 
+    console.log(fn());
+</script>
+</body>
+</html>

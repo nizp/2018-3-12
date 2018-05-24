@@ -26,18 +26,18 @@
             var xml = ajax.responseXML;
             var person = xml.getElementsByTagName('person');
             
-            for(var i=0;i<person.length;i++){
-                var name = person[i].getElementsByTagName('name')[0];
-                var age = person[i].getElementsByTagName('age')[0];
-                var sex = person[i].getElementsByTagName('sex')[0];
-                var info = person[i].getElementsByTagName('info')[0];
+            // for(var i=0;i<person.length;i++){
+            //     var name = person[i].getElementsByTagName('name')[0];
+            //     var age = person[i].getElementsByTagName('age')[0];
+            //     var sex = person[i].getElementsByTagName('sex')[0];
+            //     var info = person[i].getElementsByTagName('info')[0];
 
-                html += '<li>我的名字叫:'+name.text;
-                html += ',我的年龄:'+age.text;
-                html += ',我的性别:'+sex.text;
-                html += ',我想说:'+info.text+'</li>';
+            //     html += '<li>我的名字叫:'+name.text;
+            //     html += ',我的年龄:'+age.text;
+            //     html += ',我的性别:'+sex.text;
+            //     html += ',我想说:'+info.text+'</li>';
 
-            }
+            // }
 
             for(var i=0;i<person.length;i++){
                 var name = person[i].getElementsByTagName('name')[0];
