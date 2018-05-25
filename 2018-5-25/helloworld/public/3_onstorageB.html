@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    document.onclick = function(){
+        localStorage.setItem('key','B');
+    }
+    window.addEventListener('storage',function(){
+        console.log('这是B');
+    })
+</script>
+</body>
+</html>
