@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#div{
+    width:0%;
+    height: 3px;
+    background: skyblue;
+    transition: 1s;
+}
+</style>
+</head>
+<body>
+    <!-- 传统的上传 -->
+    <!-- <form action="post_file.php"  method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="上传">
+    </form> -->
+    <div id="div"></div>
+    <input type="file" id="f">
+    <input type="button" value="上传" id="btn">
+
+<script>
+    /*
+        只要是上传
+            需要通过file空间下的files[0]来获取上传的数据
+
+        FormData:
+            专门把数据设置为multipart/form-data
+
+            它下面只有append方法
+                (key,val)
+            如果有多个字段就继续append....
+    */
+    btn.onclick = function(){
+        let ajax = new XMLHttpRequest;
+        ajax.open('post','post_file.php');
+        ajax.upload.onprogress = function(ev){
+            /*
+                ajax.upload.onprogress 监控上传的进度
+
+                    loaded:每次上传的大小
+                    total:总大小
+            */
+            let scale = ev.loaded / ev.total;
+            div.style.width = scale * 100 + '%';
+            if(scale === 1){
+                setTimeout(function(){
+                    div.style.opacity = '0';
+                    document.documentElement.style.transition = '1s';
+                    document.documentElement.style.background = 'yellow';
+                },2000);
+            }
+            console.log(ev);
+        }
+        
+        let fd = new FormData;
+        fd.append('file',f.files[0]);
+        // ajax.send('file='+f.files[0]);
+        ajax.send(fd);
+        ajax.onload = function(){
+            console.log(ajax.responseText);
+        }
+    }
+    //乱码变中文
+    // document.write('\u51fa\u73b0\u4e86\u4e00\u4e9b\u9519\u8bef')
+</script>
+
+</body>
+</html>

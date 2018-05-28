@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        异步的js和XML
+
+        json
+
+        拿数据的 -> 前后端的数据交互的一种技术
+
+            异步加载数据，优化用户体检
+            减轻服务器的压力
+
+        交互模型:
+            1.
+                new XMLHttpRequest
+
+            2.
+                ajax.open('get',url+encodeURI(data)+'sj='+清缓存,是否异步);
+
+                ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+            3.
+                ajax.send();
+
+            4.
+                ajax.onreadystatechange
+
+                0-4  ->  1-4  -> 4  ajax.readyState
+
+                ajax.status
+
+                    200->207  302 304
+
+            5.
+                ajax.responseText
+                ajax.responseXML
+
+            
+        Promise
+            就是让回调（地狱）变成同步的写法
+
+        .all
+            C = A + B
+
+        
+        element.files[0]
+
+        new FormData
+
+        append(key,val)
+
+        ajax.upload.onprogress 
+            ev.loaded:每次上传的大小
+            ev.total:总大小
+
+    跨域:
+        不同域名、协议、端口
+
+        1.高版本的XMLHttpRequest + 请求头
+
+        2.A与C同源,C能访问B，A-> B
+
+        3.jsonp
+            前端在全局定义一个全局的函数
+            后端的数据必须为函数名 + 括号
+            啥时候用就动态的创建script ->remove()
+
+        
+    ajax和jsonp都有一个致命的问题:
+        不能使用前进和后退。
+
+        hash || history
+
+
+    fetch(url,{headers:,body:new UrlSearchParams({})}).then()
+
+
+    1.找接口
+    2.看字段是什么意思
+    3.测试
+    4.是ajax还是jsonp
+
+
+
+            
+
+
+
+
+
+
+    */
+</script>
+</body>
+</html>

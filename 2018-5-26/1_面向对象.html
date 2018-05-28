@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        面向对象:
+
+
+        把封装函数的思想叫成抽象
+            封装函数：
+                相同的代码拿一个函数包起来，复用
+        把函数变成对象
+
+        的一种编程思想
+
+        80% 懵
+
+        60% 懵
+
+        60% 会
+
+        对现实世界理解和抽象的方法
+
+        类:
+            人类:
+                有手有脚有脑子
+                直立行走，制造工具，有思维
+                有身高有体重，能正常和人交流
+            警察:
+                一身浩然正气,持枪
+                警服,警徽警号
+                维护社会秩序  
+
+        类:
+            把相同的特征的代码归为一类  -> 函数封装
+
+            class -> 保留字
+
+        抽象:（抽离，长得像）
+            抽出像的部分
+            
+
+        obj.xxx = 10  属性
+        xxx   变量
+
+        obj.xx = function(){}  方法
+        function xx (){}  函数
+        
+        面向对象:
+           把相同的特征的代码归为一类,把描述细节挂在这个类的原型下的一种编程思想。
+
+    */
+
+    // let name = '乔烨轩';
+    // let age = 81;
+
+    // let name2 = '诗诗';
+    // let age2 = 18;
+
+    // let name3 = '李业峰';
+    // let age3 = 16;
+
+    function Person(Pname,Page){  //类
+        let name = Pname;
+        let age = Page;
+        return {
+            name,
+            age
+        }
+    }
+
+    let p1 = Person('乔烨轩',81);
+    let p2 = Person('诗诗',18);
+    let p3 = Person('李业峰',16);
+
+
+    console.log(p1); //实例化对象
+
+
+
+
+
+
+    
+</script>
+</body>
+</html>

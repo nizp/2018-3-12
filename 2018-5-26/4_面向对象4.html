@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        prototype：
+            当创建一个函数的时候，自身带的属性,
+            ***这个属性的值为对象***
+
+        如果一个对象上没有某个属性或者方法，那么还会继续
+        去这个对象的构造函数的原型下去找某个属性或者方法。
+    */
+   
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+        // this.say = function(say){
+        //     alert(say);
+        // }
+    }
+
+    Person.prototype.say = function(say){
+        alert(say);
+    }
+
+    Person.prototype.runing = function(){
+        alert('我也会跑');
+    }
+
+    let p = new Person('王露',12);
+    let p2 = new Person('荣荣',12);
+    // console.log(p.name);
+    // p.say('你好,世界!');
+
+    // p2.say('世界,你好');
+
+    p.runing = function(){
+        alert('我会跑');
+    }
+
+    p.runing();
+
+    // console.log(p);
+    p2.runing();
+
+    // console.log(p.say == p2.say);
+
+    // console.log(Person.prototype);
+
+    // let arr = [1,2,3];
+
+    // let arr2 = [,4,,65];
+
+    // console.log(arr.push == arr2.push);
+
+    // console.dir(Person)
+    
+
+    // console.log(p2);
+
+    Object.prototype.say = function(){
+
+    }
+
+    let obj = {
+        // say:function(){}
+    }
+    let obj2 = {
+        // say:function(){}
+    }
+
+    console.log(obj.say == obj2.say);
+
+</script>
+</body>
+</html>

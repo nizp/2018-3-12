@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        new Date
+        let d = new Date
+
+        new 函数运算符
+
+            加不加括号都会运行函数,只不过加括号是为了传参
+
+            构造函数中的this指向它的实例化对象
+
+            默认返回构造函数的实例化对象
+
+            如果强行给它加上return，如果是简单类型的数据
+            返回值还是构造函数的实例化对象
+            如果是复合类型，就返回介个复合类型。
+
+
+
+        类的首字母要大写
+        类中尽量把变量变成属性。
+
+        obj = {
+            name:'',
+            age:''
+        }
+
+
+
+    */
+    function Person(Pname,Page){  //类，构造函数->工厂函数
+        this.name = Pname;
+        this.age = Page;
+    }
+
+    let p1 = new Person('乔烨轩',81);
+
+    console.log(p1);
+
+    // function fn(){
+    //     // console.log(this);
+    //     return function fnn(){alert(22)}
+    // }
+    // console.log(new fn() );
+    // fn();
+
+</script>
+</body>
+</html>

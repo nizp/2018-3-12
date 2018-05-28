@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        实例化对象的原型链 === 构造函数的原型
+
+        ***prototype这个属性的值为对象***
+
+        构造函数的原型下的属性或者方法，只给它的实例化对象用
+
+        Function是Function构造出来的
+
+        Object也是Function构造出来的
+
+
+        Person既是构造函数，也是实例化对象
+
+
+        Person.prototype
+
+        Function.prototype
+
+        function Person(){}
+
+        prototype  let p = new Person   p.say()
+        __proto__  Person = Person.__proto__ === Function.prototype
+
+        Person.say
+
+
+        Function.say
+
+        Function.__proto__
+
+        
+
+
+
+
+    */
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    // Person.prototype.say = function(){
+    //     alert(1);
+    // }
+    // Function.prototype.say = function(){
+    //     alert(3);
+    // }
+    Object.prototype.say = function(){
+        alert(4);
+    }
+    // Function.say = function(){
+    //     alert(5);
+    // }
+    // Person.say = function(){
+    //     alert(2);
+    // }
+    
+
+    let p = new Person();
+    // p.say();
+    // Person.say();
+    // Function.say();
+    Object.say();
+
+    /*
+        p.say
+            1、p.say
+            2、Person.prototype.say
+            3、Object.prototype.say
+
+        Person.say
+            1、Person.say
+            2、Person.__proto__ -> Function.prototype
+            3、Object.prototype.say
+
+        Function.say
+            1、Function.say
+            2、Function.__proto__ -> Function.prototype
+            3、Object.prototype.say
+
+        Object.say
+            1、Object.say
+            2、Object.__proto__ -> Function.prototype
+            3、Object.prototype.say
+
+
+    */
+   
+
+</script>
+</body>
+</html>

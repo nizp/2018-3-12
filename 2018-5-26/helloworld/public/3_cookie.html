@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        cookie:
+            起初是后端的技术。一般由后端进行设置。
+
+            前端使用一般是把它当做一个仓库
+
+            存一些用户的相关信息（加密）
+
+            爱好搜索 -> 猜你喜欢
+
+        document.cookie = 以前是多少多少个
+        
+        据说高版本也有 5M
+
+        每个浏览器的cookie体积大小是不一样的。
+
+        document.cookie 读
+
+            去读的时候会把所有的cookie给打印出来
+
+            以key=val; key=val
+                一个cookie与一个cookie之间是由; 空格分割
+            name=gebilaowang; age=188
+        document.cookie = 'key=val'  写
+
+        如果你要设置分钟(比如：设置15分钟)
+            new Date(+new Date + (60 * 1000) * 15)
+
+        默认的生命周期:
+            当浏览器关闭的时候生命结束
+
+        还可以设置生命周期:
+            document.cookie = "key=val; expires=" + 设置的时间;
+        
+            登录验证
+
+            猜你喜欢
+    */
+
+
+//    document.cookie = 'name=gebilaowang';
+//    document.cookie = 'age=188';
+//    console.log(document.cookie);
+
+
+// let iDate = new Date;
+// iDate.setDate(iDate.getDate()+ 1000000);
+
+// document.cookie = "name=shenshen; expires=" + iDate;
+
+// setCookie('name1','肖云珊',1000000);
+// setCookie('name2','肾肾',1000000);
+// setCookie('name3','小胖',1000000);
+
+// console.log(getCookie('name'));
+
+// removeCookie('name3','小胖');
+// removeCookie('name2');
+
+function setCookie(key,val,time){
+    if(time){
+        let iDate = new Date;
+        iDate.setDate(iDate.getDate()+ time);
+        document.cookie = key+'='+val+ '; expires='+ iDate;
+    }else{
+        document.cookie = key+'='+val;
+    }
+}
+
+function getCookie(key){
+    let str = document.cookie;
+    let arr = str.split('; ');
+    let onOff = false;
+    for(let i=0;i<arr.length;i++){
+        let s = arr[i].split('=');
+        if(s[0] === key){
+            return s[1];
+        }
+    }
+    if(!onOff)return null;
+}
+
+function removeCookie(key,val){
+    if(val){
+        setCookie(key,val,-1);
+    }else{
+        let v = getCookie(key);
+        setCookie(key,v,-1);
+    }
+}
+
+// let d = new Date(+new Date + (60 * 1000) * 15);
+
+// document.cookie = "name=shenshen; expires=" + d;
+
+    
+</script>
+</body>
+</html>

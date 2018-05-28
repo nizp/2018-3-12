@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        prototype：(原型)
+            当创建一个函数的时候，自身带的属性,
+            ***这个属性的值为对象***
+
+        如果一个对象上没有某个属性或者方法，那么还会继续
+        去这个对象的构造函数的原型下去找某个属性或者方法。
+
+        __proto__（原型链）
+            对象身上才有原型链(包括函数)
+
+
+        实例化对象的原型链 === 构造函数的原型
+
+
+       *** 构造函数的原型下的属性或者方法，只给它的实例化对象用
+            
+
+    */
+   
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+
+    Person.prototype.say = function(){
+        alert(1);
+    }
+
+
+    let p = new Person('王露',12);
+
+    // console.dir(p.__proto__ === Person.prototype);
+
+    console.dir(p);
+
+
+
+
+
+    
+</script>
+</body>
+</html>

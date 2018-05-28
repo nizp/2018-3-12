@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮</button>
+<script>
+    /*
+        localStorage 
+            存储的空间比较大，现在是5M未来还会加
+
+            localStorage.getItem('key') -> val
+            localStorage.setItem('key','val')
+            localStorage.removeItem('key')
+            localStorage.clear()
+
+        注意:
+            在存储数据的时候，val值默认会使用toString转一道
+                {} -> [object Object]
+            解决:
+                传递进去的时候用JSON.stringify转下。
+
+            生命周期:
+                只要不清，一直在。
+
+        支持一种事件 onstorage
+        
+            能监控到同一个浏览器兄弟页面的操作
+
+
+    */
+
+    let arr = [1,2,3,4];
+    btn.onclick = function(){
+        arr.push(5);
+        localStorage.setItem('key',JSON.stringify(arr));
+        localStorage.setItem('key2','1234');
+        // console.log(arr);
+    }
+    arr = JSON.parse(localStorage.getItem('key')) || arr;
+    // alert([1,2,3,4]);
+
+    localStorage.clear();//全部都清掉了
+   
+
+
+
+</script>
+</body>
+</html>

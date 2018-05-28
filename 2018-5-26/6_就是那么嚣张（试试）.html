@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        实例化对象的原型链 === 构造函数的原型
+
+        ***prototype这个属性的值为对象***
+
+        构造函数的原型下的属性或者方法，只给它的实例化对象用
+    */
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    // Person.prototype.say = function(){
+    //     alert(1);
+    // }
+    Person.say = function(){
+        alert(2);
+    }
+    // Object.prototype.say = function(){
+    //     alert(4);
+    // }
+    let p = new Person();
+    // p.say = function(){
+    //     alert(3);
+    // }
+    p.say();
+    // Person.say();
+    console.dir(p);
+
+</script>
+</body>
+</html>

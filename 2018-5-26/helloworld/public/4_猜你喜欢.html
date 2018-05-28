@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+    background: yellow;
+}
+#p{
+    display: none;
+}
+</style>
+</head>
+<body>
+    <button data-index="movie">电影</button>
+    <button data-index="music">音乐</button>
+    <button data-index="game">游戏</button>
+    <button data-index="fushi">服饰</button>
+    <p id="p">猜你喜欢</p>
+    <ul id="ul"></ul>
+<script>
+    let obj = {
+        movie:['复仇者3','金刚狼','惊奇队长','西游记','三国演义','喜洋洋','铁巨人'],
+        music:['腾格尔-隐形的翅膀','猪八戒背媳妇-童话','不爱我拉倒','等你下课','小哥-爱情买卖'],
+        game:['WOW','LOL','炉石','植物大战僵尸','超级玛丽','王者荣耀','坦克大战','红警','罗马帝国'],
+        fushi:['四角裤子','破洞裤子','背带裤','霹雳手套','衬衣','露眼丝袜']
+    }
+    const btns = Array.from(document.querySelectorAll('button'));
+    let btn = btns[0];
+
+    //刷新页面的时候看看用户有没有点击过
+    if(getCookie('key')){
+        //就渲染猜你喜欢
+        render(JSON.parse(getCookie('key')));
+        p.style.display = 'block';
+    }else{
+        //如果从来没有访问过，走默认电影
+        render('movie');
+        btn.className = 'active';
+    }
+    btns.forEach(e=>{
+        e.onclick = function(){
+            btn.className = '';
+            this.className = 'active';
+
+            let key = getCookie('key'); //看看有没有猜你喜欢的数据
+            if(key){
+                //如果有猜你喜欢,先判断有没有重复的
+               let arr2 = JSON.parse( key );
+               //没有重复的就添加猜你喜欢数据
+               if(!arr2.includes(e.dataset.index)){
+                    arr2.push(e.dataset.index);
+                    setCookie('key',JSON.stringify(arr2),1);
+               }
+            }else{
+                setCookie('key',JSON.stringify([e.dataset.index]),1);
+            }
+            render(e.dataset.index);
+            btn = this;
+        }
+    });
+
+    function render(key){
+        let html = '';
+        let arr;
+        //key传进来的是不是一个数组
+        if(Array.isArray(key)){
+            arr = [];
+            /*
+                随机挑选3个关键字出来存到arr中
+            */
+            key.forEach(e=>{
+                //直接操作数组会修改原数据，复制一份就不会了
+                let cloneArr = obj[e].concat();
+                let sj = cloneArr.sort((a,b)=>Math.random()-.5)
+                sj.length = 3;
+                arr.push(...sj);
+            });
+        }else{
+            //默认走电影
+            arr =  obj[key];
+        }
+
+        arr.forEach(e=>{
+            html += '<li>'+ e +'</li>';
+        });
+        ul.innerHTML =  html;
+    }
+
+    function setCookie(key,val,time){
+        if(time){
+            let iDate = new Date;
+            iDate.setDate(iDate.getDate()+ time);
+            document.cookie = key+'='+val+ '; expires='+ iDate;
+        }else{
+            document.cookie = key+'='+val;
+        }
+    }
+
+    function getCookie(key){
+        let str = document.cookie;
+        let arr = str.split('; ');
+        let onOff = false;
+        for(let i=0;i<arr.length;i++){
+            let s = arr[i].split('=');
+            if(s[0] === key){
+                return s[1];
+            }
+        }
+        if(!onOff)return null;
+    }
+
+
+
+</script>
+</body>
+</html>
