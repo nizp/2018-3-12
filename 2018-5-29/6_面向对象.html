@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+   background: yellow; 
+}
+#box div,#box2 div{
+    width:100px;
+    height: 100px;
+    border: 1px solid #000;
+    display: none;
+}
+#box div.show,#box2 div.show{
+    display: block;
+}
+</style>
+</head>
+<body>
+   <section id="box">
+        <button class="active">选项一</button>
+        <button>选项二</button>
+        <button>选项三</button>
+        <div class="show">1111111</div>
+        <div>222222222</div>
+        <div>3333333333</div>
+   </section>
+   <section id="box2">
+        <button class="active">选项一</button>
+        <button>选项二</button>
+        <button>选项三</button>
+        <div class="show">1111111</div>
+        <div>222222222</div>
+        <div>3333333333</div>
+   </section>
+   <button id="btn1">点击让第一个关</button>
+   <button id="btn2">点击让第二个开</button>
+   <button id="btn3">点击反向开</button>
+<script>
+    function Tab(id){
+        this.box = document.querySelector('#'+id); 
+        this.btns = this.box.getElementsByTagName('button');
+        this.divs = this.box.getElementsByTagName('div');
+        this.timer = null;
+        this.num = 0;
+        this.len = this.btns.length;
+        this.init();
+    }
+
+    Tab.prototype.init = function(){
+        this.events('onclick');
+    }
+
+    Tab.prototype.events = function(evName){
+        let that = this;
+        for(let i=0;i<this.btns.length;i++){
+            this.btns[i][evName] = function(){
+                that.change(i);
+            }
+        }
+    }
+
+    Tab.prototype.change = function(index){
+        for(let i=0;i<this.btns.length;i++){
+            this.btns[i].className = '';
+            this.divs[i].className = '';
+        }
+        this.btns[index].className = 'active';
+        this.divs[index].className = 'show';
+    }
+
+    Tab.prototype.play = function(){
+        let that = this;
+        this.timer = setInterval(function(){
+            that.num ++;
+            that.num %= that.len;
+            that.change(that.num);
+        },1000);
+    }
+    Tab.prototype.stop = function(){
+        clearInterval(this.timer);
+        this.timer = null;
+    }
+
+    Tab.prototype.isAutoPlay = function(){
+        return !!this.timer;
+    }
+
+
+    let t = new Tab('box');
+    let t2 = new Tab('box2');
+    t.play();
+
+    btn1.onclick = function(){
+        t.stop();
+    }
+    btn2.onclick = function(){
+        t2.play();
+    }
+
+    btn3.onclick = function(){
+        if(t.isAutoPlay()){
+            t.stop();
+        }else{
+            t.play();
+        }
+        if(t2.isAutoPlay()){
+            t2.stop();
+        }else{
+            t2.play();
+        }
+    }
+
+
+
+
+
+
+
+   
+
+</script>
+</body>
+</html>

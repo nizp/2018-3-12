@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        实例化对象.constructor = 实例化对象的构造函数
+
+        不是100%准确，容易被修改。
+
+    */
+    function Person(name){
+        this.name = name;
+    }
+    // Person.prototype.say = function(){
+    //     alert('你好,shijie!');
+    // }
+    // Person.prototype.runing = function(){
+    //     alert('我会跑!');
+    // }
+
+    /*
+        因为对象与对象之间赋址了，constructor就会被修改。
+
+        解决:
+            在对象上加一个属性，把指针修正即可。
+    */
+    let obj = {
+        say:function(){
+            alert('你好,shijie!');
+        },
+        runing:function(){
+            alert('我会跑!');
+        },
+        constructor:Person
+    }
+
+    Person.prototype = obj;
+
+
+
+    let p = new Person('你的肾');
+
+    console.dir(p.constructor);
+
+    // p.runing();
+    // console.log(Object.constructor);
+
+
+</script>
+</body>
+</html>

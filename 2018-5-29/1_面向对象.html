@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+    面向对象:
+        把具有相同特征的代码抽离出来归为一类，把描述细节的内容放在这个类的原型下的一种编程思想
+
+    prototype  只要是函数都有这个属性，这个属性的值为*对象*
+
+    __proto__  只有实例化对象才有
+        [],{},function(){}
+
+    实例化对象.__proto__  ===  构造函数.prototype
+    
+    实例化对象的原型链是构造函数原型的通道
+
+    new
+        函数的运算符，专门运算函数的
+
+        new fn()
+
+        this
+
+    Function.say -> Function.__proto__ 
+
+    Function.prototype.say -> {__proto__:Object}
+
+    Object.prototype.say
+
+
+    Person.say -> Person.__proto__ -> Function.prototype
+
+    p.say() -> p.__proto__ -> Person.prototype
+
+
+
+    Object.say ->  Object.__proto__ -> Function.prototype 
+
+    {__proto__:Object} => Object.prototype
+
+
+
+    {__proto__:Object} -> Object.prototype -> {__proto__:Object}
+
+
+
+
+
+
+*/
+
+    function Person(name){
+        this.name = name;
+    }
+
+    // Person.prototype.say = function(){
+    //     alert(1);
+    // }
+    // Person.say = function(){
+    //     alert(2);
+    // }
+    Function.prototype.say = function(){
+        alert(4);
+    }
+
+    // Function.say = function(){
+    //     alert(5);
+    // }
+    // Array.prototype.say = function(){
+    //     alert(8);
+    // }
+    // Object.prototype.say = function(){
+    //     alert(6);
+    // }
+    // Object.say = function(){
+    //     alert(7);
+    // }
+    let p = new Person;
+
+    /*
+        p -> Person.prototype -> {__proto__:Object}
+
+        Object.prototype={__proto__:Object}
+    */
+
+    // Function.say();
+    // Object.say();
+    // p.say();
+    // Person.say();
+
+    console.dir(p);
+    // p.say = function(){
+    //     alert(3);
+    // }
+
+
+
+
+
+
+    // function fn(){
+    //     console.log(this);
+    //     return function (){}
+    // }
+    // console.log(new new new fn);
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+   background: yellow; 
+}
+#box div,#box2 div{
+    width:100px;
+    height: 100px;
+    border: 1px solid #000;
+    display: none;
+}
+#box div.show,#box2 div.show{
+    display: block;
+}
+</style>
+</head>
+<body>
+   <section id="box">
+        <button class="active">选项一</button>
+        <button>选项二</button>
+        <button>选项三</button>
+        <div class="show">1111111</div>
+        <div>222222222</div>
+        <div>3333333333</div>
+   </section>
+   <section id="box2">
+        <button class="active">选项一</button>
+        <button>选项二</button>
+        <button>选项三</button>
+        <div class="show">1111111</div>
+        <div>222222222</div>
+        <div>3333333333</div>
+   </section>
+
+   <button id="btn1">点击让第一个关</button>
+   <button id="btn2">点击让第二个开</button>
+   <button id="btn3">点击反向开</button>
+
+<script>
+    function Tab(id,onOff){
+        let box = document.querySelector('#'+id);
+        let btns = box.querySelectorAll('button');
+        let divs = box.querySelectorAll('div');
+        let btn1 = document.getElementById('btn1');
+        box.timer = null;
+        let num = 0;
+
+        for(let i=0;i<btns.length;i++){
+            btns[i].onclick = function(){
+                for(let j=0;j<btns.length;j++){
+                    btns[j].className = '';
+                    divs[j].className = '';
+                }
+                this.className = 'active';
+                divs[i].className = 'show';
+            }
+        }
+        
+        if(onOff){
+            box.timer = setInterval(function(){
+                num ++;
+                num %= btns.length;
+                for(let j=0;j<btns.length;j++){
+                    btns[j].className = '';
+                    divs[j].className = '';
+                }
+                btns[num].className = 'active';
+                divs[num].className = 'show';
+            },1000);
+        }
+
+        btn1.onclick = function(){
+            clearInterval(box.timer);
+        }
+    }
+    Tab('box2');
+    Tab('box',true);
+    
+
+</script>
+</body>
+</html>
