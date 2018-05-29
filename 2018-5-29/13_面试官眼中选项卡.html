@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+   background: yellow; 
+}
+div{
+    width:100px;
+    height: 100px;
+    border: 1px solid #000;
+    display: none;
+}
+.show{
+    display: block;
+}
+</style>
+</head>
+<body>
+   <section id="box">
+        <button class="active">选项一</button>
+        <button>选项二</button>
+        <button>选项三</button>
+        <div class="show">1111111</div>
+        <div>222222222</div>
+        <div>3333333333</div>
+   </section>
+<script>
+    /*
+        闭包
+        函数传参
+        undefined 低版本的赋值问题
+        ES5的使用
+        ES6
+        无new化操作
+        如何把局部变量放到全局
+        原型
+        面向对象
+        数组slice内部特性
+        call
+        返回值
+        抽象
+        this
+
+    */
+    (function(global,factory){
+        factory(global);
+    })(typeof window !== 'undefined'?window:this,function(global,noGlobal){
+        function Tab(id){
+            return new Tab.prototype.fn(id);
+        }
+
+        Tab.prototype = {
+            slice(){
+                return Array.prototype.slice;
+            },
+            events(){
+                let that = this;
+                this.btns.forEach((e,i)=>{
+                    e.onclick = function(){
+                        that.change(i);
+                    }
+                });
+            },
+            change(index){
+                this.btns.forEach((e,i)=>this.divs[i].className = e.className = '');
+                this.btns[index].className = 'active';
+                this.divs[index].className = 'show';
+            },
+            fn:function(id){
+                this.box = document.getElementById(id);
+                this.btns = this.box.getElementsByTagName('button');
+                this.divs = this.box.getElementsByTagName('div');
+                this.btns = this.slice().call(this.btns)
+            },
+            constructor:Tab
+        }
+        
+        
+        // .slice = function(){
+            
+        // }
+
+        // Tab.prototype.events = function(){
+        //     let that = this;
+        //     this.btns.forEach((e,i)=>{
+        //         e.onclick = function(){
+        //             that.change(i);
+        //         }
+        //     })
+        // }
+
+        // Tab.prototype.change = function(index){
+        //     this.btns.forEach((e,i)=>this.divs[i].className = e.className = '');
+        //     this.btns[index].className = 'active';
+        //     this.divs[index].className = 'show';
+        // }
+        // Tab.prototype.fn = function(id){
+        //     this.box = document.getElementById(id);
+        //     this.btns = this.box.getElementsByTagName('button');
+        //     this.divs = this.box.getElementsByTagName('div');
+        //     this.btns = this.slice().call(this.btns)
+        // }
+
+        Tab.prototype.fn.prototype = Tab.prototype;
+
+        global.T = Tab;
+    });
+
+    let t = T('box');
+    t.events();
+
+    console.log(t);
+    // t.events();
+    
+
+
+
+
+   
+</script>
+</body>
+</html>

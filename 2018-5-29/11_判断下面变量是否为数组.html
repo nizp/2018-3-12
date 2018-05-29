@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        toString()
+
+        [object Object]
+            
+            Object 输出一个数据类型
+
+
+    */
+
+    let arr = [1,2,3];
+
+    // console.log(arr.constructor == Array);
+
+    // console.log(arr instanceof Array);
+
+    let toS = Object.prototype.toString;
+
+    console.log(toS.call(arr) === '[object Array]');
+
+    Array.prototype.toString = function(){
+        alert('呵呵,我就是把你改了');
+    }
+
+    let obj = {};
+    let str = '';
+    let b = true;
+
+    // console.log(Object.prototype.toString.call(b));
+    // alert(obj);
+    // console.log(arr.toString());
+    // console.log(typeof arr);
+
+</script>
+</body>
+</html>

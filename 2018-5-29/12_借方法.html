@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+<script>
+    /*
+
+    */
+    var a = 10;
+    function fn(){
+        return this.a + 2;
+    }
+
+    console.log(fn.call({a:5}));
+
+//    console.log(fn());
+
+
+    Object.prototype.toStr = function(){
+        let s = Object.prototype.toString;
+        return s.call(this);
+    }
+
+    let obj2 = {};
+
+    let s = Object.prototype.toStr;
+
+    // console.log(s.call(a));
+
+    // console.log(obj2.toStr());
+
+
+    let arr2 = [1,2,3,4,5];
+
+
+    let lis = document.getElementsByTagName('li');
+
+    let slice = Array.prototype.slice;
+
+    // lis = slice.call(lis)
+    // lis.push(3);
+    // console.log(lis);
+
+    // lis.constructor = Array;
+
+    HTMLCollection.prototype = Array.prototype;
+
+    console.dir(lis.push(5));
+
+
+
+
+//    console.log( Math.min.apply([],arr2) );
+
+
+
+
+</script>
+</body>
+</html>

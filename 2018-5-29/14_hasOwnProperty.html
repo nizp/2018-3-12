@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        hasOwnProperty:
+            查看是不是自身的属性
+
+            name在这个构造函数中，就是自身的属性
+            say是挂在构造函数的原型中的，它不是自身（构造函数）的属性
+    */
+
+    function Person(name){
+        this.name = name;
+    }
+    Person.prototype.say = 10;
+    let p = new Person('小shenshen');
+
+
+    // console.log(p.hasOwnProperty('name'));
+    // console.log(p.hasOwnProperty('say'));
+
+    // console.log(p.say);
+
+    let obj = {name:'ss'};
+    console.log(obj.hasOwnProperty('name'));
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        包装对象:
+            当你去调用简单类型的属性或者方法时，系统默认会偷偷的
+            把这个简单类型包装对象类型，去取某个属性或者方法
+            使用完之后，自动销毁。
+
+            对象上才能加属性或者方法。[],{},fn
+    */
+    let arr = [];
+    
+    arr.num = 0;
+    arr.num ++;
+
+    arr.fn = function(){
+        alert(1);
+    }
+
+    let str = 'hehe';
+
+    str.num = 0;
+
+    // str.num ++;
+
+    // str.fn = function(){
+    //     alert(1);
+    // }
+
+    // str.fn();    
+    // arr.fn();
+
+    //console.log(str.substring(1));
+
+    //console.log(str.length);
+
+    let a = new String('1234');
+
+    a.length = 1; //就算对象类型的‘简单’类型中的length也是不可以写的，只可以读。
+
+    console.log(a.length);
+
+    // console.log(str.num);
+   
+</script>
+</body>
+</html>
