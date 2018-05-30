@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    top:0;
+    left:0;
+}
+#box2{
+    width:100px;
+    height: 100px;
+    background: yellow;
+    position: absolute;
+    top:0;
+    left:150px;
+}
+</style>
+</head>
+<body>
+        <div id="box"></div>
+        <div id="box2"></div>
+<script>
+    /*
+        面向对象的特征:
+            抽象
+            封装
+            继承  :
+                
+                
+
+                拷贝继承：
+                    属性继承 -> 
+                        类式继承:把父类放到子类下
+                    方法继承 -> 
+                        遍历父类的原型下的方法并且赋值给子类的原型
+                
+                原型继承
+                    属性继承 -> 
+                        类式继承:把父类放到子类下
+
+                    方法继承 -> 
+                        创建一个第三方构造函数（Paohui）
+                        让其原型等于父类的原型
+                            Paohui.prototype = Drag.prototype;
+                        实例化对象这个构造函数
+                            let ph = new Paohui;
+                        实例化对象等于子类的原型
+                            Drag2.prototype = ph;
+
+    */
+
+    Object.prototype.hehe = '哈哈';
+
+    function Drag(id){  
+       this.box = document.getElementById(id);
+       this.disX = this.disY = 0;
+       console.log(1);
+    }
+    Drag.prototype.down = function(){
+            let that = this;
+            this.box.onmousedown = function(ev){
+                that.disX = ev.pageX - that.box.offsetLeft;
+                that.disY = ev.pageY - that.box.offsetTop;
+                document.onmousemove = function(ev){
+                    that.move(ev);
+                }
+                document.onmouseup = function(ev){
+                    that.up(ev);
+                }
+                return false;
+            }
+    }
+    Drag.prototype.move = function(ev){
+        this.box.style.left = ev.pageX - this.disX + 'px';
+        this.box.style.top = ev.pageY - this.disY + 'px';
+    }
+    Drag.prototype.up = function(ev){
+        document.onmousemove = document.onmouseup = null;
+    }
+    
+    function Drag2(id){
+        Drag.call(this,id);
+    }
+
+    /*
+       d2.down - > d2.__proto__ -> Drag2.prototype
+       
+       ph -> ph.__proto__ -> Paohui.prototype ->
+
+       Drag.prototype
+    */
+
+    // function Paohui(){}
+    // // Paohui.prototype = Drag.prototype;
+    // let ph = new Paohui;
+    // Object.setPrototypeOf(ph,Drag.prototype);
+    // Drag2.prototype = ph;
+
+    let ph = Object.create(Drag.prototype);
+    ph.constructor = Drag2;
+    Drag2.prototype = ph;
+
+
+
+    Drag2.prototype.move = function(ev){
+        let l = ev.pageX - this.disX;
+        if(l < 0){
+            l = 0;
+        }
+        this.box.style.left = l + 'px';
+        this.box.style.top = ev.pageY - this.disY + 'px';
+    }
+
+    let d = new Drag('box');
+    d.down();
+    let d2 = new Drag2('box2');
+    d2.down();
+    console.log(d2.constructor);
+  
+
+
+
+
+
+
+    
+</script>
+</body>
+</html>

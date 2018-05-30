@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+<script>
+    /*
+        Object.create
+            创建一个对象，这个对象可以克隆于另一个对象
+    */
+    // let obj = {
+    //     name:'123'
+    // }
+
+    // let me = Object.create(obj);
+
+    // me.age = 12;
+
+    // console.log(obj)
+
+
+    /*********************/
+
+
+    class Person{
+        constructor(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        say(){
+            console.log(123);
+        }
+    }
+
+    let p = new Person('xx',12);
+
+    let p2 = Object.create(p);
+
+    // p2.say = function(){
+    //     console.log(321);
+    // }
+
+    // console.log(p2.constructor);
+
+    // Object.setPrototypeOf(p2,{name:'xcv'})
+
+    // console.log(p.name);
+
+
+    /*
+        getOwnPropertyNames(obj)
+            获取对象的可枚举（遍历）的key值名字返回一个数组
+    */
+
+//    let arr = [1,2,3,4];
+
+//     let obj = {
+//         key:'123',
+//         value:'321',
+//         hh:'3214342'
+//     }
+
+//    console.log(Object.getOwnPropertyNames(obj))
+
+
+
+    // let lis = document.getElementsByTagName('li');
+
+    // console.log(Object.getOwnPropertyDescriptors(lis));
+
+
+
+</script>
+</body>
+</html>

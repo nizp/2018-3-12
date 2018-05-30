@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    let arr = [1,2,3,4,5];
+
+    let arr2 = [];
+
+    // for(let i=0;i<arr.length;i++){
+    //     arr2[i] = arr[i];
+    // }
+
+    for(let attr in arr){
+        arr2[attr] = arr[attr];
+    }
+
+    arr2.push(6);
+
+    // console.log(arr2);
+
+    arr.fn1 = function(){
+
+    }
+    arr.fn2 = function(){
+        
+    }
+    arr2.fn1 = arr.fn1;
+
+    arr2.fn1 = function(){
+        alert(1);
+    }
+
+    
+
+    console.log(arr.fn1)
+
+
+
+</script>
+</body>
+</html>

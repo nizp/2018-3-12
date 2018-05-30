@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let obj = {}
+    
+
+    /*
+        数据劫持
+            defineproperty
+            方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。
+
+            enumerable:是否可枚举 布尔值
+
+            configurable:是否可删除
+
+            writable:是否可写
+
+            value:值
+
+
+
+            get:读的时候会进这个函数
+
+            set:设置的时候会进这个函数
+
+            注意:
+                写了value就不能用set和get了
+
+
+    */
+    let nn = 5;
+    let a = Object.defineProperty(obj,'num',{
+        get : function(){
+            return nn ++;
+        },
+        // set : function(newValue){
+        //    this.num = nn;
+        // },
+        enumerable: true,
+        configurable: true,
+        // writable: true,
+    });
+
+    // console.log(obj.num === 5 && obj.num > 5);
+
+
+
+
+
+
+    // a.key = 10000;
+    // console.log(obj);
+
+    // delete a.key
+
+    // console.log(a)
+
+    // for(let attr in a){
+    //     console.log(attr);
+    // }
+
+
+   
+
+    // alert(obj.num === 5 && obj.num > 5); //true
+</script>
+</body>
+</html>

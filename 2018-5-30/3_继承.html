@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    top:0;
+    left:0;
+}
+#box2{
+    width:100px;
+    height: 100px;
+    background: yellow;
+    position: absolute;
+    top:0;
+    left:150px;
+}
+</style>
+</head>
+<body>
+        <div id="box"></div>
+        <div id="box2"></div>
+<script>
+    /*
+        面向对象的特征:
+            抽象
+            封装
+            继承  :
+                
+                
+
+                拷贝继承：
+                    属性继承 -> 
+                        类式继承:把父类放到子类下
+                    方法继承 -> 
+                        遍历父类的原型下的方法并且赋值给子类的原型
+                
+                原型继承
+    */
+
+    Object.prototype.hehe = '哈哈';
+
+    function Drag(id){  
+        // console.log(this); //Drag2{}
+       this.box = document.getElementById(id);
+       this.disX = this.disY = 0;
+    }
+    Drag.prototype.down = function(){
+            let that = this;
+            this.box.onmousedown = function(ev){
+                that.disX = ev.pageX - that.box.offsetLeft;
+                that.disY = ev.pageY - that.box.offsetTop;
+                document.onmousemove = function(ev){
+                    that.move(ev);
+                }
+                document.onmouseup = function(ev){
+                    that.up(ev);
+                }
+                return false;
+            }
+    }
+    Drag.prototype.move = function(ev){
+        this.box.style.left = ev.pageX - this.disX + 'px';
+        this.box.style.top = ev.pageY - this.disY + 'px';
+    }
+    Drag.prototype.up = function(ev){
+        document.onmousemove = document.onmouseup = null;
+   }
+    function Drag2(id){ 
+        //this ->  Drag2{}
+        Drag.call(this,id);
+    }
+
+    /*
+        Drag.prototype.up
+
+        对象的赋值是赋址，这个时候既会改变
+        Drag2也会改变Drag
+
+        解决:
+            函数的赋值不是赋址，可以使用for in,也可以使用{...父类的原型}
+
+            注意：
+                for in不但会查找当前对象的key，还会查找原型链、原型
+
+    */
+    // Drag2.prototype = Drag.prototype;
+
+    // for(let attr in Drag.prototype){
+    //     if(Drag.prototype.hasOwnProperty(attr)){
+    //         Drag2.prototype[attr] = Drag.prototype[attr];
+    //     }
+    // }
+   
+    // console.log(obj);
+    // Object.assign(Drag2.prototype,Drag.prototype)
+    //拷贝继承推荐它{...}
+    //指针会被改变，这个时候需要手动修正指向。（constructor:Drag2）
+    Drag2.prototype = {...Drag.prototype,constructor:Drag2};
+    Drag2.prototype.move = function(ev){
+        let l = ev.pageX - this.disX;
+        if(l < 0){
+            l = 0;
+        }
+        this.box.style.left = l + 'px';
+        this.box.style.top = ev.pageY - this.disY + 'px';
+    }
+
+    let d = new Drag('box');
+    d.down();
+    let d2 = new Drag2('box2');
+    d2.down();
+
+    console.log(d2.constructor);
+
+
+
+
+    
+</script>
+</body>
+</html>

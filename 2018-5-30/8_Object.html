@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        Object
+
+            Object.assign({},{}) 浅拷贝
+
+            Object.is() 2个值是否相等,可以判断2个NaN相等
+
+            Object.getPrototypeOf(对象)
+                通过实例化对象去查看构造函数的原型。
+
+                如果参数不是对象，会被自动转为对象。
+
+                如果参数是undefined或null，它们无法转为对象，所以会报错。
+
+            Object.setPrototypeOf
+
+            Object.create
+
+            Object.getOwnPropertyNames
+            Object.getOwnPropertyDescriptors(obj)
+            Object.keys()
+            Object.values()
+            Object.entries()
+            Object.defineproperty()
+    */
+
+    // console.log(Object.is(NaN,NaN));
+    // console.log(Object.is(+0,-0));
+
+
+    class Person{
+        constructor(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        say(){
+            console.log(123);
+        }
+    }
+
+    let p = new Person('xx',90);
+
+    // console.log( Object.getPrototypeOf(p) === Person.prototype );
+    // Object.setPrototypeOf(p,{add(){console.log('add')}});
+    // p.say();
+
+    let PersonYX = Object.getPrototypeOf(p);
+    PersonYX.add = function(){
+        alert(321);
+    }
+    Object.setPrototypeOf(p,PersonYX);
+
+    // console.log(PersonYX)
+    p.say();
+    p.add();
+</script>
+</body>
+</html>

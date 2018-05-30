@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        包装对象
+        面向过程
+        最后一个课件
+        constructor
+        借方法
+
+            1.查数据类型
+                Object.prototype.toString  [object Type]
+
+                Array.isArray()
+
+            2.类数组转数组
+                Array.prototype.slice
+
+            3.找最小或者最大
+                [1,2,3,4]
+                Math.min.apply(null,[1,2,3,4])
+    */
+
+    function Person(name){
+        this.name = name;
+    }
+    
+    let p = new Person('小shenshen');
+    Person.prototype.say = '呵呵';
+
+    // console.log(p);
+    // console.log(p.hasOwnProperty('say'));
+    // console.log(p.say)
+
+    console.log(p.constructor)
+
+    /*
+    obj = {
+            name:小shenshen
+        }
+    */
+
+
+
+</script>
+</body>
+</html>

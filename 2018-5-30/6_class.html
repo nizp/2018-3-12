@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        class 关键字
+
+        function Person(){}  ===  class Person {}
+
+        动态方法:
+            let arr = [1,2,3,5]
+            arr.push(4)
+            [1,2,3,5].push(7)
+
+            实例化对象上可以调用的方法
+
+        静态方法:
+            Array.form()
+
+            构造函数上可以调用的方法
+
+            static + 方法名 = 静态方法
+            
+
+
+    */
+    class Person {
+        constructor(name,age){
+            this.name = name;
+            this.age = age;
+            // console.log(arguments);
+        }
+        static say(){
+            //静态方法
+            alert(this.name);
+        }
+
+        say(){
+            //动态方法
+            alert(this.name);
+        }
+
+        runding(){
+            //动态方法
+            alert(this.name+'会跑!');
+        }
+    }
+
+    let p = new Person('老肾',90);
+
+    p.say();
+
+    // Person.say();
+
+    p.runding();
+
+    // console.dir(Person)
+
+
+    // let arr = [1,2,3,4,5];
+
+    // console.log(Array.from);
+
+  
+
+</script>
+</body>
+</html>
