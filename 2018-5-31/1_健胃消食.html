@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    top:0;
+    left:0;
+}
+</style>
+</head>
+<body>
+    <!-- <input type="text" id="t">
+    <input type="button" id="t2" value="按钮"> -->
+    <div id="box"></div>
+<script>
+    /*
+        ES6的继承
+        数据劫持
+        拖拽
+    */
+
+    // let obj = {
+    //     name:'红娟',
+    //     age:8
+    // }
+
+    // let a = '123';
+    // Object.defineProperty(obj,'job',{
+    //     get:function(){
+    //         return a;
+    //     },
+    //     set:function(newVal){
+    //         // a = newVal;
+    //         a = newVal;//newVal.replace(/\d+/g,'');
+    //     },
+    //     enumerable:true,
+    //     configurable:true,
+    // });
+
+    // obj.job = '宇宙超级高级无敌前端开发12312';
+
+    // t.oninput = function(){
+    //     obj.job = this.value;
+
+    //     t2.value = a;
+    //     console.log(a);
+    // }
+
+    // let num = 0;
+    // t2.onclick = function(){
+    //     a = ++num;
+    //     t2.value = t.value = obj.job;
+        
+    // }
+
+    // console.log(obj.job);
+
+
+
+    class Drag {
+        constructor(id){
+            this.box = document.getElementById(id);
+            this.disX = 0;
+            this.disY = 0;
+        }
+        init(){
+            this.down();
+        }
+
+        down(){
+            let that = this;
+            let downA = function(ev){
+                that.downFF(ev,downA)
+            }
+            this.box.addEventListener('mousedown',downA);
+        }
+        downFF(ev,downA){
+                console.log('按下');
+                that.disX = ev.pageX - this.offsetLeft;
+                that.disY = ev.pageY - this.offsetTop;
+                
+                // console.log()
+                // document.addEventListener('mousemove',that.move);
+
+                // document.addEventListener('mousemove',function(ev){
+                //     that.move(ev);
+                // });
+
+                let moveFn = function(ev){ that.move(ev);}
+                let upFn = function(ev){that.up(ev,moveFn,upFn,downA);}
+                
+                document.addEventListener('mousemove',moveFn);
+                document.addEventListener('mouseup',upFn);
+        }
+        move(ev){
+            // console.log(this);
+            this.box.style.left = ev.pageX - this.disX + 'px';
+            this.box.style.top = ev.pageY - this.disY + 'px';
+        }
+        up(ev,move,up,down){
+            // console.log(move);
+            
+            document.removeEventListener('mousemove',move);
+            document.removeEventListener('mousemove',up);
+        }
+    }
+
+
+
+
+    class Pseron {
+        constructor(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        say(){
+            alert(this.name);
+        }
+    }
+
+    class Police extends Pseron {
+        constructor(name,age,job){
+            super(name,age);
+            this.job = job;
+        }
+        kongfu(){
+            alert('耍大刀');
+        }
+    }
+
+    class SdsPolice extends Police{
+       
+        sds(){
+            alert('胸口碎大石');
+        }
+    } 
+
+    let p = new Police('黑猫',50,'警察');
+
+    let p2 = new SdsPolice('肾肾',18,'碎肾结石警');
+
+    // p.kongfu();
+
+    p2.sds();
+    p2.kongfu();
+    console.log(p2.job);
+
+    // p.say();
+
+    // console.log(p.job);
+
+
+
+
+    // new Drag('box').init();
+
+
+
+
+</script>
+</body>
+</html>

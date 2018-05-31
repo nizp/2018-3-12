@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        露:半猝
+
+        诗诗:半猝
+
+        荣荣:半猝
+
+        肖云珊：半猝
+
+    */
+    // document.onclick = fn();
+    document.onclick = function(){
+        //new fn()()   function(){console.log(this);}//window
+        // new new fn();  //{}
+        // new new new fn(); //报错
+
+        setTimeout(new fn,1000); //window
+    };
+    function fn(){
+        console.log(this); //fn{}
+        // return function(){
+        //     // console.log(this);
+        // }
+    }
+
+</script>
+</body>
+</html>

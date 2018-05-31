@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        手写:deepclone
+
+            如果循环数组的时候数组中的值为简单类型，那么就做到赋值效果
+            如果数组还有复合类型，那么又变成赋址了。
+
+        解决思路:
+            只要是复合类型就继续循环赋值，直到没有复合类型为止（递归）
+
+    */
+
+    let arr = [1,2,3,4,5,[7,{key:'123'},null,undefined,function fn(){}]];
+
+    function deepClone(obj){
+        let toS = Object.prototype.toString;
+        //判断传进来的obj是对象还是数组，是对象就{}是数组[]
+        let o = toS.call(obj) === '[object Object]'?{}:[];
+        // let o = obj.push?[]:{};
+        for(let attr in obj){
+            // if(typeof obj[attr] === 'object'){
+            //判断obj[attr]是对象或者是数组才递归
+            if(toS.call(obj[attr]) === '[object Object]' || toS.call(obj[attr]) === '[object Array]'){
+                o[attr] = deepClone(obj[attr]);
+            }else{
+                o[attr] = obj[attr];
+            }
+        }
+        return o;
+    }
+    // let arr2 = arr;
+
+    // let arr2 = deepClone(arr);
+
+    // let arr2 = JSON.parse(JSON.stringify(arr));
+    
+    // arr2.push(6);
+    // arr2[5].push(8);
+
+    // console.log(arr);
+
+</script>
+</body>
+</html>
