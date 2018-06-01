@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="author" content="Reddy.Huang"/>
+    <link rel="stylesheet" href="/public/css/reset.css">
+    <link rel="stylesheet" href="/public/css/register.css">
+    <title>Title</title>
+    <style>
+        h2 {
+            display: none;
+        }
+        #info{
+          display: none;
+        }
+    </style>
+</head>
+<body>
+<h2 id="userInfo">欢迎回来,<span id="user"></span></h2>
+<div class="form-wrapper">
+    <div class="banner"></div>
+    <form id="form">
+        <div class="item-wrapper"><label for="username">登陆名</label><input type="text" name="username" id="username" value=""></div>
+        <div class="item-wrapper"><label for="password">密码</label><input type="password" name="password" id="password" value=""></div>
+        <input type="button" value="登陆" id="submit">
+        <input type="button" value="注册" id="register">
+    </form>
+    <p id="info" >请输入信息</p>
+</div>
+<!-- <script src="/public/js/myAxios_2.0.js"></script> -->
+<!-- <script src="/public/js/axios.min.js"></script> -->
+<script>
+    const register = document.getElementById('register');
+    const submit = document.getElementById('submit');
+    const uName = document.getElementById('username');
+    const uPass = document.getElementById('password');
+
+    register.addEventListener('click',function(){
+        let uNameV = uName.value;  
+        let uPassV = uPass.value;
+        registerFn(uNameV,uPassV).then(e=>{
+            if(e.code === 0){
+                info.style.display = 'block';
+                info.innerHTML = '恭喜注册成功';
+                setTimeout(function(){
+                    info.style.display = register.style.display = 'none';
+                },1000);
+            }else if(e.code === 1){
+                info.style.display = 'block';
+                info.innerHTML = '恭喜注册失败!';
+            }
+            uName.value = uPass.value = '';
+        });
+    });
+    async function registerFn(uv,pv){
+        let res = await fetch('/api/user/register',{
+            method:"post",
+            body :`username=${uv}&password=${pv}`,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+        return await res.json();
+    }
+    
+    async function login(uv,pv){
+        let data = await fetch('/api/user/login',{
+            headers:{
+                "Content-Type":"application/x-www-form-urlencoded"
+            },
+            method:"post",
+            body:new URLSearchParams({
+                username:uv,
+                password:pv
+            }).toString()
+        });
+        let res = await data.json();
+        return res;
+    }
+        
+    submit.addEventListener('click',function(){
+        login(uName.value,uPass.value).then(e=>{
+            if(e.code === 0){
+                location.href = 'http://localhost:88/';
+            }else if(e.code === -3){
+                info.style.display = 'block';
+                info.innerHTML = e.msg;
+            }
+        });
+    });
+
+
+
+   
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    // var name = "caibaojian.com"; 
+    // var person = {
+    //     name: "kang",
+    //     pro: {
+    //         name: "Michael",
+    //         getName: function() {
+    //             return this.name;
+    //         }
+    //     }
+    // };
+    // console.log(person.pro.getName()); //Michael
+
+    // var pepole = person.pro.getName;
+
+    // var pepole = function(){
+    //     alert(this.name)
+    // }
+
+    // console.log(pepole()); //caibaojian
+
+    
+   
+    var person = {
+        name: "kang",
+        pro: {
+            name: "Michael",
+            getName: function() {
+                // console.dir(this.a);
+                return this.a; //""
+            }
+        }
+    };
+
+    setTimeout(person.pro.getName,1000);
+
+    var name = "caibaojian.com";
+    var person = {
+        name: "kang",
+        pro: {
+                name: "Michael",
+                getName: function() {
+                    console.log(this);
+                    return this.name;
+                }
+            }
+    };
+    // console.log(person.pro.getName());//pro
+    var pepole = person.pro.getName;
+    console.log(pepole()); //window caibaojian.com
+</script>
+</body>
+</html>

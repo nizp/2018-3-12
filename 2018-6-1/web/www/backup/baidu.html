@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="author" content="Reddy.Huang <i@0u0b.com>"/>
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="text">
+<ul id="ul">
+
+</ul>
+<script>
+  function haha(data) {
+    ul.innerHTML = '';
+    data.s.forEach(function (ele) {
+      ul.innerHTML += '<li>' + ele + '</li>';
+    })
+  }
+
+  text.onkeyup = function () {
+    let oS = document.createElement('script');
+    oS.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=' + text.value + '&json=1&cb=haha';
+    document.getElementsByTagName('head')[0].appendChild(oS);
+    document.getElementsByTagName('head')[0].removeChild(oS);
+  };
+</script>
+</body>
+</html>

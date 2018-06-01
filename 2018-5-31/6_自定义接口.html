@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+<script>
+    /*
+        使用系统的自定义事件:
+            创建HTMLEvents
+                event = document.createEvent('HTMLEvents');
+            
+            event.initEvent("点击", true, true);
+            初始化
+                第一个参数:
+                    事件名
+                第二个参数：
+                    是否冒泡
+                第三个参数:
+                    是否阻止浏览器默认行为
+                
+
+        document.dispatchEvent(event); 
+    */
+
+    let num = 0;
+    document.addEventListener('长按',function(){
+        console.log(++num);
+    });
+
+    document.addEventListener('长按',function(){
+        console.log('小老虎!');
+    });
+
+    
+    let timer = null;
+    let event = document.createEvent('HTMLEvents');
+    document.onmousedown = function(){
+        let oldD = +new Date;
+        timer = setInterval(function(){
+            let now = +new Date;
+            if(now - oldD > 1000){
+                // console.log(now - oldD);
+                event.initEvent('长按',true,false);
+                document.dispatchEvent(event);
+            }
+        },16.7);  
+
+        document.onmouseup = function(){
+            clearInterval(timer);
+        }  
+    }
+
+
+    // document.addEventListener('点击',function(){
+    //     alert('点击事件');
+    // });
+
+    // let event =  document.createEvent('HTMLEvents');
+
+    // document.onclick = function(){
+    //    event.initEvent('点击',true,false);
+    //    document.dispatchEvent(event); 
+    // }
+    // document.onclick = function(){
+    //     alert(2);
+    // }
+
+
+</script>
+</body>
+</html>

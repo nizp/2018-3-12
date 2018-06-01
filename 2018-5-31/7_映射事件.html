@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#div{
+    width:50px;
+    height: 50px;
+    background: yellowgreen;
+}
+</style>
+</head>
+<body>
+    <div id="div"></div>
+<script>
+
+    /*
+        采集器
+            {
+               长按:[fn1,fn2,fn3],
+               滑动:[]
+            }
+
+        解绑器
+        触发器
+            长按,循环整个数组 -> [fn1,fn2,fn3]()
+
+
+    */
+
+   
+
+    class BindEvent {
+        constructor(){
+            /*
+                事件采集对象:
+                    {
+                        事件名1:[],
+                        事件名2:[],
+                    }
+            */
+            this.zdy = {}
+        }
+        //采集器，采集事件名和事件函数
+        add(eventName,eventFn){
+            /*
+                如果已经有了事件名就根据这个事件名的数据push新的事件函数
+                如果没有就创建一个新数组来push第一个事件函数
+            */
+            this.zdy[eventName] = this.zdy[eventName] || [];
+            
+            this.zdy[eventName].push(eventFn);
+        }
+        
+        //触发器
+        trigger(eventName){
+            /*
+                看看有没有这个事件名
+                如果没有这个事件名就不能循环，不然报错
+
+                如果有事件名就执行
+            */
+            if(!this.zdy[eventName])return;
+            this.zdy[eventName].forEach(e=>{
+                e();
+            });
+        }
+        
+        //卸载器
+        remove(eventName,eventFn){
+            /*
+                看看有没有这个事件名
+                如果没有这个事件名就不能循环，不然报错
+
+                把要删除的函数给过滤出事件数组
+            */
+            if(!this.zdy[eventName])return;
+
+            this.zdy[eventName] = this.zdy[eventName].filter(e=>{
+                return e.name != eventFn.name;
+            });
+            // console.dir(eventFn)
+        }
+    }
+
+    let o = new BindEvent();
+    // o.add('点击',fn1);
+    // o.add('点击',fn2);
+
+    // function fn1(){
+    //     alert(1);
+    // }
+    // function fn2(){
+    //     alert(2);
+    //     o.remove('点击',fn2);
+    // }
+
+    o.add('长按',function(){ //A
+        function a(){
+            console.log(1111);
+        };
+        a();
+    });
+    o.add('长按',function(){ //B
+        function a(){
+            console.log(2222);
+        }
+        a();
+    });
+
+
+    // console.log(o.zdy)
+
+
+
+    div.onmousedown = function(){
+        let oldD = +new Date;
+        timer = setInterval(function(){
+            let now = +new Date;
+            if(now - oldD > 1000){
+                o.trigger('长按');
+            }
+        },16.7);  
+
+        div.onmouseup = function(){
+            clearInterval(timer);
+        }  
+    }
+
+
+
+
+    // document.onclick = function(){
+    //     o.trigger('点击');
+    // }
+   
+
+</script>
+</body>
+</html>

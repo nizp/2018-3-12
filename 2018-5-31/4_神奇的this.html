@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        箭头函数走老爹
+            箭头函数new不了
+
+        fn() -> window
+
+        new -> 实例化对象
+
+        事件this -> 点谁是谁
+
+        定时器 -> window
+
+        call,apply  前面也不能加new不然报错。   
+
+    */
+document.onclick = ff;
+
+function ff(){
+    // let a = () => {console.log(this)}
+    // a.call(window);
+
+    // console.log(this);
+
+    let a = () => {
+        setTimeout(new fn,1000);
+    }
+    function fn(){
+        console.log(this);
+    }
+    a();
+}
+    
+
+   
+
+    
+
+</script>
+</body>
+</html>

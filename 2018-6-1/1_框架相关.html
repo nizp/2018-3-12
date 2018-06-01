@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script src="build/ppa.js"></script>
+<script>
+    /*
+        webpack 用node写的
+
+        npm -> 全球最大的开源库生态系统
+
+        node 1.js  app.js
+
+        npm install 
+
+        npm run dev
+
+        webpack
+
+        export和import
+
+        export 1.js
+                app.js  import 1.js  2.js
+        export 2.js
+
+
+    webpack:
+        ES6 -> ES5    让浏览器不兼容的特性兼容。
+
+    webpack：自动化构建工具 
+    
+   
+
+    const path = requrie('path');
+    obj = {
+        entry:{
+            app:'./1.js'
+        },
+        output:{
+            filename:'[name].js',
+            path:path.relsove('./build')
+        },
+        mudule:{
+            rules:[
+                {
+                    test:/\.css$/
+                },
+                {
+                    test:/\.js$/
+                },
+                {
+                    test:/\.less$/
+                }
+
+            ]
+        },
+        plugins:[
+            new 
+        ],
+        devServer:{
+            port:8080,
+
+        }
+    }
+
+    module.exports = obj;
+
+    四大核心:
+        入口(entry)
+            
+            集装箱（各种依赖的路径配置好）
+
+        输出(output)
+
+            把打包好的代码放到某个地方
+
+        loader
+
+            工具（能够去处理那些非 JavaScript 文件）
+
+        插件(plugins)
+
+            插件
+    
+    学webpack诀窍：
+        1.英语（报错的时候会懵逼）
+        2.熟练度（见过就会，没见过绝对不会）
+        3.靠背
+
+    
+
+    1. npm install -g webpack   在全局安装一个webpack
+
+    2. npm init  在你的项目文件夹下初始化项目 (package.json)
+
+    3. npm install webpack-cli -D  
+
+    4. npm install webpack -D 
+
+    5. 手动新建一个名字为
+        webpack.config.js
+
+    package.json
+
+        配置文件:
+            项目依赖
+
+        scripts:设置启动的命令（不要写注释，因为会报错）
+
+            "dev": "webpack -w",  启动webpack（打包）
+
+            "start":"webpack-dev-server"（开发的时候使用）
+
+
+        
+
+    
+
+    
+
+
+
+
+
+
+
+
+    */
+</script>
+</body>
+</html>

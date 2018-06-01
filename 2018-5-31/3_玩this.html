@@ -15,21 +15,52 @@
 
         肖云珊：半猝
 
+        乔烨轩:半猝
+
+        吴建运：半猝
+
+        王苑荑:半猝
+
+        李梓铭:半猝
+
+
+
     */
     // document.onclick = fn();
-    document.onclick = function(){
+    document.onclick = ()=> {
         //new fn()()   function(){console.log(this);}//window
         // new new fn();  //{}
         // new new new fn(); //报错
 
-        setTimeout(new fn,1000); //window
+        // setTimeout(new fn,1000); //window
+        // setTimeout(function(){
+        //     new fn; //什么都不会发生
+        // },1000); 
+
+        // setTimeout(()=>{
+        //     new fn()(); //window
+        // },1000);
+
+        // setTimeout(()=>{
+        //     // new fn.call(this); //报错(只要写了new就会先运算函数)
+        //     // fn.call(this)();
+        // },1000);  
+            
+        // console.log(this);//window
+
+        fn()();
+        
     };
     function fn(){
-        console.log(this); //fn{}
-        // return function(){
-        //     // console.log(this);
-        // }
+        // console.log(this); //fn{}
+        return ()=>{
+            console.log(this);
+        }
     }
+
+   
+
+    
 
 </script>
 </body>
