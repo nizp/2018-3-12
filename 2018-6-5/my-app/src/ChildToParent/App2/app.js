@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import List from '../list/list';
+import List from '../list2/list';
 
 /*
     父子组件传递为单向流动的
@@ -48,6 +48,7 @@ class App extends Component {
         return (
             <div>
                 <input type="text" />
+                <p> {JSON.stringify(arr)}</p>
                 <ul>{newArr}</ul>
             </div>
         )

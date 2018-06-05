@@ -30,10 +30,24 @@ class App extends Component {
         this.setState({arr});
     }
 
+    //变全选，变全不选
+
+    checkedAll = (ev) => {
+        let {checked} = ev.target;
+        let {arr} = this.state;
+        
+        arr.forEach(e=>e.checked=checked);
+        this.setState({arr});
+
+    }
+
     render() { 
         let {arr} = this.state;
+        let all = arr.every(e=>e.checked);
+        let len = arr.length;
 
         let newArr = arr.map((e,i)=>{
+            if(e.checked) len --;
             return <ToList {...{
                 key:i,
                 txt:e.name,
@@ -53,13 +67,14 @@ class App extends Component {
                         <input 
                             className="toggle-all" 
                             type="checkbox" 
-                            checked=""
+                            checked={all}
+                            onClick = {this.checkedAll}
                         />
                         <ul className="todo-list">
                             {newArr}
                         </ul>
                     </section>
-                    <ToFooter />
+                    <ToFooter lenn={len}/>
                 </div>
             </section>
          )
