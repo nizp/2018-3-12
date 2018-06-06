@@ -2,59 +2,57 @@ import React,{Component} from 'react';
 class ToList extends Component {
     constructor(props) {
         super(props);
+        // let {txt} = props;
         this.state = {
-            val:'',
-            editing:false //设置是否双击
+            val:''
         }
     }
-    
-    //切换checeked
     change = () => {
         let {id,ccFn} = this.props;
         ccFn(id);
     }
 
-    //删除功能
     dele = () => {
         let {id,deleFn} = this.props;
         deleFn(id);
     }
 
-    //双击之后修改输入框中的内容
     textChange = (ev) => {
         let {value:val} = ev.target;
         this.setState({val});
     }
 
-    //输入框失焦
     blur = () => {
         let {val} = this.state;
-        let {id,changeText,txt} = this.props;
-        //当有东西的时候并且2个value值不相等的时候，
-        //通知父级，数据已修改
-
-        if(val && val!=txt){
+        let {txt,id,changeText,changeEditFail} = this.props;
+        //如果没有内容就还原父类的数据
+        if(!val){
+            this.setState({val:txt});
+            changeEditFail(id);
+        }else{
             changeText(val,id);
         }
-        this.setState({editing:false});
+
+        this.setState({val:''});
     }
 
-    //双击
     db = () => {
-        /*
-            双击的时候打开输入框
-            顺便把父级的数据给val，这个时候输入框中的value就是父级的数据
-        */
-        let {txt} = this.props;
-        this.setState({editing:true,val:txt},()=>{
+       let {changeEdit,id} = this.props;
+       changeEdit(id);
+        setTimeout(()=>{
             this.refs.a.focus();
-        })
+        });
+       
     }
 
     render() { 
-        let {txt,id,checked} = this.props;
-        let {val,editing} = this.state;
-       
+        let {txt,id,checked,editing} = this.props;
+        let {val} = this.state;
+        if(!val){
+            val = txt;
+        }
+        
+
         //通过editing去判断是否需要输入内容
         let sClass = checked?'completed':'';
         if(editing)sClass += '  editing';

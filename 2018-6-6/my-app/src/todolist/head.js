@@ -18,8 +18,7 @@ class ToHeader extends Component {
             let obj = {
                 name:val,
                 id:+new Date,
-                checked:false,
-                editing:false
+                checked:false
             };
 
             //添加数据

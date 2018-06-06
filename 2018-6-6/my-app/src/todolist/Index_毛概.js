@@ -8,8 +8,8 @@ class App extends Component {
         super(props);
         this.state = {
             arr:[
-                {name:"呵呵0",id:0,checked:true},
-                {name:"呵呵1",id:1,checked:false}
+                {name:"呵呵0",id:0,checked:true,editing:false},
+                {name:"呵呵1",id:1,checked:false,editing:false}
             ],
             stateAll:'all'
         }
@@ -56,15 +56,39 @@ class App extends Component {
 
     //修改内容
     changeText = (newVal,id) => {
+        console.log(newVal,id)
         let {arr} = this.state;
         arr.forEach(e=>{
             if(e.id === id){
                 e.name = newVal
+                e.editing = false
             }
         });
-        
         this.setState({arr});
     }
+
+    changeEdit = (id) => {
+        let {arr} = this.state;
+        arr.forEach(e=>{
+            if(e.id == id){
+                e.editing = !e.editing
+            }
+        });
+
+        this.setState({arr});
+    }
+
+    changeEditFail = (id) => {
+        let {arr} = this.state;
+        arr.forEach(e=>{
+            if(e.id == id){
+                e.editing = false
+            }
+        });
+
+        this.setState({arr});
+    }
+
 
 
     render() { 
@@ -95,9 +119,13 @@ class App extends Component {
                 checked:e.checked,
                 ccFn:this.changeChecked,
                 deleFn:this.deleFn,
-                changeText:this.changeText
+                editing:e.editing,
+                changeText:this.changeText,
+                changeEdit:this.changeEdit,
+                changeEditFail:this.changeEditFail
             }}/>
         }) 
+        console.log(arr);
         return ( 
             <section className="todoapp">
                 <div>
