@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        router的学习方法:
+            *** 玩烂（多设想一些应用场景） -> 多练
+
+        1.先了解应用场景（每个应用场景的解决方案）
+
+        2.熟记知识点
+
+        3.别怕（纸老虎,只要你练20个demo就会了）
+
+
+        路由:URL
+
+            http:www.miaov.com/index
+            http:www.miaov.com/movies
+            http:www.miaov.com/movies/js
+            http:www.miaov.com/movies/css
+
+        路由的优缺点
+
+            优缺点。
+
+1、优点：
+
+    1).良好的交互体验
+
+    用户不需要重新刷新页面，获取数据也是通过Ajax异步获取，页面显示流畅。
+
+    2).良好的前后端工作分离模式
+
+    单页Web应用可以和RESTful规约一起使用，通过REST API提供接口数据，并使用Ajax异步获取，这样有助于分离客户端和服务器端工作。更进一步，可以在客户端也可以分解为静态页面和页面交互两个部分。
+
+    3).减轻服务器压力
+
+    服务器只用出数据就可以，不用管展示逻辑和页面合成，吞吐能力会提高几倍；
+
+    4).共用一套后端程序代码
+    不用修改后端程序代码就可以同时用于Web界面、手机、平板等多种客户端；
+2、缺点：
+
+    1).SEO难度较高
+
+    由于所有的内容都在一个页面中动态替换显示，所以在SEO上其有着天然的弱势，所以如果你的站点对SEO很看重，且要用单页应用，那么就做些静态页面给搜索引擎用吧。
+
+    2).前进、后退管理
+
+    由于单页Web应用在一个页面中显示所有的内容，所以不能使用浏览器的前进后退功能，所有的页面切换需要自己建立堆栈管理，当然此问题也有解决方案，比如利用URI中的散列+iframe实现。
+
+    3).初次加载耗时多
+
+    为实现单页Web应用功能及显示效果，需要在加载页面的时候将JavaScript、CSS统一加载，部分页面可以在需要的时候加载。所以必须对JavaScript及CSS代码进行合并压缩处理，如果使用第三方库，建议使用一些大公司的CDN，因此带宽的消耗是必然的。
+
+
+    https://reacttraining.com/react-router/
+
+
+    步骤：
+        1.npm i react-router-dom -S
+
+        2.import { BrowserRouter as Router} from 'react-router-dom'
+
+        3.ReactDOM.render(
+                <Router>
+                    <App />   在根节点下使用
+                </Router>
+                ,
+                document.getElementById('root')
+            )
+
+        4.
+            <Route path="/" component={Index}/>
+            <Route path="/about" component={About}/>
+
+            <Link to="/">说明</Link>
+
+        5.
+            
+        exact:
+            path	location.pathname	exact	matches?
+
+            /one	/one/two	true	no
+            /one	/one/two	false	yes
+
+
+        strict:
+            path	location.pathname	matches?
+            /one/	/one	        no
+            /one/	/one/	        yes
+            /one/	/one/two	    yes
+
+
+    在Route中如果写了component={组件}，那么如果要获取URL信息
+    可以去组件中的render函数中的this.props中查找
+
+    只要匹配才会执行这个组件
+        render={(URL信息)=>{
+            return 组件
+        }}
+
+    不管匹不匹配某个路径都会执行这个组件(甚至可以不用写path)
+        children = {(URL信息)=>{
+            return 组件
+        }}
+
+    如果不匹配，url是没有match（值为null）
+
+    URL:
+        match
+        loaction
+        history
+
+
+    */
+</script>
+</body>
+</html>

@@ -37,7 +37,7 @@ class Re extends Component {
             let y = setdate.getFullYear();
             let m = setdate.getMonth() + 1;
             let d = setdate.getDate();
-            
+
             if(y == arr[0] && m == arr[1] && arr[2] == d){
                 return true;
             }else{
@@ -47,7 +47,7 @@ class Re extends Component {
     }
 
     render() { 
-        let {name,txt,re} = this.props;
+        let {name,txt} = this.props;
         let {val,onOff} = this.state;
         
         return ( 
