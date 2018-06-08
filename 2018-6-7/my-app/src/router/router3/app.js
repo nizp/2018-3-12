@@ -34,6 +34,7 @@ class App extends React.Component {
                 <Route exact path="/" component={Index}/>
                 <Route path="/about" component={About}/>
                 <Route path="/about/:id" render={({match:{params}})=>{
+                  
                    switch(params.id){
                         case 'a':
                             return <About1 />

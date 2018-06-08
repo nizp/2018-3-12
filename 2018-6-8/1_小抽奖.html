@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">开始</button>
+    <button id="clear">停</button>
+    <p id="p"></p>
+<script>
+    let timer = null;
+
+   
+
+    btn.onclick = function(){
+        (function animate() {  
+            timer = requestAnimationFrame(animate);  
+            p.innerHTML = Math.ceil(Math.random() * 100);
+        })();
+    }
+    clear.onclick = function(){
+        cancelAnimationFrame(timer);
+    }
+</script>
+</body>
+</html>
