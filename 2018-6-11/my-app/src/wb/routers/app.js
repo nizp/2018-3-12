@@ -29,9 +29,6 @@ const routes = [
     }
 ];
 
-
-console.log(renderComponent(routes))
-
 class App extends Component {
     constructor(props) {
         super(props);

@@ -1,12 +1,15 @@
 import React,{Component} from 'react';
 import List from './list';
+import Page from '../page';
 import './weibo.css';
 class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            val:'',
-            arr:[]
+            val:'', //输入框的内容
+            arr:[],
+            PageC:1,//PageC是页码的总数
+            changeNum:1 //当前是多少页
         }
     }
 
@@ -22,11 +25,17 @@ class Index extends Component {
             .then((data)=>{
                if(data.code == 0){
                    //当添加成功之后，返回所有数据
-                    this.getData('act=get&page=1')
-                    .then((data)=>{
-                        this.setState({arr:data,val:''})
-                        console.log(data);
-                    });
+                    // this.getData('act=get&page=1')
+                    // .then((data)=>{
+                    //     //看页码，因为点击添加的时候有可能会增加总页数
+                    //     this.getData('act=get_page_count')
+                    //     .then((numData)=>{
+                    //         if(numData.code === 0){
+                    //             this.setState({arr:data,val:'',PageC:numData.count})
+                    //         }
+                    //     });
+                    // });
+                    this.getArr();
                }
             })
             // .then(()=>{
@@ -46,10 +55,23 @@ class Index extends Component {
         let data = await fetch('http://localhost:88/api/weibo?'+url)
         return await data.json();
     }
+    //上来先拿数据
+    componentDidMount(){
+        this.getArr();
+    }
 
+    //更新数据
+    getArr = async (num=1) => {
+        //请求当页的数据
+        let newArr = await this.getData('act=get&page='+num)
+        //请求总页
+        let pageNum = await this.getData('act=get_page_count');
+        this.setState({arr:newArr,val:'',PageC:pageNum.count,changeNum:num});
+    }
 
     render() { 
-        let {val,arr} = this.state;
+        let {val,arr,PageC,changeNum} = this.state;
+
 
         let newArr = arr.map((e,i)=>{
             return <List {...{
@@ -58,7 +80,8 @@ class Index extends Component {
                 txt:e.content,
                 dislike:e.dislike,
                 like:e.like,
-                time:e.time
+                time:e.time,
+                getArr:this.getArr
             }}/>
         })
 
@@ -87,8 +110,11 @@ class Index extends Component {
                         {newArr}
                     </div>
                     <div className="page" id="page">
-                        <a href="#" className="active">1</a>
-                        <a href="#" >2</a>
+                        <Page 
+                            nowNum={changeNum}  
+                            pnum={PageC} 
+                            getArr={this.getArr}
+                        />
                     </div>
                 </div>
             </div>
