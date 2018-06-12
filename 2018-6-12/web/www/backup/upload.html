@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="author" content="Reddy.Huang <i@0u0b.com>"/>
+    <title>文件上传</title>
+    <style>
+        .top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: dodgerblue;
+        }
+    </style>
+</head>
+<body>
+<div class="top"></div>
+<!-- <form action="/api/upload" method="post" enctype="multipart/form-data"> -->
+  <input type="file" name="file" id="file">
+  <input type="submit" id="btn">
+<!-- </form> -->
+<script>
+  /*
+    前端的js是不能操作本地文件的，不过能够通过上传去监听上传的
+    进度。
+  */
+
+  const btn = document.getElementById('btn');
+  const file = document.getElementById('file');
+  const top1 = document.querySelector('.top'); 
+  /*
+    file.files[0]就是上传的数据
+
+    new FormData(); 把数据转成2进制数据
+    append(key,val)  //key=val
+    append(key2,val2) // key=val&key2=val2
+
+    ajax.upload.onprogress   监控上传进度的
+  */
+  btn.onclick = function(){
+    let ajax = new XMLHttpRequest;
+    ajax.open('post','/api/upload');
+    let f = new FormData();
+    f.append('file',file.files[0]);
+    ajax.upload.onprogress = function(ev){
+      /*
+        ev.loaded  当前上传的大小
+        ev.total   总大小
+      */
+      let scale = ev.loaded / ev.total;
+      console.log(scale)
+      top1.style.width = ( scale * 100 )+ '%';
+      // console.log(ev);
+      
+    }
+    //上传完成时触发
+    ajax.upload.onload = function(){
+      alert('上传完成')
+    }
+
+    // console.dir();
+    // console.dir(file);
+    // ajax.send('file='+file.value);
+
+    ajax.onload = function(){
+      console.log(ajax.statusText);
+    }
+    ajax.send(f);
+
+
+  }
+
+
+</script>
+</body>
+</html>

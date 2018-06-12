@@ -1,0 +1,9 @@
+h2 {
+    display: none;
+}
+#info{
+  display: none;
+}
+#register{
+    cursor: pointer;
+}

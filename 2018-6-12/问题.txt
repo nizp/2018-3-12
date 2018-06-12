@@ -1,0 +1,11 @@
+1.路由表
+
+2.link问题
+
+3.url  <Route render中的url>
+
+4.组件复用的时候子组件要拿到父组件完整的数据
+
+5.routes.js如何调用
+
+6.ref

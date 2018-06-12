@@ -1,0 +1,5 @@
+.page{text-align:right;font-size:0;font-family:Verdana;padding:10px 16px}
+.page a{display:inline-block;height:20px;padding:0 7px;border:#CCC solid 1px;font:12px/20px Verdana;text-decoration:none;margin-left:5px;background:#FFF}
+.page a:hover{background:#09F;color:#FFF;border-color:#09F}
+.page .active{background:#CCC}
+.page a:active{opacity:.8}
