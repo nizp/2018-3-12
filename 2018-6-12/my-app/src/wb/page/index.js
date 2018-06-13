@@ -103,11 +103,8 @@ class Page extends Component {
                         onClick={()=>{this.changPage(nowNum-center+i)}}
                     >{nowNum-center+i}</Link>);
                 }
-               
             }
         }
-
-        
         return (  
             <div className="page" id="page">
                 {newA}            
