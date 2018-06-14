@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @keyframes rotateY1 {
+            0%{
+                transform: rotateY(0deg);
+              }
+            100%{
+                transform: rotateY(360deg);
+            }
+        }
+        html,
+        body{
+            height: 100%;
+            overflow: hidden;
+        }
+        #view{
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-perspective: 300px;
+            perspective: 300px;
+        }
+        #box{
+            width: 2px;
+            height: 2px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 11;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            animation: 3s rotateY1 linear infinite;
+        }
+        #box1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        #box div{
+            width: 100px;
+            height: 200px;
+            margin: -100px 0 0 -50px;
+            font-size: 50px;
+            color: #fff;
+            text-align: center;
+            line-height: 200px;
+            position: absolute;
+        }
+        #box div:nth-child(2n){
+            background: red;
+        }
+        #box div:nth-child(2n-1){
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div id="box1"></div>
+<div id="view">
+    <div id="box">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+</div>
+<script>
+	/*
+	1.打开方式：   
+		F12
+		在页面元素上右键点击，选择 “检查”
+ 		使用快捷键 Ctrl+Shift+I (Windows) 或者 Cmd+Opt+I (Mac) 
+	2.ELements
+		新建CSS选择器：点击右上角+号
+		浏览器计算后属性：computed
+		事件监听：Event Listener，自己及祖先级节点绑定的所有事件
+		DOM断点：子节点改变、自身属性改变、自身节点移除  DOM Breakpoints
+		查看元素所有属性：properties
+		切换颜色显示模式：shift+click
+		查看本地修改：More tools -> changes
+	3.Console
+		可以执行JS代码
+		查找元素：
+			$('#box'):querySelector
+			$$('#box div'):querySelectorAll
+	4.Sources  给JS加断点如for循环143行
+		ctrl+p：查找页面中所有文件
+		Ctrl + Shift + F ：在源代码中搜索，支持正则
+	5.Network
+		分析HTTP请求后得到的各个请求资源信息
+
+		DOMContentLoaded事件会在页面上DOM完全加载并解析完毕之后触发，不会等待CSS、图片、子框架加载完成。(蓝色竖线)
+        load事件会在页面上所有DOM、CSS、JS、图片完全加载完毕之后触发。（红色竖线）
+	6.移动端
+	    手机横竖屏切换
+		手机角度调节：配合陀螺仪 More tools -> sensors
+		手机网络模拟：例如查看加载动画效果 More tools -> Network Conditions
+		动画:Animations
+			动画执行周期
+			缓速播放
+			暂停动画
+	7.自定义开发者工具
+		显示/隐藏html注释
+		显示时间戳
+		显示标尺
+		黑色风格
+	*/
+</script>
+<script>
+    const divs = document.querySelectorAll('#box div');
+    let deg = 360 / divs.length;  //外角60deg
+    let innerDeg = (180-deg)/2;  //内角
+    let width = divs[0].offsetWidth;
+    let R = Math.round(Math.tan(innerDeg*Math.PI/180)*(width/2));
+    for(let i=0;i<divs.length;i++){
+        cssTransform(divs[i],'rotateY',deg*i);
+        cssTransform(divs[i],'translateZ',R);
+    }
+    cssTransform(box,'translateZ',20);
+    
+    box1.onclick=function () {
+        this.style.background = 'pink';
+    }
+</script>
+</body>
+</html>

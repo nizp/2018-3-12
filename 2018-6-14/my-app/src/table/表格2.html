@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		body,
+		h1 {
+			margin: 0;
+		}
+
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		input {
+			outline: none;
+		}
+
+		table {
+			border-collapse: collapse;
+			border: #bbb;
+		}
+
+		body {
+			width: 100%;
+			height: 100%;
+			/*background: url(img/2.jpg) no-repeat;*/
+		}
+
+		.tBody {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			margin-top: 30px;
+			padding: 20px 30px 40px;
+			background-color: rgba(255, 255, 255, .6);
+		}
+
+		.title {
+			text-align: center;
+			color: #fca113;
+			text-shadow: 0 0 2px #fcf913;
+			line-height: 50px;
+		}
+
+		table {
+			background-color: #fff;
+		}
+
+		th {
+			background-color: #ddd;
+		}
+
+		tr {
+			height: 30px;
+		}
+
+		ul {
+			padding: 5px 0;
+			width: 600px;
+			text-align: center;
+		}
+
+		td {
+			text-align: center;
+		}
+
+		td input {
+			margin: 0 2px;
+		}
+
+		li {
+			padding: 5px 0;
+			overflow: hidden;
+		}
+
+		label {
+			display: inline-block;
+		}
+
+		input[type="text"] {
+			border: 1px solid #ccc;
+			width: 80px;
+			height: 20px;
+		}
+
+		.active {
+			background-color: #f7cb75;
+		}
+
+		#tab tbody tr:hover {
+			background-color: #f7cb75;
+		}
+	</style>
+</head>
+
+<body>
+
+
+	
+	<section class="tBody">
+		<h1 class="title"></h1>
+		<ul id="header">
+			<li class="addPre">
+				<label>名字：
+					<input type="text" id="name" />
+				</label>
+				<label>年龄：
+					<input type="text" id="age" />
+				</label>
+				<input type="button" value="添加" id="add" />
+			</li>
+			<li>
+				<span>排序</span>
+				<select id="s1">
+					<option value="price">年龄</option>
+					<option value="id">编号</option>
+				</select>
+				<select id="s2">
+					<option value="2">从高到底</option>
+					<option value="1">从低到高</option>
+				</select>
+				<input type="button" value="提交" id="stBtn" />
+				<input type="button" value="批量删除" id="rm" />
+			</li>
+		</ul>
+		<table id="tab" width="600" align="center" border="1">
+			<thead>
+				<th>全选
+					<input type="checkbox" id="checkAll">
+				</th>
+				<th index="id">编号</th>
+				<th>商品</th>
+				<th index="price">年龄</th>
+				<th>操作</th>
+			</thead>
+			<tbody id="tb">
+				<!-- <tr>
+				<td><input type="checkbox"></td>
+				<td>1</td>
+				<td>露露</td>
+				<td>12</td>
+				<td>
+					<input type="button" value="删除"/>
+					<input type="button" value="上移">
+					<input type="button" value="下移">
+				</td>
+			</tr> -->
+
+			</tbody>
+		</table>
+	</section>
+</body>
+<script>
+
+	/*
+		1.渲染数据
+		2.添加内容
+		3.排序
+		4.选中
+		5.上移下移
+		6.删除
+		7.批量删除
+	*/
+	var data = [
+		{
+			'id': 1,
+			'name': 'momo',
+			'price': 36,
+			'checked': false
+		},
+		{
+			'id': 2,
+			'name': '小恋',
+			'price': 40,
+			'checked': false
+		},
+		{
+			'id': 3,
+			'name': 'yaya',
+			'price': 20,
+			'checked': false
+		},
+		{
+			'id': 4,
+			'name': 'feifei',
+			'price': 10,
+			'checked': false
+		},
+		{
+			'id': 5,
+			'name': 'hhehe',
+			'price': 35,
+			'checked': true
+		}
+	];
+
+	let tb = document.getElementById('tb');
+	let checkAll = document.getElementById('checkAll');
+
+	render(data);
+	
+
+	function render(data){
+		let html = ``;
+		data.forEach(e => {
+			html += `
+				<tr data-index="${e.id}" class="${e.checked?'active':''}">
+					<td><input type="checkbox" ${e.checked?'checked':''}></td>
+					<td>${e.id}</td>
+					<td>${e.name}</td>
+					<td>${e.price}</td>
+					<td>
+						<input type="button" value="删除"/>
+						<input type="button" value="上移">
+						<input type="button" value="下移">
+					</td>
+				</tr>
+			`
+		});
+		tb.innerHTML = html;
+		
+		const trs = Array.from(tb.rows);
+		
+		trs.forEach((e,i)=>{
+			e.onmouseleave = function(){
+				let id = this.dataset.index;
+				let o = data.some(e=>{
+					if(e.id == id){
+						return e.checked;
+					}
+				});
+				if(o){
+					e.className = 'active';
+				}else{
+					e.className = '';	
+				}
+
+			}
+		
+			let check = e.querySelector('input[type="checkbox"]');
+			let down = e.querySelector('input[value="下移"]');
+			let up = e.querySelector('input[value="上移"]');
+			let rm = e.querySelector('input[value="删除"]');
+			check.onchange = function(){
+				let id = this.parentNode.parentNode.dataset.index;
+				let obj = data.find(e=>e.id==id);
+				obj.checked = this.checked;
+				checkAll.checked = data.length?data.every(e=>e.checked):false;
+				render(data);
+			}
+			down.onclick = function(){
+				let id = this.parentNode.parentNode.dataset.index;
+				let index = data.findIndex(e=>e.id==id);
+				let s = data.slice(index,index+2).reverse();
+				data.splice(index,2,...s);
+				render(data);
+				// console.log(data);
+				// let obj = data.splice(index,1);
+				// data.splice(index+1,0,obj[0]);
+				// console.log(data);
+				// if(obj){
+				// 	data.splice(index+1,0,obj[0]);
+				// }
+			}
+			up.onclick = function(){
+				let id = this.parentNode.parentNode.dataset.index;
+				let index = data.findIndex(e=>e.id==id);
+				if(index!=0){
+					let obj = data.splice(index,1);
+					data.splice(index-1,0,obj[0]);
+					render(data);
+				}
+			}
+			rm.onclick = function(){
+				let id = this.parentNode.parentNode.dataset.index;
+				let index = data.findIndex(e=>e.id==id);
+				data.splice(index,1);
+				checkAll.checked = data.length?data.every(e=>e.checked):false;
+				render(data);
+			}
+
+		});
+
+		//console.log(trs)
+	}
+
+	checkAll.onchange = function(){
+		data.forEach(e=>e.checked = this.checked);
+		render(data);
+	}
+
+	/*
+		添加
+	*/
+
+	const addName = document.getElementById('name');
+	const addAge = document.getElementById('age');
+	const addBtn = document.getElementById('add');
+
+	addBtn.onclick = function(){
+		let nameVal = addName.value;
+		let ageVal = addAge.value;
+		if(nameVal && ageVal){
+			data.push({
+				'id': +new Date,
+				'name': nameVal,
+				'price': ageVal,
+				'checked': false
+			});
+			addName.value = addAge.value = '';
+			render(data);
+		}else{
+			alert('添加点东西吧!');
+		}
+	}
+
+
+
+	/*
+		排序
+	*/
+
+	let s1 = document.getElementById('s1');
+	let s2 = document.getElementById('s2');
+	let stBtn = document.getElementById('stBtn');
+
+	stBtn.onclick = function(){
+		if(s2.value == '2'){
+			//从高到低
+			data.sort(function(a,b){
+				return b[s1.value] - a[s1.value];
+			});
+		}else{
+			//从低到高
+			data.sort(function(a,b){
+				console.log(a,b)
+				return a[s1.value] - b[s1.value];
+			});
+		}
+		render(data);
+	};
+
+
+
+	//批量删除
+	rm.onclick = function(){
+		let newArr = data.filter(e=>!e.checked);
+		render(newArr);
+	}
+
+
+
+
+
+</script>
+
+</html>
