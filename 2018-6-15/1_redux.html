@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        Redux:
+            reducer + Flux
+
+        Redux对于JavaScript应用而言是一个可预测状态的容器
+        state
+
+
+        Redux核心概念有三个：
+            store
+            reducers
+            actions
+        npm i redux -D  安装
+        
+        1.引入redux
+            import { createStore } from "redux";
+
+        2.创建一个纯函数的reducer
+            //写业务逻辑的
+            const reducer = function(state, action) {
+                state 一个初始的数据
+                    state=[{txt:'呵呵',id:0,checked:false}]
+                
+                action 执行第几个逻辑  1
+                    action.type
+                    action.payload
+                
+                switch(action){
+                    1:
+                        第一个逻辑
+                    2::
+                        第二个逻辑
+                }
+                return state;
+            }
+
+        3.创建store
+            const store = createStore(reducer);
+
+
+            在store下有几个方法：
+                dispatch -> 发起action
+                getState -> 获取数据的
+                replaceReducer -> 替换Reducer
+                subscribe -> 监听数据的变化(要放在dispatch之前)
+
+        4.combineReducers
+            把多个Reducer合并成一个Reducer
+
+
+        function reducer1(){}
+        function reducer2(){}
+        const reducers = combineReducers({
+            r1:reducer1,
+            r2:reducer2
+        });
+
+        const store = createStore(reducers);
+            
+    */
+</script>
+</body>
+</html>

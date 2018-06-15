@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        import React from 'react';
+        import ReactDOM from 'react-dom';
+        import {BrowserRouter as Router,Route,Link,Redirect,Switch,NavLink} from 'react-router-dom';
+
+        /:id -> match.params.id
+
+        location -> pathname,state={}
+
+        history -> push('/oop')
+
+        action
+            fucntion add(){
+                return {
+                    type:'ADD'
+                }
+            }
+            function thunk(){
+                return (dispatch,getState)=>{
+
+                }
+            }
+        reducer
+            const reducer = (state=0,action)=>{
+                switch(action.type){
+                    case "ADD":
+                    return state
+                }
+            }
+
+            combineReducers({
+                reducer1,
+                reducer2
+            })
+        store
+
+            const store = createStore(reducer,applyMiddleware(thunk));
+
+        react-redux
+
+        dispatch(add());
+        add()
+        
+        
+        function fn1(state,props){
+            return {data:state.reducer1,n:props.reducer1}
+        }
+
+        function fn2(dispatch){
+            return bindActionCreators(actions);
+        }
+
+        connect(fn1,fn2)(App);
+
+
+        class App extends Component {
+            constructor(){
+                super();
+                this.state = {
+                    val:''
+                }
+            }
+            render(){
+                let {val} = this.state;
+                let {num} = this.props;
+                return (
+                    <div>
+                        <div className="active"></div>
+                        <input value={val} onChange={this.change}/>
+                        {arr->展开}
+                        {alert(1)}
+                        {/x注释x/}  
+                        <Link to="/app">去app</Link> 
+                        <Link to={{pathname:'/ppa',state:[1,2,3]}}>去ppa</Link> 
+
+                
+
+                        <Switch>
+                            <Route exact path="/app" component={App}> 
+                            <Route exact path="/app/1" component={App}> 
+                            <Route strict path="/ppa/" render={(props)=>{
+                                if(xx){
+                                    return <PPA url={props}/>
+                                }else if(xxx){
+                                    return <Redirect to="hehe" />
+                                }
+                                
+                            }}> 
+                            <Route path="/pap" children={(props)=>{<PAP url={props}/>}}> 
+                            <Route path="/app/:id" component={ID}> 
+                        </Switch>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <Provider store={store}>
+                <Router>
+                    <App num={1}/>
+                </Router>
+            </Provider>
+            ,
+            elment
+            ,()=>{}
+        );
+
+
+
+
+    */
+
+</script>
+</body>
+</html>

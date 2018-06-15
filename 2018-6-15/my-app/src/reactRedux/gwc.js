@@ -1,6 +1,9 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as actionCreators from './actions';
 import './1.css';
+
 
 /*
     connect(fn1,fn2)(组件) 
@@ -36,27 +39,43 @@ import './1.css';
 */
 
 class GWC extends Component {
+    minusFn = (id) => {
+        let {minus} = this.props;
+        minus(id);
+    }
+    addFn = (id) => {
+        let {add} = this.props;
+        add(id);
+    }
     render() { 
+        let arr = this.props.data;
         return (
             <div id="gwc">
                 <h2>购物车</h2>
                 <ul>
                     {
                         // console.log(this.props.data)
-                        this.props.data.map((e,i)=>{
+                        arr.map((e,i)=>{
                             return (
                                 <li key={i}>
-                                    <button>-</button><button>+</button>
+                                    <button
+                                        onClick={()=>{this.minusFn(e.id)}}
+                                    >-</button><button
+                                        onClick={()=>{this.addFn(e.id)}}
+                                    >+</button>
                                     <p>商品:{e.name}</p>
-                                    <p>数量:{e.num}</p>
-                                    <p>单价:{e.pirce}</p>
-                                    {/* <span>总价:{e.pirce}</span> */}
+                                    <p>库存:{e.inventory}</p>
+                                    <p>购买数量:{e.num}</p>
+    
+                                    <p>单价:{e.price}</p>
+                                    <p>总价:{e.total}</p>
                                     
                                 </li>
                             )
                         })
                     }
                 </ul>
+                <div>总价:{arr.reduce((a,b)=>(a+b.total).toFixed(2)*1,0)}</div>
             </div>
         )
     }
@@ -64,4 +83,4 @@ class GWC extends Component {
  
 export default connect((state)=>{
     return {data:state.reducer3}
-})(GWC);
+},(dispatch)=>bindActionCreators(actionCreators,dispatch))(GWC);

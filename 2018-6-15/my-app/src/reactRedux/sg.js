@@ -6,14 +6,14 @@ import * as actionCreators from './actions';
 class SG extends Component {
     clickFn = (e) => {
         let {click} = this.props;
-        // console.log(this.props)
+        console.log(this.props)
         click(e);
     }
     render() { 
-        let {data} = this.props;
+        let {data,title} = this.props;
         return (
             <div>
-                <h2>水果</h2>
+                <h2>{title}</h2>
                 {
                    data.map((e,i)=>{
                        return (<div key={i}>
@@ -30,8 +30,8 @@ class SG extends Component {
     }
 }
 
-export default connect((state)=>{
-    return {data:state.reducer1};
+export default connect((state,ownProps)=>{
+    return {data:state[ownProps.n]};
 },(dispatch)=>{
     return bindActionCreators(actionCreators, dispatch)
 })(SG);
