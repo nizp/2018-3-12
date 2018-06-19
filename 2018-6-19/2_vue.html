@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="root">
+        {{val}}
+        <div v-if="onOff">div</div>
+        <div v-else>vid</div>
+
+        
+        <div v-if="color=='red'">red</div>
+        <div v-else-if="color=='green'">green</div>
+        <div v-else>yellow</div>
+
+    </div>
+<script src="vue.js"></script>
+<script>
+
+    new Vue({
+        el:'#root',
+        data:{
+            val:'你好!',
+            onOff:true,
+            color:'xx'
+        }
+    })
+
+    /*
+        别的模板语法
+            {%=title%}
+
+            <%if(){%>
+
+            <%}%>
+        
+        v-  vue指令
+
+        双花括号 {{放数据}}
+
+
+        挂载vue
+            new Vue({
+                el:'#root',
+                data:{  //数据
+                    val:''
+                }
+            });
+
+        
+        1.v-if
+            
+            v-if="数据"        条件->true||false 
+                如果条件成立则显示
+
+        2.v-else-if
+            v-else-if="数据"    条件->true||false 
+
+        3.v-else
+            必须紧跟这v-if或者v-else-if
+
+        4.v-for   不但能循环数组也能循环对象
+            v-for="val in arr"
+    */
+</script>
+</body>
+</html>

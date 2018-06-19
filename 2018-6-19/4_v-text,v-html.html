@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="root">
+      <div v-text="val"></div>
+      <div v-html="val"></div>
+    </div>
+<script src="vue.js"></script>
+<script>
+
+    let v = new Vue({
+        el:'#root',
+        data:{
+            val:'<h1>我是h1标签</h1>'
+        }
+    });
+
+    /*
+        v-text="数据"
+            等同于innerText
+
+        v-html="数据"
+            等同于innerHTML
+        
+    */
+</script>
+</body>
+</html>

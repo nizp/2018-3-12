@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="root">
+        <input type="text" @keyup.13="keyup">
+        <ul>
+            <li v-for="(val,key) in arr">{{val}}</li>
+        </ul>
+
+        <div @click="fn1">
+            div1
+            <div 
+                @click.stop="fn2('婶婶')"
+                @mousedown.prevent
+            >div2</div>
+        </div>
+    </div>
+<script src="vue.js"></script>
+<script>
+
+    let v = new Vue({
+        el:'#root',
+        data:{
+           arr:[]
+        },
+        methods:{
+            keyup(ev){
+                this.arr.push(ev.target.value);
+                ev.target.value = '';
+            },
+            fn1(){
+                alert(1);
+            },
+            fn2(val){
+                alert(val);
+            }
+        }
+    });
+
+    /*
+       
+        .stop - 调用 event.stopPropagation()。
+
+        .prevent - 调用 event.preventDefault()。
+
+        .13 回车
+
+        .stop.prevent  取消冒泡和阻止默认行为
+
+        .once 只能点一次
+        
+        
+    */
+</script>
+</body>
+</html>

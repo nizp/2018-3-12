@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+<style>
+.red{
+    background: red;
+}
+.green{
+    background: green;
+}
+.pink{
+    background: pink;
+}
+#box{
+    width:100px;
+    height: 100px;
+    border: 1px solid #000;
+}
+</style>
+</head>
+<body>
+    <div id="root">
+        <input type="text" v-model="val"/>
+        {{val}}
+        <!-- <button @click="val='你好吗?'">按钮</button> -->
+        <!-- <input type="checkbox" value="name1" v-model="arr"/>
+        <input type="checkbox" value="name2" v-model="arr"/>
+        <input type="checkbox" value="name3" v-model="arr"/> -->
+        {{arr}}
+        <!-- <input 
+            type="checkbox" 
+            v-for="(val,key) in arr" 
+            v-model="val.checked"
+        /> -->
+
+        <input 
+            type="checkbox" 
+            v-for="(val,key) in arr" 
+            v-model="arr[key]"
+        />
+
+        <!-- <input type="checkbox" v-model="checked"/> -->
+        <!-- {{checked}} -->
+
+        <input type="radio" value="0" v-model="val2"/>
+        <input type="radio" value="1" v-model="val2"/>
+        {{arr3[val2]}}
+
+
+        <select v-model="selected">
+            <option disabled value="">请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        {{selected}}
+
+
+        <select v-model="selected2" multiple >
+            <option disabled value="">请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        {{selected2}}
+
+        <input v-model.lazy="val">
+        {{val}}
+
+        <input v-model.lazy.number="val" type="number">
+        {{val}}
+
+
+
+    </div>
+<script src="vue.js"></script>
+<script>
+
+    let v = new Vue({
+        el:'#root',
+        data:{
+           val:'你好',
+        //    checked:false
+        //    arr:[{checked:true},{checked:false}]
+            arr:[true,false],
+            val2:'0',
+            arr3:['男','女'],
+            selected:'',
+            selected2:[]
+        }
+    });
+
+    /*
+       
+        v-model  专门用来操作表单的
+        
+        !!!如果使用数组循环，那么要启用v-model,要写
+        数组[key] 不能写val 
+
+        arr = [true,false]
+
+        <input 
+            type="checkbox" 
+            v-for="(val,key) in arr" 
+            v-model="arr[key]"    
+        />
+
+        !!!不要用val，要使用arr[key]
+
+
+
+        v-model.lazy="val"
+
+            失焦的时候会触发
+
+        v-model.number type="number"  
+
+            只认数字
+
+        <input v-model.trim="msg">
+            去掉前后空格
+
+    */
+</script>
+</body>
+</html>

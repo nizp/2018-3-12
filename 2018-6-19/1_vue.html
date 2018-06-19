@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        {{val}}
+        <ul>
+            <li v-for="val,key in arr">{{val}}</li>
+        </ul>
+        <input type="text" v-model="val2"/>
+        <p>{{val2}}</p>
+    </div>
+<script src="vue.js"></script>
+<script>
+    /*
+        vue:
+            https://cn.vuejs.org/
+
+            MVVM框架
+
+            双向数据绑定、轻
+
+            单向数据流
+
+                view  视图
+
+                model 数据
+    */
+
+   new Vue({
+       el:'#root',
+       data:{
+           val:'你好!世界!',
+           arr:['1','二','san','four'],
+           val2:'真厉害'
+       }
+   });
+
+</script>
+</body>
+</html>

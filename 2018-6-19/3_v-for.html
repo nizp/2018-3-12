@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="root">
+        <ul>
+            <li v-for="(val,key) in arr">{{val}}:{{key}}</li>
+        </ul>
+
+        <br />
+        <ul>
+            <li v-for="(val,key) in obj">{{val}}</li>
+        </ul>
+
+    </div>
+<script src="vue.js"></script>
+<script>
+
+    let v = new Vue({
+        el:'#root',
+        data:{
+            arr:[],
+            obj:{
+                n1:'葱',
+                n2:'姜',
+                n3:'蒜'
+            }
+        }
+    });
+
+    setTimeout(function(){
+        v.arr = ['1','二','san','four'];
+    },2000);
+
+    /*
+        1.v-for   不但能循环数组也能循环对象
+            v-for="val in arr"
+
+            v-for="(val,key) in arr"
+    */
+</script>
+</body>
+</html>

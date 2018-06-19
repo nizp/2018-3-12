@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="root">
+       <!-- <button @click="num=1">按钮1</button>
+       <button @click="num=2">按钮2</button>
+       <button @click="num=3">按钮3</button> -->
+        <!-- <div v-if="num==1">111111</div>
+       <div v-else-if="num==2">222222</div>
+       <div v-else>333333</div> -->
+
+        <button 
+            v-for="(val,key) in arr"
+            @click="num=(key+1)"
+        >{{val}}</button>
+
+        <div 
+            v-for="(val,key) in arr2" 
+            v-if="num == (key+1)"
+        >{{val}}</div>
+      
+    </div>
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el:'#root',
+        data:{
+            num:1,
+            arr:['按钮1','按钮2','按钮3'],
+            arr2:[111111111111111,2222222,33333]
+        },
+        methods() {
+            
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="root">
+        <input 
+            type="text" 
+            v-model="val"
+        >
+        这是计算属性:
+        {{getVal}}
+        ||
+        watch:
+        {{val}}
+
+    </div>
+<script src="vue.js"></script>
+<script>
+
+    new Vue({
+        el:'#root',
+        data:{
+            val:'ab'
+        },
+        computed:{
+            getVal(){
+                console.log('computed');
+                return this.val.replace(/\d+/g,'')
+            }
+        },
+        watch:{
+            val:function(){
+                console.log('watch');
+                this.val = this.val.replace(/\d+/g,'')
+            }
+        }
+    });
+
+    /*
+
+        watch:
+            一上来是不执行的，只有监听的数据发生变化才执行
+        
+    */
+</script>
+</body>
+</html>

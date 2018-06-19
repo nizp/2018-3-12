@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="root">
+        <input 
+            type="text" 
+            v-model="val"
+        >
+        这是计算属性:
+        {{getVal}}
+        {{getVal}}
+        {{getVal}}
+
+        这是函数:
+        {{change()}}
+        {{change()}}
+        {{change()}}
+
+    </div>
+<script src="vue.js"></script>
+<script>
+
+    new Vue({
+        el:'#root',
+        data:{
+            val:'ab'
+        },
+        methods:{
+            change(ev){
+                console.log(2);
+                return this.val.replace(/\d+/g,'')
+            }
+        },
+        computed:{
+            getVal(){
+                console.log(1)
+                return this.val.replace(/\d+/g,'')
+            }
+        }
+    });
+
+    /*
+        computed：（一上就会执行一次）
+            当依赖的数据发生变化的时候，不想改变原来的数据
+            又想形成一个新的数据时使用
+
+
+        方法和computed区别
+            方法调用一次执行一次
+            计算属性，调多少次都执行一次
+        
+    */
+</script>
+</body>
+</html>

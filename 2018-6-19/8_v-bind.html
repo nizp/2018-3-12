@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+<style>
+.red{
+    background: red;
+}
+.green{
+    background: green;
+}
+.pink{
+    background: pink;
+}
+#box{
+    width:100px;
+    height: 100px;
+    border: 1px solid #000;
+}
+</style>
+</head>
+<body>
+    <div id="root">
+        <button @click="bg='red'">变红</button>
+        <button @click="bg='green'">变绿</button>
+        <button @click="bg='pink'">变粉</button>
+        <div id="box" :style="{background:'yellow',height:'300px'}"></div>
+        <!-- <div id="box" :class="bg"></div> -->
+        <!-- <div id="box" v-bind:class="bg"></div> -->
+    </div>
+<script src="vue.js"></script>
+<script>
+
+    let v = new Vue({
+        el:'#root',
+        data:{
+           bg:'red'
+        }
+    });
+
+    /*
+       
+        v-bind:class="bg"
+
+            一般用在操作行间数据
+
+        :class="bg"
+
+        {{数据}}
+
+        {key:变量}
+        
+        
+    */
+</script>
+</body>
+</html>
