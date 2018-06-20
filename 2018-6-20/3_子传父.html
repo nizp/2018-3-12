@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ppa
+            :pnum="num"
+            @changnum="changeNum"
+            v2="hehe"
+        ></ppa>
+    </div>
+<script src="vue_class.js"></script>
+<script>
+    
+    /*
+        子传父，
+            1.父级定义一个事件函数
+
+            2.把这个函数传给子级
+                给子级身上加个自定义事件
+                    @chang="父级的事件函数"
+
+            3.子级调用
+                当子级某个事件触发的时候通过
+                    this.$emit('chang',可以跟参数)
+    */
+
+    let ppa = {
+        props:{
+            pnum:Number,
+            v2:String
+        },
+        template:`<div>
+            <button
+                @click="fn(99)"
+            >按钮</button>
+            <p>{{pnum}}</p>
+            <p>{{v2}}</p>
+        </div>`,
+        data(){
+            return {
+                val:'你真胖'
+            }
+        },
+        methods:{
+            fn(n){
+                this.$emit('changnum',n);
+            }
+        }
+    } 
+    new Vue({
+        el:'#app',
+        components:{
+            ppa
+        },
+        data:{
+            num:0
+        },
+        methods:{
+            changeNum(newNum){
+                alert(newNum)
+                this.num ++;
+            }
+        }
+    })
+</script>
+</body>
+</html>

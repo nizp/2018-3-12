@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-app></my-app>
+        <my-ppa></my-ppa>
+    </div>
+<script src="vue_class.js"></script>
+<script>
+
+    /*
+        Vue.component(组件名,{参数}),必须写在new Vue的上面
+
+        组件名：
+            不能统一支持驼峰命名
+
+            如果非要驼峰命名
+                大写变小写，加上-
+                myApp -> my-app
+
+            个人建议:
+                非要想区分字母，使用烤串命名
+                    my-app 
+
+
+        {
+            template:`<div></div>`
+        }
+
+
+    */
+
+    Vue.component('my-app',{
+        template:'<div>你好,world!</div>'
+    });
+
+    /*
+        注意:
+            子组件的data要为一个函数，返回一个对象
+            对象上挂数据。
+
+            顶层也只能有一个元素。
+
+    */
+    let myppa = {
+        template:`<div>
+            <div @click="fn">真假预言家,{{val}}</div>
+            <p>123</p>
+        </div>
+        `,
+        data(){
+            return {
+                val:'呵呵哒'
+            }
+        },
+        methods:{
+            fn(){
+                alert(1);
+            }
+        }
+    }
+
+    new Vue({
+        el:'#app',
+        components:{
+          'my-ppa': myppa 
+        }
+    });
+</script>
+</body>
+</html>

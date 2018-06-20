@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{title}}
+        <ppa
+            :ptitle="title"
+            :pval="val"
+            :pnum="num"
+        ></ppa>
+    </div>
+<script src="vue_class.js"></script>
+<script>
+    /*
+        父组件传递数据给子组件是通过给子组件添加属性
+
+            :属性名="数据"
+
+        子组件通过props属性去接收父级传过来的数据
+
+            props:['属性名']
+
+            也可以写成对象去验证传递的数据是否为指定类型
+                props:{
+                    ptitle:String,
+                    pval:String,
+                    pnum:Number
+                },
+
+
+        传递的属性名不要大写，也不要烤串命名
+
+
+        
+
+    */
+    let ppa = {
+        props:{
+            ptitle:String,
+            pval:String,
+            pnum:Number
+        },
+        // props:['ptitle','pval','pnum'],
+        template:`<div>
+            <h1>{{ptitle}}{{pval}}</h1>
+            <p>{{val}}.夏天!</p>
+            <p>{{pnum}}</p>
+        </div>`,
+        data(){
+            return {
+                val:'你真胖'
+            }
+        }
+    } 
+    new Vue({
+        el:'#app',
+        components:{
+            ppa
+        },
+        data:{
+            title:'幸福的小绵羊',
+            val:'我就是我',
+            num:0
+        }
+    })
+</script>
+</body>
+</html>
