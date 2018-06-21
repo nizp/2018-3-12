@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        1.搭建脚手架
+            https://cli.vuejs.org/
+
+            (1)npm install -g @vue/cli  安装一次
+
+            (2)vue create my-project 每写一个项目就要输入一次
+            
+            选择你需要的模块
+
+                按空格 翻牌/取消翻牌
+            
+            cd my-project（项目目录）
+
+            npm run serve || yarn serve
+
+        2.
+            指令:
+                v-if
+                v-else-if
+                v-else
+                v-model
+                v-for
+                v-text/v-html
+                v-bind || :
+                    :value
+                    :class
+                    :style
+                    :checked
+                传子级
+                    :num="pnum"
+                    props:['num'] || {}
+
+                v-on || @ 
+
+                    @click="fn(a,b,c,$event)" 
+                    @parentfn="fn"  自定义的事件
+                    通过this.$emit('parentfn')去触发上面的事件
+
+                v-show
+
+        3.computed
+            第一次会触发，当指定数据发生变化的时候就执行
+
+            {{listenPnum}}
+
+            computed:{
+                listenPnum(){
+                    return this.num<10?'0'+ this.num:''+this.num
+                }
+            }
+
+        4.watch
+            第一次不触发，当指定数据发生变化的时候就执行
+
+            watch:{
+                num(){
+                  当num发生变化的时候就会执行里面的代码
+                  但这么写只能浅监听。 
+                } 
+            }
+
+            深度监听:
+                watch:{
+                    num:{
+                        handler(newval,oldval){
+                            当num发生变化的时候就会执行里面的代码
+                        },
+                        deep:true
+                    }
+                }
+
+        5.data
+            放数据的
+                new Vue({
+                    data:{
+                        num:0
+                    }
+                })
+
+                如果是组件
+                {
+                    data(){
+                        return {
+                            num2:0
+                        }
+                    }
+                }
+        
+        6.methods
+                放事件函数的
+            
+            methods:{
+                click(){
+                    alert('123');
+                }
+            }
+
+
+
+    */
+</script>
+</body>
+</html>
