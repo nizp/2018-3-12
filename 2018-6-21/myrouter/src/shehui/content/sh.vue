@@ -1,25 +1,14 @@
 <template>
-    <div id="app">
-        <div id="content">
-			<ul id="leftList">
-                <router-link 
-                    class="active" 
-                    tag="li"
-                    to="/sh"
-                >
-                    <span>社会招聘</span>society
-                </router-link>
-                <router-link
-                    to="/xy"
-                    tag="li">
-                    <span>校园招聘</span>campus
-                </router-link>
-			</ul>
-			<div id="right">
-                <router-view></router-view>
-			</div>
-		</div>
-        
+    <div>
+        <Clist :arr="changeArr"></Clist>
+				<nav id="nav">
+					<a href="javascript:;">&lt;</a>
+					<a class="active" href="javascript:;">1</a>
+					<a href="javascript:;">2</a>
+					<a href="javascript:;">3</a>
+					<a href="javascript:;">4</a>
+					<a href="javascript:;">&gt;</a>
+				</nav>
     </div>
 </template>
 <script>
@@ -36,14 +25,6 @@
                 }
             }
             
-        },
-        watch:{
-            $route:{
-                handler(){
-                
-            },
-            inmma:true
-            }
         },
         name:"Content",
         components:{

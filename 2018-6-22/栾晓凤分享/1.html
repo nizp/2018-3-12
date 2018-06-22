@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+div{
+   width:100px;
+    height:100px;
+    background:red; 
+}
+div.animation{
+    -webkit-backface-visibility:visible;
+    -webkit-transform-origin:center center;-webkit-animation:demo 0.5s 0s 1 linear alternate forwards ;}
+@-webkit-keyframes demo{
+    0%{-webkit-transform:translateY(0px);}
+    34%{-webkit-transform:translateY(50px);}
+    100%{-webkit-transform:translateY(100px);}
+    
+}.animation{
+    -moz-backface-visibility:visible;
+    -moz-transform-origin:center center;-moz-animation:demo 0.5s 0s 1 linear alternate forwards ;}
+@-moz-keyframes demo{
+    0%{-moz-transform:translateY(0px);}
+    34%{-moz-transform:translateY(50px);}
+    100%{-moz-transform:translateY(100px);}
+    
+}
+</style>
+<body>
+   <div class="animation"></div> 
+</body>
+<script>
+    
+</script>
+</html>

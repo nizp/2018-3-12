@@ -3,20 +3,22 @@
         <div id="content">
 			<ul id="leftList">
                 <router-link 
-                    class="active" 
+                    :class="$route.params.id=='sh'?'active':''" 
                     tag="li"
-                    to="/sh"
+                    to="/sh/0"
                 >
                     <span>社会招聘</span>society
                 </router-link>
                 <router-link
-                    to="/xy"
+                    :class="$route.params.id=='xy'?'active':''" 
+                    to="/xy/0"
                     tag="li">
                     <span>校园招聘</span>campus
                 </router-link>
 			</ul>
 			<div id="right">
-                <router-view></router-view>
+                <Clist :arr="changeArr"/>
+                <Page :n="n" :dd="dd"/>
 			</div>
 		</div>
         
@@ -25,29 +27,42 @@
 <script>
     import data from '../data.js';
     import Clist from './clist.vue';
+    import Page from './page.vue';
     export default {
+        data(){
+            return {
+                dd:data
+            }
+        },
         computed:{
             changeArr(){
                 if(this.$route.params.id == 'xy'|| this.$route.params.id == 'sh'){
-                    let arr = data[this.$route.params.id].text.concat();
-                    console.log(arr)
-                    arr.length = 4;
-                    return arr;
+                    let {id,num} = this.$route.params;
+                    let arr = data[id].text;
+                    let arr2 = [];
+                    /*
+                        0 -> 0-3
+                        1 -> 4-7
+                    */
+                    for(let i=num*4;i<num*4+4;i++){
+                        if(arr[i]){
+                            arr2.push(arr[i]);
+                        }
+                    }
+                    console.log(arr2)
+                    return arr2;
                 }
-            }
-            
-        },
-        watch:{
-            $route:{
-                handler(){
-                
             },
-            inmma:true
+            n(){
+                let {id,num} = this.$route.params;
+                let arr = data[id].text;
+                return Math.ceil(arr.length/4);
             }
         },
         name:"Content",
         components:{
-            Clist
+            Clist,
+            Page
         }
     }
 </script>
@@ -106,7 +121,7 @@ a{
     display: block;
         cursor: pointer;
 }
-#leftList .router-link-exact-active span{
+#leftList .active span{
     color: #ff2c4f;
 }
 #right{

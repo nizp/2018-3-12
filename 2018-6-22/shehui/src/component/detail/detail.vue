@@ -1,27 +1,54 @@
 <template>
     <div>
-        <div>
+        <div id="content2">
 			<div id="rightTop">
-				<a id="a" href="list2.html" class="goback">&lt;&nbsp;返回招聘列表</a>
+				<a 
+                    id="a" 
+                    href="javascript:;" 
+                    class="goback"
+                    @click="$router.back(-1)"
+                >&lt;&nbsp;返回招聘列表</a>
 				<a href="javascript:;">投个简历</a>
 			</div>
 			<div id="title">
-				<p>前端开发工程师</p>
-				<div class="simple">18k-25k<span>/</span>北京<span>/</span>经验3-5年<span>/</span>本科及以上<span>/</span>2名 <time>2014-04-10</time></div>
+				<p>{{obj.zw}}</p>
+				<div class="simple">
+                    {{obj.dy}}
+                    <span>/</span>{{obj.dd}}
+                    <span>/</span>经验:{{obj.jy}}
+                    <span>/</span>{{obj.xl}}
+                    <span>/</span>{{obj.rs}}名 
+                    <time>{{obj.sj.join('-')}}</time></div>
 			</div>
 			<div id="bottom">
-					
+				<Dlist :info="obj.info"/>
 			</div>
 		</div>
     </div>
 </template>
 <script>
+    import Dlist from './dlist.vue'
+    import data from '../data.js'
     export default {
-        name:"Detail"
+        name:"Detail",
+        components:{
+            Dlist
+        },
+        data(){
+            return {
+                obj:{}
+            }
+        },
+        created(){
+            let {id,num} = this.$route.params;
+            this.obj = data[id].text[num];
+
+            console.log(this.obj);
+        }
     }
 </script>
 
-<style scoped>
+<style>
 html,body{
     width: 100%;
     height: 100%;
@@ -49,7 +76,7 @@ a{
     text-decoration: none;
     color:#b6bdcf;
 }
-#content{
+#content2{
     width: 650px;
     height: 460px;
     border-radius: 10px;
@@ -110,13 +137,13 @@ a{
     width: 100px;
     font: 12px/30px "微软雅黑";
 }
-#content dl{
+#content2 dl{
     margin-top: 13px;
 }
-#content dt{
+#content2 dt{
     font: 16px/27px "微软雅黑";
 }
-#content dd{
+#content2 dd{
     font: 14px/25px "微软雅黑";
     color: #677282;
 }
