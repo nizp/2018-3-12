@@ -43,7 +43,7 @@ export default {
             let json = await axios.get('api/movie/search?q='+txt+'&start='+num)
             this.obj = await json.data;
             this.loading = false;
-            console.log(this.obj)
+            console.log(this.obj)   
         }
     },
     data(){

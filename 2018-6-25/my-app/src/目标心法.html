@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        1.npm i vuex -D
+
+        2.引入vuex
+            import Vue from 'vue';
+            import Vuex from 'vuex';
+            Vue.use(Vuex);
+
+            export default new Vuex.Store({
+                state:{
+                    初始化数据
+                },
+                mutations:{
+                    数据的操作
+                },
+                getter:{
+                    监听数据变化的操作
+                },
+                actions:{
+                    异步操作
+                        asyn(conText){
+                            conText.commit('add')
+                        }
+                    调用:
+                        this.$store.dispatch('asyn')
+                }
+
+
+            })
+
+
+            template:
+                -> $store.state.xx
+            
+            也可以引入
+                import { mapMutations,mapState,mapGetters } from 'vuex';
+
+            {
+                ->this.$store.state.xx
+
+                methods:{
+                    ...mapMutations(['add'])
+                    ...mapMutations({
+                        add:state=>state.store1.add
+                    })
+                },
+                computed:{
+                    ...mapState(['count']),
+                    ...mapState({
+                        count:state.store1.count
+                    }),
+                    ...mapGetters(['total']),
+                    ...mapGetters({
+                        total:state.store1.total
+                    })
+                }
+
+
+
+            }
+
+
+            export default new Vuex.Store({
+                modules:{
+                    store1,
+                    store2
+                }
+            })
+
+        3.import store from './store';
+
+        new Vue({
+            store
+        })
+
+        
+
+    */
+</script>
+</body>
+</html>
