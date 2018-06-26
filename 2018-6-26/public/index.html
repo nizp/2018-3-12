@@ -14,6 +14,40 @@
 </style>
 </head>
 <body>
-    <div id="box"></div>
+    <!-- <div id="box"></div> -->
+    用户名:<input type="text" id="user">
+    密码:<input type="password" id="pass"/>
+    <button id="sub">注册</button>
+    <button id="sub2">登录</button>
+<script>
+    sub.onclick = function(){
+        fetch('/user?act=add&user='+user.value+'&pass='+pass.value)
+        .then((res)=>res.json())
+        .then(e=>{
+            if(e.code == 0){
+                alert(e.msg);
+            }else if(e.code == 1){
+                alert('此坑已被占用，请去别的茅房');
+            }else if(e.code == 3){
+                alert('请求错误');
+            }
+        });
+    }
+
+    sub2.onclick = function(){
+        fetch('/user?act=login&user='+user.value+'&pass='+pass.value)
+        .then((res)=>res.json())
+        .then(e=>{
+            if(e.code == 0){
+                alert(e.msg);
+            }else if(e.code == 1){
+                alert('你还没注册');
+            }else if(e.code == 2){
+                alert(e.msg);
+            }
+        });
+    }
+    
+</script>
 </body>
 </html>

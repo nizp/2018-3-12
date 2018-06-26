@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background:red;
+}
+</style>
+</head>
+<body>
+    <!-- <div id="box"></div> -->
+    用户名:<input type="text" id="user">
+    密码:<input type="password" id="pass"/>
+    <button id="sub">注册</button>
+    <button id="sub2">登录</button>
+<script>
+    sub.onclick = function(){
+        fetch('/user',{
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body:'act=add&user='+user.value+'&pass='+pass.value
+        })
+        .then((res)=>res.json())
+        .then(e=>{
+           console.log(e);
+        });
+    }
+
+   
+</script>
+</body>
+</html>
