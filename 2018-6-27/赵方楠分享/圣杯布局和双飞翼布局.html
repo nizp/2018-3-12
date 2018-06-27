@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    /*  圣杯布局与双飞翼布局的共同点：
+            1、三栏布局；
+            2、主要内容写在中间，最先载入，但布局位于非最前
+            3、两侧定宽，分别位于中间主体两侧（外），中间流式（自动宽度）
+        布局原理
+            1、三栏全部采用浮动（float: left）；
+            2、HTML内容出现顺序：main、left、right，要求首先载入主体（重要）内容，然后加载侧边栏；
+            （左）负边距（margin-left）超过元素自身宽度时（第二个浮动元素），即使父元素“容不下”2个浮动元素（第二个浮动元素会换行），
+            第二个浮动元素也会移动到实际显示位置相邻的兄弟元素旁（父元素最右内侧），并占据一定空间，相当于“margin-left可以吃掉兄弟元素的margin”。
+            当margin-left等于父元素宽度时，会移动到父元素最左侧（内侧） */
+
+    /* 圣杯布局 */
+    .box{
+        padding:0 300px 0 200px;
+        /* background:aquamarine; */
+    }
+    .left,.main,.right{
+        position: relative;
+        min-height:130px;  
+        float: left;
+    }
+    .left{
+       background:rgb(215, 50, 236); 
+       width:200px;
+       margin-left:-100%;
+       left:-200px;
+    }
+    .main{
+        background-color:rgb(133, 193, 250);
+        width:100%;
+       
+    }
+    .right{
+        background-color:pink;
+        width:300px;
+        margin-left:-300px;
+        right:-300px;
+    }
+
+    /* 双飞翼布局 */
+    /* .left,.main,.right{
+        min-height:530px;  
+        float: left;
+        text-align: center;
+    }
+    .left{
+       background:rgb(215, 50, 236); 
+       width:200px;
+       margin-left:-100%;
+    }
+    .main{
+        background-color:rgb(133, 193, 250);
+        width:100%;
+       
+    }
+    .right{
+        background-color:pink;
+        width:300px;
+        margin-left:-300px;
+        right:-300px;
+    }
+    .content{
+        padding:0 300px 0 200px;
+    } */
+
+</style>
+<body>
+    <!-- 圣杯布局 -->
+    <div class="box"> 
+    　　<div class="main">main</div> 
+    　　<div class="left">left</div> 
+    　　<div class="right">right</div> 
+    </div>
+
+    <!-- 双飞翼布局 -->
+    <!-- <div class="box"> 
+    　　<div class="main">
+            <div class="content">main</div>
+        </div> 
+    　　<div class="left">left</div> 
+    　　<div class="right">right</div> 
+    </div> -->
+    
+</body>
+</html>
