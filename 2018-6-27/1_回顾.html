@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        http
+        fs
+
+        /post -> on('data')  on('end')
+
+        http.createServer((req,res)=>{
+            req.url -> /index   /user
+
+            if(走接口){
+                switch(){
+                    case "add":
+
+                    case "login":
+                }
+                res.write(json)
+                res.end()
+            }else{
+
+                fs.readFile('什么文件',(error,data)=>{
+                    if(error){
+                        fs.readFile('404文件',(e,data)=>{
+                            res.write(data);
+                            res.end();
+                        })
+                       
+                    }else{
+                        res.write(data);
+                        res.end();
+                    }
+                });
+                res.write()
+                res.end()
+            }
+
+        }).listen(80);
+        
+
+        通过前端的请求，去拿对应的数据
+
+
+        jq
+        es6首尾
+
+
+        80% vue项目 -> 移动端 -> miaov(第三方)
+        antd项目
+        node -> 聊天室，爬虫
+        
+
+        *面试技巧
+            各种手写
+
+        写作品
+
+
+
+
+
+
+    */
+</script>
+</body>
+</html>

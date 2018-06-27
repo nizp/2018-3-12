@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    用户名:<input type="text" id="user"/>
+<script>
+    // user.onblur = function(){
+    //     fetch('/user?act=add&name='+this.value+'&age=10')
+    //     .then(e=>e.json())
+    //     .then(data=>{
+    //         console.log(data);
+    //     });
+    // }
+
+    user.onblur = function(){
+        fetch('/user',{
+            method:"post",
+            headers:{
+                "Content-Type":"application/x-www-form-urlencoded"
+            },
+            body:'act=login&name='+this.value+'&age=3'
+        })
+        .then(e=>e.json())
+        .then(data=>{
+            console.log(data);
+        });
+    }
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        http://mongoosejs.com/
+
+        https://cnodejs.org/topic/595d9ad5a4de5625080fe118
+
+        通过对象的方式去操作数据库
+
+        {key:val}
+
+
+        1.引入mongoose
+            const mongoose = require('mongoose')
+        2.链接
+            mongoose.connect('mongodb://127.0.0.1:27017');
+
+        3.创建有个数据模型
+            http://mongoosejs.com/docs/guide.html
+            const Person = mongoose.Schema;
+
+            new Person({
+                name:String,
+                ....
+            })
+
+        4.实例化模型
+            const xq = new Person({name:'xq',age:18,sex:"男"})
+            //保存数据
+            xq.save(()=>{
+                console.log('存储成功');
+            });
+
+
+            Person.create({},{},(error,data)=>{
+                if(error){
+
+                }else{
+                    //成功保存
+                }
+            });
+
+        5.find（找一堆）,findOne（找一个）
+            
+            find(条件,(err,data)=>{
+                把条件成立数据给你
+                data -> object
+            })
+
+            find如果不加条件就说明把所有的数据都返回出来
+                find({},(err,data)=>{
+                    data-> array
+                })
+
+        6.methods
+                给模型加动态方法
+
+        obj.remove(查询条件,callback);
+
+        
+
+
+
+
+
+           
+
+
+
+    */
+</script>
+</body>
+</html>
