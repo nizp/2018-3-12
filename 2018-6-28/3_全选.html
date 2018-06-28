@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="b1">全选</button>
+    <button id="b2">全不选</button>
+    <button id="b3">反选</button>
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+<script src="./jquery-3.2.1.min.js"></script>
+<script>
+    /*
+        attr:
+            找属性 -> 行间属性
+                $('input').attr('checked'); undefined
+        prop:
+            找属性 -> 走表单
+                $('input').prop('checked'); true
+
+        $('#box').css()
+
+        function $(el){
+            this[0] = el
+        }
+        $.prototype.css = function(){
+
+        }
+
+        new $
+           
+    */
+    $('#b1').click(function(){
+        $('input').attr('checked',true);
+    });
+    $('#b2').click(function(){
+        $('input').attr('checked',false);
+    });
+    $('#b3').click(function(){
+        // console.log($('input').prop('checked'))
+        $('input').each((i,e)=>{
+            console.log($(e),e); //原生对象
+            if($(e).prop('checked')){
+                $(e).prop('checked',false);
+            }else{
+                $(e).prop('checked',true);
+            }
+        });
+        
+    });
+
+</script>
+</body>
+</html>

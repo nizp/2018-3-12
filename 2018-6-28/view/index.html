@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p id="hy"></p>
+    用户:<input type="text" id="user"><br />
+    密码:<input type="password" id="pass"><br />
+    年纪:<input type="text" id="age"><br />
+    性别:<input type="text" id="sex"><br />
+    <button id="add">注册</button>
+
+    <button id="login">登录</button>
+    <div>7天免登录<input type="checkbox" id="qt"/></div>
+    <br />
+    <input type="text" id="search"/>
+    <select name="名字" id="sele">
+        <option value="name">名字</option>
+        <option value="age">年龄</option>
+        <option value="sex">性别</option>
+    </select>
+    <button id="searchBtn">搜索</button>
+    <ul id="ul"></ul>
+<script>
+
+    function getCookie(key){
+        let str = document.cookie;
+        let arr = str.split('; ');
+        let onOff = false;
+        for(let i=0;i<arr.length;i++){
+            let s = arr[i].split('=');
+            if(s[0] === key){
+                return s[1];
+            }
+        }
+        if(!onOff)return null;
+    }
+
+    function setCookie(key,val,time){
+        if(time){
+            let iDate = new Date;
+            iDate.setDate(iDate.getDate()+ time);
+            document.cookie = key+'='+val+ '; expires='+ iDate;
+        }else{
+            document.cookie = key+'='+val;
+        }
+    }
+
+    if( getCookie('user') ){
+        login.style.display = 'none';
+        hy.innerHTML = '欢迎'+getCookie('user')+'回来！~';
+    }
+
+
+    add.onclick = function(){
+        fetch('/user',{
+            method:'post',
+            headers:{
+                "Content-Type":"application/x-www-form-urlencoded"
+            },
+            body:new URLSearchParams({
+                act:'add',
+                name:user.value,
+                pass:pass.value,
+                sex:sex.value,
+                age:age.value
+            }).toString()
+        }).then(e=>e.json())
+        .then(data=>{
+            console.log(data);
+        });
+    }
+
+    searchBtn.onclick = function(){
+        fetch(`/search?search=${sele.value}&content=${search.value}`
+        ).then(e=>e.json())
+        .then(json=>{
+            if(json.code == 0){
+                let html = '';
+                json.data.forEach(e => {
+                    html += `<li>名字:${e.name},年龄:${e.age},性别:${e.sex}</li>`
+                });
+
+                ul.innerHTML = html;
+            }
+            console.log(json);
+        });
+    }
+
+
+    login.onclick = function(){
+        fetch('/user',{
+            method:'post',
+            headers:{
+                "Content-Type":"application/x-www-form-urlencoded"
+            },
+            body:new URLSearchParams({
+                act:'login',
+                name:user.value,
+                pass:pass.value
+            }).toString()
+        }).then(e=>e.json())
+        .then(data=>{
+            if(data.code === 0){
+                if(qt.checked){
+                    setCookie('user',data.data,7);
+                }else{
+                    setCookie('user',data.data);
+                }
+                location.reload();
+            }else if(data.code === 2){
+                alert(data.msg);
+            }
+        });
+    }
+</script>
+</body>
+</html>

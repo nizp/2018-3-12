@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    top:150px;
+    left:100px;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+    <ul id="ul">
+        <li class="xs-s">1</li>
+        <li class="ss-ss">2</li>
+        <li class="ss1">3</li>
+        <li class="sbss_s">4</li>
+        <li class="jssb">5</li>
+    </ul>
+    <input type="checkbox">
+    <input type="checkbox" checked>
+    <input type="checkbox">
+    <input type="checkbox" checked>
+    <input type="text" value="hehe" id="h">
+<script src="./jquery-3.2.1.min.js"></script>
+<script>
+    /*
+        jquery:
+            维护老项目
+            兼容性
+            老公司想用又不敢使用新技术
+
+        吃的少干的多，只要会css就会jq
+        兼容好，方便
+
+        1.72 兼容版
+        3.x  激进版
+
+        选择器:
+            $('#box')
+            $('.list')
+            $(':checked')
+            $('li[class*="xx"]')
+            $('li[class^="xx"]')
+            $('li[class$="xx"]')
+    */
+
+    // console.log($(':checked'));
+
+    // console.log($('#h').val());
+
+
+    // $('#box').html('<p>pppp</p>')
+    $('#box').text('<p>pppp</p>');
+
+   
+
+</script>
+</body>
+</html>
