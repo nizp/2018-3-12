@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>todos</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body>
+    <section class="todoapp">
+        <div>
+            <header class="header" >
+                <h1>todos</h1>
+                <input class="new-todo" placeholder="请输入内容" value="">
+            </header>
+            <section class="main">
+                <input class="toggle-all" type="checkbox" checked="">
+                <ul class="todo-list">
+                    <!-- <li class="completed">
+                        <div class="view">
+                            <input class="toggle" type="checkbox" >
+                            <label>多多对对对</label>
+                            <button class="destroy"></button>
+                        </div> 
+                        <input class="edit" value="多多对对对">
+                    </li> -->
+                </ul>
+            </section>
+            <!-- <footer class="footer">
+	            <span class="todo-count">
+	            	<strong>0</strong>
+	            	<span>条未选中</span>
+	            </span>
+            </footer> -->
+        </div>
+    </section>
+<script src="./jquery-3.2.1.min.js"></script>
+<script>
+    /*
+       $('<ul></ul>') 创建元素
+
+       $(el).on('click','sapn',function(){})  从el下监听sapn
+
+        $(el).closest(条件)  找对近的条件成立的父级
+
+        $('li').closest('.active')  如果自己身上有这个class，那么优先找自己
+            注意：
+                如果自己符合这个条件，那么会优先找自己
+        
+
+        
+
+
+    */
+    let $ul = $('.todo-list');
+
+    $('.toggle-all').prop('checked',$ul.children().length);
+
+    $('.new-todo').keyup(function(ev){
+        if(ev.keyCode == 13){
+            let $li = $(`
+                <li>
+                    <div class="view">
+                        <input class="toggle" type="checkbox">
+                        <label>${$(this).val()}</label>
+                        <button class="destroy"></button>
+                    </div>
+                </li>`
+            );
+            $li.on('click','input',function(ev){
+                $(this).closest('li').attr('class',$(this).prop('checked')?'completed':'');
+                $('.toggle-all').prop('checked',$('li').length == $('.completed').length);
+            });
+            
+            $li.on('click','.destroy',function(){
+                $li.remove();
+                // console.log(!!$ul.children().length)
+                // $('.toggle-all').prop('checked',!!$ul.children().length);
+                $('.toggle-all').prop('checked',!!$ul.children().length && $('li').length == $('.completed').length);
+            });
+
+            $ul.append($li);
+            $('.toggle-all').prop('checked',$('li').length == $('.completed').length);
+            $(this).val('');
+        }
+    });
+    $('.toggle-all').click(function(){
+        let b = $('.toggle-all').prop('checked');
+        $('li').attr('class',b?'completed':'');
+        $('.toggle').prop('checked',b);
+    });
+
+
+    // input.index = 0;
+    // input.setAttribute('index',0);
+
+    
+</script>
+</body>
+</html>

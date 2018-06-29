@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <!-- <img src="http://img0.imgtn.bdimg.com/it/u=2714790118,1265479358&fm=27&gp=0.jpg" alt="">
+    <img src="http://static01.coloros.com/bbs/data/attachment/forum/201608/27/190952ra54atgo4kcmuhv5.png" alt="">
+    <img src="http://old.bz55.com/uploads/allimg/160527/139-16052G13506.jpg" alt=""> -->
+<script>
+    /*
+        $(function(){
+            //ready事件
+            ContentLoaded
+        });        
+    */
+    
+
+    (function(global,factory){
+        "use strict"
+        factory(global);
+    })(typeof window !== 'undefined'?window:this,function(global,noGloal){
+            function Jquery(sele){
+                return new fnint(sele);
+            }
+
+            Object.defineProperties(Jquery.prototype,{
+                css:{
+                    value:function(){
+                        // console.log('css');
+                        if(arguments.length === 1){
+                            //传的是个对象
+                            if(this.isObject(arguments[0])){
+                                for(let i=0;i<this.length;i++){
+                                    for(let attr in arguments[0]){
+                                        // console.log(attr)
+                                        this[i].style[attr] = arguments[0][attr];
+                                    }
+                                }
+                            }
+                            //传的是个字符串
+                            if(this.isString(arguments[0])){
+                                return getComputedStyle(this[0])[arguments[0]]
+                            }
+                        }else if(arguments.length===2){
+                            if(this.isString(arguments[0]) && this.isString(arguments[1])){
+                                for(let i=0;i<this.length;i++){
+                                    this[i].style[arguments[0]] = arguments[1];
+                                }
+                            }
+                        }
+                        return this;
+                    }
+                },
+                toS:{
+                    value(){
+                        return Object.prototype.toString;
+                    }
+                },
+                isObject:{
+                    value(fnName){
+                        return this.toS().call(fnName) === '[object Object]';
+                    }
+                },
+                isFn:{
+                    value(fnName){
+                        return this.toS().call(fnName) === '[object Function]';
+                    }
+                },
+                isString:{
+                    value(fnName){
+                        return this.toS().call(fnName) === '[object String]';
+                    }
+                }
+            });
+            
+            function fnint(sele){
+                if(this.isFn(sele)){
+                    document.addEventListener('DOMContentLoaded',sele);
+                }else if(this.isString(sele)){
+                    let arr = document.querySelectorAll(sele);
+                    for(let i=0;i<arr.length;i++){
+                        this[i] = arr[i];
+                    }
+                    this.length = arr.length;
+                }
+            }
+
+            fnint.prototype = Object.create(Jquery.prototype,{
+                constructor:{
+                    value:fnint,
+                    enumerable:false
+                }
+            });
+
+          window.$ = window.jQuery = Jquery;
+    });
+
+$(function(){
+    /*
+        一个参数获取属性
+            $('#box').css('width')  -> 100px
+
+            $('#box').css({
+                width:200px,
+                height:200px
+            });
+        
+        两个参数
+            $('#box').css('width','300px');
+        
+    */
+    let box = $('#box');
+    // console.log(box);
+    // console.log(box.css('width'));
+    // $('li').css({width:'100px',height:'200px',border:'1px solid #000'});
+
+   $('li').css('width','300px').css('height','300px').css({'background':'red'});
+    // console.log($('li'))
+
+});
+
+// window.onload = function(){
+//     alert(1);
+// }
+
+
+
+    
+</script>
+</body>
+</html>

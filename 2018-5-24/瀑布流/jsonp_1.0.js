@@ -1,3 +1,11 @@
+jsonp({
+    url:'/url',
+    success(data){
+        
+    }
+})
+
+
 function jsonp(obj){
     let opt = {
         url:'',

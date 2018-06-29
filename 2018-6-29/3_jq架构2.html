@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+        1.解决命名冲突
+            （1）封闭空间
+                    打闭包
+
+            （2）命名空间
+                    obj.a = xxx
+
+        global -> 要么是window，要么是this
+
+        使用无new化操作
+            new jQuery
+
+            但是在jQuery中new jQuery，自己调用自己，递归。
+
+            解决:
+                不递归 -> 不用自己调自己
+
+            class extends
+                    
+    */
+    
+
+    (function(global,factory){
+        "use strict"
+        factory(global);
+    })(typeof window !== 'undefined'?window:this,function(global,noGloal){
+            function Jquery(sele){
+                return new fnint(sele);
+            }
+
+            Object.defineProperties(Jquery.prototype,{
+                css:{
+                    value:function(){
+                        console.log(1);
+                    }
+                }
+            });
+            
+            function fnint(sele){
+                
+            }
+            // fnint.prototype = new Jquery;
+
+            fnint.prototype = Object.create(Jquery.prototype,{
+                constructor:{
+                    value:fnint,
+                    enumerable:false
+                }
+            });
+
+            /*
+                o.__proto__.__proto__ == Jquery.prototype
+            */
+            // let o = new fnint;
+            // console.log(o instanceof Jquery);
+           // console.log(o.__proto__.__proto__ == Jquery.prototype)
+
+          //暴露全局接口，给window下加属性或者方法
+          window.$ = window.jQuery = Jquery;
+    });
+
+    let box = $('#box');
+
+    box.css();
+
+
+
+
+    // (function(){ //2018-6-29
+        
+    // })();
+
+    // let obj = {};
+    // let obj2 = {};
+    // obj.Jquery = function(){}
+    // obj2.Jquery = function(){}
+
+
+    
+
+    // box.css();
+    // function Jquery(){
+    //     alert(1);
+    // }
+    
+
+</script>
+</body>
+</html>
