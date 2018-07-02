@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:446px;
+    height:244px;
+    border: 1px solid #000;
+    margin: 0 auto;
+    overflow: hidden;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script src="./jquery-3.2.1.min.js"></script>
+<script src="carousel.js"></script>
+<script>
+    $('#box').carousel({
+        imgs:['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg']
+    });
+</script>
+</body>
+</html>

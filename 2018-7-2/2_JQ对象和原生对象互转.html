@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div id="box"></div> -->
+    <textarea name="" id="txt" cols="30" rows="10">
+    </textarea>
+<script src="./jquery-3.2.1.min.js"></script>
+<script>
+    /*
+        在jQ中是可以使用原生
+        但是在原生对象中不能使用JQ
+
+        原生对象转JQ对象  只需要使用$(原生对象)
+
+        JQ对象转原生    get(num) || [num]
+
+
+        height(写操作) -> style.height
+        outerHeight -> offsetHeight
+
+ 
+        https://sizzlejs.com/  专门获取元素的
+
+        1.引入
+            <script src="./sizzle.js">
+        2.
+            Sizzle('#box');
+            Sizzle('input[type="button"]')
+
+    */
+
+//    const box = document.getElementById('box');
+
+//    document.onclick = function(){
+//         $(box).css({
+//             width:100,
+//             height:100,
+//             background:'red'
+//         });
+//    };
+
+    //被内容撑开的高度
+    $(document).click(function(){
+        // console.log($('#txt').outerHeight());
+        // console.log($('#txt').get(0).scrollHeight);
+        console.log($('#txt')[0].scrollHeight);
+    });
+
+
+</script>
+</body>
+</html>

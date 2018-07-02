@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: #000;
+}
+#box2{
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+body{
+    height: 3000px;
+}
+</style>
+</head>
+<body>
+    <!-- <div id="box"></div>
+    <div id="box2">
+        <p>ppppp</p>
+        <strong class="ss">ssssss</strong>
+    </div> -->
+
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <div>1111</div>
+    
+<script src="./jquery-3.2.1.min.js"></script>
+<script>
+    /*
+        ev
+        冒泡
+        阻止冒泡
+        keyCode
+        默认行为
+
+        jQ中的所有事件都是绑定
+
+        off()  解绑
+
+        阻止冒泡:
+            return false
+
+        {
+            click:[fn3]
+        }
+
+        jQ中的ev是二次封装的对象
+
+        如果要使用原生对象使用
+            ev.originalEvent
+
+        阻止冒泡(都行):
+            ev.stopPropagation();
+            ev.originalEvent.cancelBubble = true;
+            return false;
+
+        阻止默认行为
+            return false
+
+        jq中事件都是on()二次封装
+
+        $(el).on('click',数据,function(ev){
+            console.log(ev.data);
+        })
+        ev.data 可一直接获取绑定的数据
+        
+    */
+
+    // $('#box').click(function(){
+    //     alert(1);
+    // })
+    // $('#box2').click(function(){
+    //     // alert(1);
+    //     $('#box').trigger('click');
+    // });
+
+    // $('#box,#box2').click(function(){
+    //     alert(1);
+    // });
+
+    // $('#box').on('click.就是你',function(){
+    //     alert(1);
+    // });
+    // $('#box').on('click',function(){
+    //     alert(2);
+    // });
+
+    // $('#box2').on('click',function(){
+    //     $('#box').trigger('click.就是你');
+    // });
+
+
+
+    // $('#box2').on('click',function(ev){
+    //     console.log(ev.target)
+    //     if(ev.target.nodeName === 'STRONG'){
+    //         alert(ev.target.innerHTML);
+    //     }
+    // });
+
+    /*
+        delegate的实现原理  -> 事件委托
+    */
+    // $('#box2').on('click','.ss',function(ev){
+    //     alert($(this).html());
+    // });
+
+    // let aaa = [11111,22222,33333];
+
+    // $('button').on('click',aaa,function(ev){
+    //     $('div').text(ev.data[$(this).index('button')]);
+    // });
+
+
+
+    $(document).keydown(function(){
+        return false;
+    });
+   
+
+   
+
+
+</script>
+</body>
+</html>

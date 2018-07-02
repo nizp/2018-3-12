@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: #000;
+}
+</style>
+</head>
+<body>
+    <div id="box">
+        <button id="btn">点击请求</button>
+    </div>
+    
+<script src="./jquery-3.2.1.min.js"></script>
+<script>
+    /*
+        ev
+        冒泡
+        阻止冒泡
+        keyCode
+        默认行为
+
+        jQ中的所有事件都是绑定
+
+        off()  解绑
+
+        阻止冒泡:
+            return false
+
+        {
+            click:[fn3]
+        }
+
+        jQ中的ev是二次封装的对象
+
+        如果要使用原生对象使用
+            ev.originalEvent
+
+        阻止冒泡(都行):
+            ev.stopPropagation();
+            ev.originalEvent.cancelBubble = true;
+            return false;
+
+        
+        
+    */
+
+    // $('#box').click(function(){
+    //     alert(1);
+    // })
+    // $('#box').click(function(){
+    //     alert(2);
+    // });
+
+    $('#box').click(function(){
+        console.log(1);
+        $('#btn').off().click(function(ev){
+            console.log(ev.originalEvent);
+            return false;
+            // ev.originalEvent.cancelBubble = true;
+            // ev.stopPropagation();
+        });
+    });
+
+
+
+</script>
+</body>
+</html>

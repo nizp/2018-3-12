@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <textarea name="" id="txt" cols="30" rows="10"></textarea>
+<script src="./jquery-3.2.1.min.js"></script>
+<script>
+    /*
+        $.extend()
+            1.浅拷贝  $.extend(obj1,obj2),从右往左赋值
+            2.深拷贝  第一个参数为true
+            3.给插件留出接口
+
+                写工具方法:
+                    $.extend({方法名:function(){})
+
+                    $.fn()
+
+                写组件方法:
+                    $.fn.extend({方法名:function(){})
+                    
+                    $('xxx').fn()
+    */
+
+//    let arr = [1,2,3,[4]];
+
+//    let arr2 = $.extend(true,[],arr);
+
+//    arr2[3].push(4);
+//    console.log(arr2);
+
+
+
+    $.fn.extend({
+        scrollH:function(){
+            return this[0].scrollHeight;
+        }
+    });
+    // console.log($('#txt').scrollH());
+
+    $.extend({
+        scrollH(that){
+            return that[0].scrollHeight;
+        }
+    });
+
+    $(document).click(function(){
+        console.log($.scrollH($('#txt')))
+    });
+
+
+
+</script>
+</body>
+</html>

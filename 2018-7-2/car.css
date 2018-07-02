@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+ul{
+
+}
+li{
+    width: 446px;
+    height: 244px;
+    float: left;
+}
+img{
+    width: 446px;
+    height: 244px;
+}
+
+

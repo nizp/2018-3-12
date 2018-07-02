@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    border: 1px solid #000;
+    position: relative;
+}
+#box2{
+    width:50px;
+    height: 50px;
+    background:yellow;
+    position: absolute;
+    top:0;
+    left:0;
+}
+</style>
+</head>
+<body>
+    <div id="box">
+        <div id="box2"></div>
+    </div>
+<script src="./jquery-3.2.1.min.js"></script>
+<script>
+    /*
+        hover不是onmouseover
+        是onmouseleave
+    */
+    $('#box').hover(function(){
+        alert('移入');
+    },function(){
+        alert('移出');
+    });
+    $('#box2').hover(function(){
+        alert('移入2');
+    },function(){
+        alert('移出2');
+    });
+</script>
+</body>
+</html>

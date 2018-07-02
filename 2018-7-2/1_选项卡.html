@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+    background: yellow;
+}
+div{
+    width:150px;
+    height: 100px;
+    border: 1px solid #000;
+    display: none;
+}
+.show{
+    display: block
+}
+
+</style>
+</head>
+<body>
+    <input class="active" type="button" value="按钮一"/>
+    <input type="button" value="按钮二"/>
+    <input type="button" value="按钮三"/>
+    <div class="show">1111111111</div>
+    <div >2222222222</div>
+    <div >33333333333</div>
+    
+    
+<script src="./jquery-3.2.1.min.js"></script>
+<script>
+    /*
+        addClass()
+        removeClass()
+        siblings(精确匹配)  找兄弟
+
+        index('精确匹配')
+            找到当前父级的所有子节点，它在哪个位置
+    */
+    // $('input').click(function(){
+    //     // alert($(this).index('input'))
+    //     $('input').removeClass('active');
+    //     $('div').removeClass('show');
+    //     $(this).addClass('active');
+    //     $('div').eq($(this).index('input')).addClass('show');
+    // });
+
+    $('input').click(function(){
+        //把当前的添加，它的兄弟删除
+        $(this).addClass('active').siblings('input').removeClass('active');
+        $('div').eq($(this).index('input')).addClass('show').siblings('div').removeClass('show');
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ul">
+        <li>11</li>
+        <li>22</li>
+        <li>333</li>
+        <li>444</li>
+        <li>555</li>
+    </ul>
+<script src="./jquery-3.2.1.min.js"></script>
+<script>
+    /*
+        string,
+        number,
+        boolean,
+        object,
+        undefined,
+        null,
+        symbol
+
+
+        增删改查
+
+            $('<li></li>')
+
+            append
+            remove
+    */
+    // let s = Symbol();
+    // let obj = {
+    //     [s]:'123'
+    // }
+
+    // let obj2 = {
+    //     ['s']:'321'
+    // }
+    // Object.assign(obj,obj2);
+    // console.log(obj[s]);
+    // console.log(obj)
+
+
+    // $('li').click(function(){
+    //     $('#ul').append($(this));
+    // });
+
+    $('li').click(function(){
+        /*
+            把上一个跟自己对换位置
+
+            把当前元素放到当前上一个的前面
+        */
+        $(this).prev().before($(this)); 
+    });
+
+
+   
+</script>
+</body>
+</html>

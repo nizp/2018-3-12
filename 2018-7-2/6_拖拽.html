@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: #000;
+    position: absolute;
+    left:0;
+    top:0;
+}
+</style>
+</head>
+<body>
+    12321321321321321321321321321343254354
+    <div id="box"></div>
+<script src="./jquery-3.2.1.min.js"></script>
+<script>
+    /*
+        html()
+        css()
+        append()
+        remove()
+        perpend()
+        before()
+        click ...
+        off()
+        tirgger()
+        on()
+        addClass/removeClass
+        index()
+        siblings
+        prop
+        attr
+        val
+        next()
+        prev()
+        eq()
+        each()
+        ajax()
+        show()
+        hide()
+        hover()
+    */
+    $('#box').mousedown(function(ev){
+        let disX = ev.pageX - $('#box')[0].offsetLeft;
+        let disY = ev.pageY - $('#box').offset().top;
+        $(document).mousemove(function(ev){
+            $('#box').css({
+                left:ev.pageX - disX,
+                top:ev.pageY - disY
+            });
+        });
+        $(document).mouseup(function(ev){
+            $(document).off();
+        });
+        return false;
+    });
+</script>
+</body>
+</html>
